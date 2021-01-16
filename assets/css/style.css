@@ -1,25 +1,47 @@
 /*--Navigation Bar start --*/
+
 nav {
-	background: #d8f3dc;
+    background: #d8f3dc;
 }
+
+
 /*--Navigation Bar End --*/
 
+
 /*--Footer Start --*/
+
 footer {
-	background: #d8f3dc;
+    background: #d8f3dc;
 }
 
 #customFooter {
-	background: #232526; /* fallback for old browsers */
-	background: -webkit-linear-gradient(
-		to right,
-		#414345,
-		#232526
-	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to right,
-		#414345,
-		#232526
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #232526;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient( to right, #414345, #232526);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient( to right, #414345, #232526);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+
 /*--Footer End --*/
+
+
+/* Avatar Start */
+
+.avatarBtn {
+    display: grid;
+    place-items: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: none !important;
+}
+
+.avatarBtn:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+
+/* Avatar End */

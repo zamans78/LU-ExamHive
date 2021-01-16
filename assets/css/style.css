@@ -4,33 +4,6 @@ nav {
 }
 /*--Navigation Bar End --*/
 
-/*--FAQ Section start --*/
-.faq {
-	padding-left: 40px;
-}
-.faq-bottom hr {
-	padding: 10px;
-}
-/*--FAQ Section end--*/
-
-/*--Contact Us Start --*/
-.contact-us {
-	padding-left: 40px;
-}
-#textarea {
-	height: 200px;
-	width: 1110px;
-	margin-left: 120px;
-}
-#btn {
-	margin-top: 25px;
-	margin-left: 1150px;
-}
-.contact-us-bottom hr {
-	padding: 10px;
-}
-/*--Contact Us End --*/
-
 /*--Footer Start --*/
 footer {
 	background: #d8f3dc;

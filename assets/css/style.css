@@ -72,3 +72,11 @@ textarea {
 
 
 /*--Registration End--*/
+
+/*--Posts End--*/
+
+tbody tr{
+    cursor: pointer;
+}
+
+/*--Posts End--*/

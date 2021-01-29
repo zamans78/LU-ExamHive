@@ -2,26 +2,10 @@
 <html lang="en">
 
 <head>
-	<!-- Meta tags -->
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-	<!--Font-awesome-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-		integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-		crossorigin="anonymous" />
-	<!-- Lu Logo near title-->
-	<link rel="icon" type="image/png" href="assets/images/h_logo.png" />
-	<title>LU Exam Hive</title>
-
-	<!-- Custom CSS fike -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-
-	<!-- jquery Library -->
-	<script type="text/javascript" src="assets/js/jquery/jquery-3.5.1.min.js"></script>
-</head>
+<?php
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 
 <body>
 	<!--Header start(101) -->
@@ -42,10 +26,10 @@
 						<a class="nav-link active" href="contact.html">Contact Us</a>
 					</div>
 					<button type="button" class="btn btn-sm btn-dark rounded-pill ml-auto">
-						<a href="teacher_Login.html" class="text-white text-decoration-none">Teacher</a>
+						<a href="teacher_Login.php" class="text-white text-decoration-none">Teacher</a>
 					</button>
 					<button type="button" class="btn btn-sm btn-dark rounded-pill mx-3">
-						<a href="student_Registration_Login.html" class="text-white text-decoration-none">Student</a>
+						<a href="student_login.php" class="text-white text-decoration-none">Student</a>
 					</button>
 				</div>
 			</div>
@@ -241,78 +225,10 @@
 	</div>
 	<!--Features End(113) -->
 
-	<!--footer Start(101) -->
-	<footer>
-		<div class="container">
-			<div class="row pt-5">
-				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<img src="img/logo.png" alt="" width="180" class="mb-3" />
-					<h1 class="display-4 mr-2">LU EXAM HIVE</h1>
-				</div>
-				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-					<h6 class="text-uppercase font-weight-bold mb-3 pt-1">PRODUCT</h6>
-					<ul class="list-unstyled mb-0">
-						<li class="mb-2"><a href="#Features" class="text-muted">Features</a></li>
-						<li class="mb-2">
-							<a href="#" class="text-muted">User Manual</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-					<h6 class="text-uppercase font-weight-bold mb-3">CONTACT</h6>
-					<ul class="list-unstyled mb-0">
-						<li class="mb-2"><a href="#" class="text-muted">Find us</a></li>
-						<li class="mb-2"><a href="#FAQ" class="text-muted">FAQ</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Help</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-lg-0">
-					<h6 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h6>
-					<h2 class="text-muted mb-4">
-						<a href="https://www.facebook.com/leadinguniversity2001/"><i
-								class="fab fa-facebook-square"></i></a>
-						<a href="https://www.instagram.com/leadinguniversity/"> <i class="fab fa-instagram"></i></i></a>
-						<a href="https://www.linkedin.com/company/leading-university/about/"><i
-								class="fab fa-linkedin"></i></i></a>
-
-					</h2>
-					<h6 class="text-uppercase font-weight-bold mb-4">SUBSCRIBE</h6>
-					<div class="p-1 rounded border border-white mb-3">
-						<div class="input-group">
-							<input type="email" placeholder="Enter your email address" aria-describedby="button-addon1"
-								class="form-control border-0 shadow-0" />
-							<div class="input-group-append">
-								<button id="button-addon1" type="submit" class="btn btn-link">
-									<i class="fa fa-paper-plane"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Copyrights -->
-		<div class="py-2" id="customFooter">
-			<div class="container text-center">
-				<p class="fw-bold mb-0 py-1 text-white">
-					© 2021 LU EXAM HIVE All rights reserved.
-				</p>
-			</div>
-		</div>
-	</footer>
-	<!--footer End(101) -->
-
-	<!--Bootstrap JavaScript plugins.-->
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
-
-	<!-- Custom JQuery file -->
-	<script type="text/javascript" src="assets/js/custom.js"></script>
+	<?php
+//Head Links
+require_once 'assets/connect/footer.php';
+?>
 </body>
 
 </html>

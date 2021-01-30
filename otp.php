@@ -6,12 +6,15 @@ $error_Student_Otp = '';
 $Student_Activation_Code = '';
 $message = '';
 
+//If url consists of code key.
 if (isset($_GET["code"])) {
     $Student_Activation_Code = $_GET["code"];
     $_SESSION['code'] = $Student_Activation_Code;
 }
+
 if (isset($_POST["check"])) {
-	
+
+    //If OTP is not present in Post.
     if (empty($_POST["Student_Otp"])) {
         $error_Student_Otp = 'Enter OTP Number';
     } else {
@@ -22,10 +25,10 @@ if (isset($_POST["check"])) {
 			AND Student_Otp = '" . trim($_POST["Student_Otp"]) . "'
 			";
 
-        $statement = $pdo->prepare($query); 
-        $statement->execute(); 
+        $statement = $pdo->prepare($query); //Make query for execution.
+        $statement->execute(); //Will execute above query.
+        //Total no of row affected after abve execution.
         $total_row = $statement->rowCount();
-	    
         //If true then entered OTP has matched OTP number in database.
         if ($total_row > 0) {
             $query = "
@@ -39,7 +42,7 @@ if (isset($_POST["check"])) {
                 header('location:student_login.php');
             }
         } else {
-            
+            //For invalid OTP number
             $message = '<label class="text-danger">Invalid OTP Number</label>';
         }
     }

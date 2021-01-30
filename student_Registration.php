@@ -41,8 +41,9 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
         $error_Password = '<label class="text-danger">Enter Password</label>';
 
     } else {
-        $Password = trim($_POST["Password"]);
-        $Password = password_hash($Password, PASSWORD_DEFAULT);
+        $Password_polish = trim($_POST["Password"]);
+        $salt = '8JDs,=-w^q;-57Jc,ZP:g[=8[r+=FC';
+        $Password = md5($salt . $Password_polish);
 
     }
     //Student First Name Check.

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <?php
-//Head Links
 require_once 'assets/connect/head.php';
 ?>
 </head>
@@ -12,7 +11,7 @@ require_once 'assets/connect/head.php';
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <a class="navbar-brand" href="#">LU EXAM HIVE</a>
       <button type="button" class="btn btn-sm btn-dark rounded-0 ml-3">
-        <a href="index.html" class="text-white text-decoration-none">Back</a>
+        <a href="student_login.php" class="text-white text-decoration-none">Back</a>
     </nav>
   </header>
   <!--posts Start(128) -->

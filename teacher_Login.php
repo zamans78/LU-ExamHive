@@ -17,7 +17,7 @@ if (isset($_POST['Teacher_Email']) && isset($_POST['pass']) && isset($_POST['log
         header("Location: teacher_Login.php");
         return;
 
-        //If Credencials are Correct:
+        //If Credentials are Correct:
     } else {
 
         $salt = '6JDs,=+w^q;-57Qc,Zz:g[=8[r==FC';
@@ -30,7 +30,7 @@ if (isset($_POST['Teacher_Email']) && isset($_POST['pass']) && isset($_POST['log
         if ($row !== false) {
             $_SESSION['Teacher_ID'] = $row['Teacher_ID'];
             $_SESSION['Name'] = $row['Name'];
-            header("Location: posts.html");
+            header("Location: teacher_dashboard.php");
             return;
         } else {
             $_SESSION['error'] = "Incorrect password or Email";

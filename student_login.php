@@ -20,11 +20,12 @@ if (isset($_POST['Student_Email']) && isset($_POST['Password']) && isset($_POST[
         //If Credencials are Correct:
     } else {
 
-        $salt = '6JDs,=+w^q;-57Qc,Zz:g[=8[r==FC';
-        $check = md5($salt . $_POST['Password']);
+        $salt = '8JDs,=-w^q;-57Jc,ZP:g[=8[r+=FC';
+        $Password = md5($salt . $_POST['Password']);
+        $Student_Email_Status = 'verified';
 
-        $stmt = $pdo->prepare('SELECT Student_ID FROM student WHERE Student_Email = :em AND Password = :pw');
-        $stmt->execute(array(':em' => $_POST['Student_Email'], ':pw' => $check));
+        $stmt = $pdo->prepare('SELECT Student_ID FROM student WHERE Student_Email = :em AND Password = :pw AND Student_Email_Status = :ses');
+        $stmt->execute(array(':em' => $_POST['Student_Email'], ':ses' => $Student_Email_Status, ':pw' => $Password));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row !== false) {
@@ -33,7 +34,6 @@ if (isset($_POST['Student_Email']) && isset($_POST['Password']) && isset($_POST[
             return;
         } else {
             $_SESSION['error'] = "Incorrect password or Email";
-            error_log("Login fail " . $_POST['Student_Email'] . " $check");
             header("Location: student_login.php");
             return;
         }
@@ -115,8 +115,7 @@ if (isset($_SESSION['error'])) {
 			</div>
 		</div>
 	</main>
-	<!--Student Login/Registration Start(127)(+101) -->
-
+	<!--Student Login/Registration Start -->
 
 <!--footer Start -->
 <?php

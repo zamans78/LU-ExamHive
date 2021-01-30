@@ -23,7 +23,7 @@ require_once 'assets/connect/head.php';
 						<a class="nav-link active" href="#AboutUs">About Us</a>
 						<a class="nav-link active" href="#FAQ">FAQ</a>
 						<a class="nav-link active" href="#Features">Features</a>
-						<a class="nav-link active" href="contact.html">Contact Us</a>
+						<a class="nav-link active" href="contact.php">Contact Us</a>
 					</div>
 					<button type="button" class="btn btn-sm btn-dark rounded-pill ml-auto">
 						<a href="teacher_Login.php" class="text-white text-decoration-none">Teacher</a>

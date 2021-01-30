@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row pt-5">
 				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<h1 class="display-4 mr-2">LU EXAM HIVE</h1>
+					<h1 class="display-4 mr-2 mb-5">LU EXAM HIVE</h1>
 				</div>
 				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
 					<h6 class="text-uppercase font-weight-bold mb-3 pt-1">PRODUCT</h6>
@@ -18,9 +18,9 @@
 				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
 					<h6 class="text-uppercase font-weight-bold mb-3">CONTACT</h6>
 					<ul class="list-unstyled mb-0">
-						<li class="mb-2"><a href="#" class="text-muted">Find us</a></li>
-						<li class="mb-2"><a href="index.html#FAQ" class="text-muted">FAQ</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Help</a></li>
+						<li class="mb-2"><a href="contact.php" class="text-muted">Find us</a></li>
+						<li class="mb-2"><a href="index.php#FAQ" class="text-muted">FAQ</a></li>
+						<!--<li class="mb-2"><a href="#" class="text-muted">Help</a></li>-->
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 mb-lg-0">
@@ -33,7 +33,7 @@
 								class="fab fa-linkedin"></i></i></a>
 
 					</h2>
-					<h6 class="text-uppercase font-weight-bold mb-4">SUBSCRIBE</h6>
+					<!--<h6 class="text-uppercase font-weight-bold mb-4">SUBSCRIBE</h6>
 					<div class="p-1 rounded border border-white mb-3">
 						<div class="input-group">
 							<input type="email" placeholder="Enter your email address" aria-describedby="button-addon1"
@@ -43,7 +43,7 @@
 									<i class="fa fa-paper-plane"></i>
 								</button>
 							</div>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>

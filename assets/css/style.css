@@ -32,7 +32,7 @@ nav {
     height: 60px;
     border-radius: 50%;
     position: relative;
-    margin: -30px 0px 20px 142px;
+    margin: -30px 0px 20px 42%;
 }
 .user-review p::before{
     content: '\201d';

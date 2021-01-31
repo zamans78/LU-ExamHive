@@ -23,6 +23,7 @@ require_once 'assets/connect/head.php';
 						<a class="nav-link active" href="#AboutUs">About Us</a>
 						<a class="nav-link active" href="#FAQ">FAQ</a>
 						<a class="nav-link active" href="#Features">Features</a>
+						<a class="nav-link active" href="#Reviews">Reviews</a>
 						<a class="nav-link active" href="contact.php">Contact Us</a>
 					</div>
 					<button type="button" class="btn btn-sm btn-dark rounded-pill ml-auto">
@@ -224,6 +225,49 @@ require_once 'assets/connect/head.php';
 		</div>
 	</div>
 	<!--Features End(113) -->
+
+	<!--Reviews Start(113)-->
+
+	<div class="container border border-dark border-left-0 border-right-0 border-bottom-0 mb-5">
+		<h2 class="display-3 mt-4" id="Reviews">Reviews</h2>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-4" id="review">
+					<div class="user-review">
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
+							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
+							necessitatibus voluptas sapiente! Ut, deserunt?
+						</p>
+						<h5>Zaman</h5>
+						<small>CSE</small>
+					</div>
+					<img src="assets/images/user1.png" alt="">
+				</div>
+				<div class="col-md-4" id="review">
+					<div class="user-review">
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
+							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
+							necessitatibus voluptas sapiente! Ut, deserunt?</p>
+						<h5>Pabel</h5>
+						<small>CSE</small>
+					</div>
+					<img src="assets/images/user2.png" alt="">
+				</div>
+				<div class="col-md-4" id="review">
+					<div class="user-review">
+						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
+							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
+							necessitatibus voluptas sapiente! Ut, deserunt?</p>
+						<h5>TAT</h5>
+						<small>CSE</small>
+					</div>
+					<img src="assets/images/user3.png" alt="">
+				</div>
+			</div>
+		</div>
+		</section>
+	</div>
+	<!--Reviews End(113)-->
 
 	<?php
 //Head Links

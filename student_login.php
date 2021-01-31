@@ -109,6 +109,10 @@ if (isset($_SESSION['error'])) {
 							<button type="submit" class="btn btn-dark"><a class="text-white text-decoration-none" href="student_Registration.php">Register</a></button>
 							<button type="submit" name="login" class="btn btn-dark ml-2">Login</button>
 						</div>
+
+						<div class="w-75 d-flex justify-content-end mt-5">
+						<a href="request_reset_password.php">Forgot Your Password?</a>
+						</div>
      </form>
 
 				</div>

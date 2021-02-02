@@ -1,4 +1,27 @@
+CREATE TABLE Admin (
+  Admin_ID INTEGER NOT NULL PRIMARY KEY,
+  Password VARCHAR(255)
+  )ENGINE = InnoDB;
 
+CREATE TABLE Contact_Us (
+  Name  VARCHAR(100),
+  Email VARCHAR(255),
+  Query TEXT,
+  Image VARCHAR(255),
+  Query_Datetime TIMESTAMP,
+  INDEX (Name),
+  INDEX (Email)
+  )ENGINE = InnoDB;
+
+CREATE TABLE Reset_Password (
+  ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Email VARCHAR(255),
+  Code VARCHAR(255),
+  Requested_Datetime TIMESTAMP,
+
+  INDEX (Code),
+  INDEX (Email)
+  )ENGINE = InnoDB;
 
 CREATE TABLE Teacher (
   Teacher_ID INTEGER NOT NULL PRIMARY KEY,
@@ -37,9 +60,10 @@ CREATE TABLE Question(
 
 
 CREATE TABLE Posted_Question (
-  Question_Description_ID INTEGER NOT NULL PRIMARY KEY,
-  Question_ID INTEGER NOT NULL PRIMARY KEY,
+  Question_Description_ID INTEGER NOT NULL,
+  Question_ID INTEGER NOT NULL,
   Post_Datetime TIMESTAMP,
+  PRIMARY KEY (Question_Description_ID, Question_ID),
 
   CONSTRAINT FOREIGN KEY (Question_Description_ID)
   REFERENCES Question (Question_Description_ID)

@@ -23,13 +23,13 @@ if (isset($_POST['Teacher_Email']) && isset($_POST['pass']) && isset($_POST['log
         $salt = '6JDs,=+w^q;-57Qc,Zz:g[=8[r==FC';
         $check = md5($salt . $_POST['pass']);
 
-        $stmt = $pdo->prepare('SELECT Teacher_ID, Name FROM teacher WHERE Email = :em AND Password = :pw');
-        $stmt->execute(array(':em' => $_POST['email'], ':pw' => $check));
+        $stmt = $pdo->prepare('SELECT Teacher_ID, Name FROM teacher WHERE Teacher_Email = :em AND Password = :pw');
+        $stmt->execute(array(':em' => $_POST['Teacher_Email'], ':pw' => $check));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row !== false) {
-            $_SESSION['Teacher_ID'] = $row['Teacher_ID'];
             $_SESSION['Name'] = $row['Name'];
+            $_SESSION['Teacher_ID'] = $row['Teacher_ID'];
             header("Location: teacher_dashboard.php");
             return;
         } else {

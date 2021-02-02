@@ -11,7 +11,7 @@ $code = $_GET["code"];
 
 
 // getting the email from resetPasswords table by checking if it has a row that contains the code
-$sqlEmail = "SELECT email FROM Reset_Passwords WHERE code='$code'";
+$sqlEmail = "SELECT email FROM Reset_Password WHERE code='$code'";
 $stmt = $pdo->prepare($sqlEmail);
 $stmt = $pdo->query($sqlEmail);
 
@@ -32,7 +32,7 @@ if(isset($_POST["password"])){
 
 	// deleting the record from resetPasswords table once the password is changed
 	if($stmt) {
-		$sql = "DELETE FROM Reset_Passwords WHERE code='$code'";
+		$sql = "DELETE FROM Reset_Password WHERE code='$code'";
 		$stmt = $pdo->prepare($sql);
 		$stmt = $pdo->query($sql);
 		$Updated = "Password updated! Go back to";

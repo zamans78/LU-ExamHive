@@ -20,7 +20,7 @@ if(isset($_POST['email'])){
 	$code = uniqid(true);
 
 	// inserting the code and email in the resetPasswords table
-	$sql = "INSERT INTO Reset_Passwords(code, email) VALUES(:code, :email)";
+	$sql = "INSERT INTO Reset_Password(code, email) VALUES(:code, :email)";
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute(['code' => $code, 'email' => $emailTo]);
 

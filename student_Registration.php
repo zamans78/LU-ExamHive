@@ -37,8 +37,16 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
         }
     }
     //Student Password Check.
-    if (empty($_POST["Password"])) {
-        $error_Password = '<label class="text-danger">Enter Password</label>';
+    if (mb_strlen($_POST["Password"]) <= 8) {
+        $error_Password = "<label class='text-danger'>Your Password Must Contain At Least 8 Characters!</label>";
+    } elseif (!preg_match("#[0-9]+#", $_POST["Password"])) {
+        $error_Password = "<label class='text-danger'>Your Password Must Contain At Least 1 Number!</label>";
+    } elseif (!preg_match("#[A-Z]+#", $_POST["Password"])) {
+        $error_Password = "<label class='text-danger'>Your Password Must Contain At Least 1 Capital Letter!</label>";
+    } elseif (!preg_match("#[a-z]+#", $_POST["Password"])) {
+        $error_Password = "<label class='text-danger'>Your Password Must Contain At Least 1 Lowercase Letter!</label>";
+    } elseif (!preg_match("#[\W]+#", $_POST["Password"])) {
+        $error_Password = "<label class='text-danger'>Your Password Must Contain At Least 1 Special Character!</label>";
 
     } else {
         $Password_polish = trim($_POST["Password"]);
@@ -78,6 +86,8 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
     if (empty($_POST["Section"])) {
         $error_Section = "<label class='text-danger'>Enter Section</label>";
 
+    } else if (strlen($_POST["Section"]) > 1) {
+        $error_Section = "<label class='text-danger'>Multiple Section not Allowed.</label>";
     } else {
         $Section = trim($_POST["Section"]);
         $Section = htmlentities($Section);

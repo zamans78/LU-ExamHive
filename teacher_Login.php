@@ -10,15 +10,15 @@ if (isset($_POST['Teacher_Email']) && isset($_POST['pass']) && isset($_POST['log
         $_SESSION['error'] = "User name and password are required";
         header("Location: teacher_Login.php");
         return;
-
-        //Checks email format.
-    } else if (strpos($_POST['Teacher_Email'], "@") === false) {
-        $_SESSION['error'] = "Email must have an at-sign (@)";
+    }
+    //Checks email format.
+    else if (!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $_POST["Teacher_Email"])) {
+        $_SESSION['error'] = "Email is not valid.";
         header("Location: teacher_Login.php");
         return;
-
-        //If Credentials are Correct:
-    } else {
+    }
+    //If Credentials are Correct:
+    else {
 
         $salt = '6JDs,=+w^q;-57Qc,Zz:g[=8[r==FC';
         $check = md5($salt . $_POST['pass']);
@@ -32,6 +32,7 @@ if (isset($_POST['Teacher_Email']) && isset($_POST['pass']) && isset($_POST['log
             $_SESSION['Teacher_ID'] = $row['Teacher_ID'];
             header("Location: teacher_dashboard.php");
             return;
+
         } else {
             $_SESSION['error'] = "Incorrect password or Email";
             error_log("Login fail " . $_POST['Teacher_Email'] . " $check");
@@ -40,6 +41,7 @@ if (isset($_POST['Teacher_Email']) && isset($_POST['pass']) && isset($_POST['log
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>

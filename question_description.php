@@ -49,7 +49,7 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 
     $Question_Description_ID = $pdo->lastInsertId();
 
-    for ($i = 1; $i <= 9; $i++) {
+    for ($i = 1; $i <= 50; $i++) {
         if (!isset($_POST['Question' . $i])) {
             continue;
         }
@@ -115,45 +115,45 @@ if ($status !== false) {
             <form method="post" class="form-horizontal">
                 <div class="form-group input-group input-group-lg">
                     <label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Code"><b>Course Code:</b></label>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col">
                         <input class="form-control" type="text" name="Course_Code" id="Course_Code">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Name"><b>Course Name:</b></label>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col">
                         <input class="form-control" type="text" name="Course_Name" id="Course_Name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-12 d-flex justify-content-left" for="Batch"><b>Batch:</b></label>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col">
                         <input class="form-control" type="text" name="Batch" id="Batch">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-12 d-flex justify-content-left " for="Section"><b>Section:</b></label>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col">
                         <input class="form-control" type="text" name="Section" id="Section">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-12 d-flex justify-content-left " for="Title"><b>Title:</b></label>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col">
                         <input class="form-control" type="text" name="Title" id="Title">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-12 d-flex justify-content-left"><b>Add Question:</b></label>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col">
                         <button id="addPos" class="btn btn-success btn-md btn-block"><i class="fas fa-pencil-alt"></i></button>
                     </div>
                 </div>
-                <div id="position_fields">
+                <div id="position_fields" class="py-5">
 
                 </div>
                 <div class="form-group d-flex justify-content-center">
-                    <div class="col-sm-2 col-sm-offset-2">
+                    <div class="col-sm-4 col-sm-offset-2 p-1">
                         <input class="btn btn-dark btn-block mb-5" type="submit" value="Save">
 
                     </div>
@@ -171,7 +171,7 @@ if ($status !== false) {
                 $('#addPos').click(function(event){
                     // http://api.jquery.com/event.preventdefault/
                     event.preventDefault();
-                    if ( countPos >= 9 ) {
+                    if ( countPos >= 50 ) {
                         alert("Maximum of nine position entries exceeded");
                         return;
                     }
@@ -179,17 +179,17 @@ if ($status !== false) {
                     window.console && console.log("Adding position "+countPos);
 
                     $('#position_fields').append(
-                   '<div id="position'+countPos+'">\
-   <div class="form-group"> \
-   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"> \
+                   '<div class="pt-5" id="position'+countPos+'">\
+   <div class="form-group "> \
+   <div class="col"> \
    <button class="btn btn-danger btn-block" \
    onclick="$(\'#position'+countPos+'\').remove();return false;" \
    ><i class="fas fa-eraser"></i></button> \
    </div> \
    </div> \
-   <div class="form-group"> \
+   <div class="form-group m-0 p-0"> \
    <label class="control-label col-sm-2"></label> \
-   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"> \
+   <div class="col"> \
    <textarea class="form-control" name="Question'+countPos+'" rows="4" ></textarea> \
    </div> \
    </div> \

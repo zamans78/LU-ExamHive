@@ -8,7 +8,7 @@ function validationHelper()
         return false;
     }
 
-    for ($i = 1; $i <= 9; $i++) {
+    for ($i = 1; $i <= 50; $i++) {
 
         if (!isset($_POST['Question' . $i])) {
             continue;

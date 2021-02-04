@@ -15,7 +15,7 @@ function validatePos()
         return false;
     }
 
-    for ($i = 1; $i <= 9; $i++) {
+    for ($i = 1; $i <= 50; $i++) {
 
         if (!isset($_POST['Question' . $i])) {
             continue;
@@ -61,7 +61,7 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
         $stmt = $pdo->prepare('DELETE FROM question WHERE Question_Description_ID=:Question_Description_ID');
         $stmt->execute(array(':Question_Description_ID' => $_REQUEST['Question_Description_ID']));
 
-        for ($i = 1; $i <= 9; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
 
             if (!isset($_POST['Question' . $i])) {
                 continue;
@@ -121,37 +121,71 @@ require_once 'assets/connect/head.php';
 		</nav>
 
 	</header>
-<div class="container">
-    <h1>Editing Question for </h1>
+    <div class="card text-center bg-light text-dark ">
+            <div class="card-header bg-secondary text-white ">
+                <h2 class="display-4">Edit Question</h2>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center mt-3">
+                    <p class="">Fill the fields below to create question !!!</p>
+                </div>
+            </div>
+
+<div class="container col-xl-7 col-lg-7 col-md-7">
     <?php
 if (isset($_SESSION['error'])) {
     echo ('<p style="color: red;">' . htmlentities($_SESSION['error']) . "</p>\n");
     unset($_SESSION['error']);
 }
 ?>
-    <form method="post">
-        <p>Course Code:
-            <input type="text" name="Course_Code" size="60" value="<?php echo $row['Course_Code'] ?>"/></p>
-        <p>Course Name:
-            <input type="text" name="Course_Name" size="60" value="<?php echo $row['Course_Name'] ?>"/></p>
-        <p>Batch:
-            <input type="text" name="Batch" size="30" value="<?php echo $row['Batch'] ?>"/></p>
-        <p>Section:<br/>
-            <input type="text" name="Section" size="80" value="<?php echo $row['Section'] ?>"/></p>
-            <p>Title:
-            <input type="text" name="Title" size="30" value="<?php echo $row['Title'] ?>"/></p>
-        <p>
-            Add Question: <input type="submit" id="addPos" value="+">
-        <div id="position_fields">
+
+
+            <form method="post" class="form-horizontal">
+                <div class="form-group input-group input-group-lg">
+                    <label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Code"><b>Course Code:</b></label>
+                    <div class="col">
+                        <input class="form-control" type="text" name="Course_Code" id="Course_Code" value="<?php echo $row['Course_Code'] ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Name"><b>Course Name:</b></label>
+                    <div class="col">
+                        <input class="form-control" type="text" name="Course_Name" id="Course_Name" value="<?php echo $row['Course_Name'] ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-12 d-flex justify-content-left" for="Batch"><b>Batch:</b></label>
+                    <div class="col">
+                        <input class="form-control" type="text" name="Batch" id="Batch" value="<?php echo $row['Batch'] ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-12 d-flex justify-content-left " for="Section"><b>Section:</b></label>
+                    <div class="col">
+                        <input class="form-control" type="text" name="Section" id="Section" value="<?php echo $row['Section'] ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-12 d-flex justify-content-left " for="Title"><b>Title:</b></label>
+                    <div class="col">
+                        <input class="form-control" type="text" name="Title" id="Title" value="<?php echo $row['Title'] ?>">
+                    </div>
+                </div>
+
+
+
+
+        <!-------------------------------------------------------------                -->
+        <div id="position_fields" class="py-5">
             <?php
-$rank = 1;
+$count = 1;
 foreach ($rowOfPosition as $row) {
-    echo "<div id=\"position" . $rank . "\">
+    echo "<div id=\"position" . $count . "\">
  <p>
- <input type=\"button\" value=\"-\" onclick=\"$('#position" . $rank . "').remove();return false;\"></p>
- <textarea name=\"Question" . $rank . "\"').\" rows=\"8\" cols=\"80\">" . $row['Question'] . "</textarea>
+ <input type=\"button\" value=\"-\" onclick=\"$('#position" . $count . "').remove();return false;\"></p>
+ <textarea name=\"Question" . $count . "\"').\" rows=\"4\" cols=\"90\">" . $row['Question'] . "</textarea>
  </div>";
-    $rank++;
+    $count++;
 }?>
         </div>
         <input type="submit" value="Save">
@@ -159,34 +193,41 @@ foreach ($rowOfPosition as $row) {
         </p>
     </form>
     <p>
-        <script>
+
+
+    <script>
             countPos = 0;
 
             // http://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
-            $(document).ready(function () {
-                $('#addPos').click(function (event) {
+            $(document).ready(function(){
+                window.console && console.log('Document ready called');
+                $('#addPos').click(function(event){
+                    // http://api.jquery.com/event.preventdefault/
                     event.preventDefault();
-                    if (countPos >= 9) {
+                    if ( countPos >= 50 ) {
                         alert("Maximum of nine position entries exceeded");
                         return;
                     }
                     countPos++;
+                    window.console && console.log("Adding position "+countPos);
 
-                    '<div id="position'+countPos+'">\
-   <div class="form-group"> \
-   <div class="col-sm-1"> \
-   <button class="btn btn-danger" \
+                    $('#position_fields').append(
+                   '<div class="pt-5" id="position'+countPos+'">\
+   <div class="form-group "> \
+   <div class="col"> \
+   <button class="btn btn-danger btn-block" \
    onclick="$(\'#position'+countPos+'\').remove();return false;" \
-   >-</button> \
+   ><i class="fas fa-eraser"></i></button> \
    </div> \
    </div> \
-   <div class="form-group"> \
+   <div class="form-group m-0 p-0"> \
    <label class="control-label col-sm-2"></label> \
-   <div class="col-sm-5"> \
-   <textarea class="form-control" name="Question'+countPos+'" rows="6" ></textarea> \
+   <div class="col"> \
+   <textarea class="form-control" name="Question'+countPos+'" rows="4" ></textarea> \
    </div> \
    </div> \
-   </div>');
+   </div>'
+                    );
                 });
             });
         </script>

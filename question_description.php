@@ -92,20 +92,16 @@ require_once 'assets/connect/head.php';
 		</nav>
 
 	</header>
-
-        <div class="container">
-        <div class="row">
-      <div class="col d-flex justify-content-center mt-4">
-        <h2 class="display-4 ">Create Question</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col d-flex justify-content-center mt-3">
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-            obcaecati incidunt veritatis totam!</p>
-      </div>
-    </div>
-            <?php
+    <div class="card text-center bg-light text-dark ">
+            <div class="card-header bg-secondary text-white ">
+                <h2 class="display-4">Create Question</h2>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center mt-3">
+                    <p class="">Fill the fields below to create question !!!</p>
+                </div>
+            </div>
+<?php
 if ($status !== false) {
     // Look closely at the use of single and double quotes
     echo (
@@ -115,54 +111,55 @@ if ($status !== false) {
     );
 }
 ?>
+        <div class="container col-xl-7 col-lg-7 col-md-7">
             <form method="post" class="form-horizontal">
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="Course_Code">Course Code:</label>
-                    <div class="col-sm-5">
+                <div class="form-group input-group input-group-lg">
+                    <label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Code"><b>Course Code:</b></label>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <input class="form-control" type="text" name="Course_Code" id="Course_Code">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="Course_Name">Course Name:</label>
-                    <div class="col-sm-5">
+                    <label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Name"><b>Course Name:</b></label>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <input class="form-control" type="text" name="Course_Name" id="Course_Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="Batch">Batch:</label>
-                    <div class="col-sm-5">
+                    <label class="control-label col-sm-12 d-flex justify-content-left" for="Batch"><b>Batch:</b></label>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <input class="form-control" type="text" name="Batch" id="Batch">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="Section">Section:</label>
-                    <div class="col-sm-5">
+                    <label class="control-label col-sm-12 d-flex justify-content-left " for="Section"><b>Section:</b></label>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <input class="form-control" type="text" name="Section" id="Section">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="Title">Title:</label>
-                    <div class="col-sm-5">
-                    <input class="form-control" type="text" name="Title" id="Title">
+                    <label class="control-label col-sm-12 d-flex justify-content-left " for="Title"><b>Title:</b></label>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <input class="form-control" type="text" name="Title" id="Title">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Add Question:</label>
-                    <div class="col-sm-5">
-                        <button id="addPos" class="btn btn-success">+</button>
+                    <label class="control-label col-sm-12 d-flex justify-content-left"><b>Add Question:</b></label>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button id="addPos" class="btn btn-success btn-md btn-block"><i class="fas fa-pencil-alt"></i></button>
                     </div>
                 </div>
                 <div id="position_fields">
 
                 </div>
-                <div class="form-group">
+                <div class="form-group d-flex justify-content-center">
                     <div class="col-sm-2 col-sm-offset-2">
-                        <input class="btn btn-dark" type="submit" value="Save">
+                        <input class="btn btn-dark btn-block mb-5" type="submit" value="Save">
 
                     </div>
                 </div>
             </form>
-
+        </div>
         </div>
 
         <script>
@@ -184,16 +181,16 @@ if ($status !== false) {
                     $('#position_fields').append(
                    '<div id="position'+countPos+'">\
    <div class="form-group"> \
-   <div class="col-sm-1"> \
-   <button class="btn btn-danger" \
+   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"> \
+   <button class="btn btn-danger btn-block" \
    onclick="$(\'#position'+countPos+'\').remove();return false;" \
-   >-</button> \
+   ><i class="fas fa-eraser"></i></button> \
    </div> \
    </div> \
    <div class="form-group"> \
    <label class="control-label col-sm-2"></label> \
-   <div class="col-sm-5"> \
-   <textarea class="form-control" name="Question'+countPos+'" rows="6" ></textarea> \
+   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"> \
+   <textarea class="form-control" name="Question'+countPos+'" rows="4" ></textarea> \
    </div> \
    </div> \
    </div>'

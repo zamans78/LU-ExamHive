@@ -231,8 +231,8 @@ require_once 'assets/connect/head.php';
 	<div class="container border border-dark border-left-0 border-right-0 border-bottom-0 mb-5">
 		<h2 class="display-3 mt-4" id="Reviews">Reviews</h2>
 		<div class="container mt-5">
-			<div class="row">
-				<div class="col-md-4" id="review">
+			<div class="row d-flex justify-content-center">
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12" id="review">
 					<div class="user-review">
 						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
 							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
@@ -243,7 +243,7 @@ require_once 'assets/connect/head.php';
 					</div>
 					<img src="assets/images/user1.png" alt="">
 				</div>
-				<div class="col-md-4" id="review">
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12" id="review">
 					<div class="user-review">
 						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
 							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
@@ -253,7 +253,7 @@ require_once 'assets/connect/head.php';
 					</div>
 					<img src="assets/images/user2.png" alt="">
 				</div>
-				<div class="col-md-4" id="review">
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12" id="review">
 					<div class="user-review">
 						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
 							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam

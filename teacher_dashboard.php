@@ -84,7 +84,7 @@ if (true) {
         echo ($row['Course_Code']);
         echo ("</td>");
         echo ("<td>");
-        echo ('<a href="question_edit.php?Question_Description_ID=' . $row['Question_Description_ID'] . '">Edit</a> / <a href="question_delete.php?Question_Description_ID=' . $row['Question_Description_ID'] . '">Delete</a>');
+        echo ('<a href="question_edit.php?Question_Description_ID=' . $row['Question_Description_ID'] . '"><i class="fas fa-edit"></i></a> / <a href="question_delete.php?Question_Description_ID=' . $row['Question_Description_ID'] . '"><i class="far fa-trash-alt"></i></a>');
         echo ("</td></tr>\n");
     }
     echo " </tbody>";

@@ -21,18 +21,12 @@ nav {
 .user-review p{
     padding: 50px 10px 10px 10px;
 }
-#review h5{
-    text-align: center;
-}
-#review small{
-    text-align: center;
-}
 #review img{
     width: 60px;
     height: 60px;
     border-radius: 50%;
     position: relative;
-    margin: -30px 0px 20px 42%;
+    margin: -30px 0px 20px 41%;
 }
 .user-review p::before{
     content: '\201d';

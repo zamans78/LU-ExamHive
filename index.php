@@ -6,13 +6,14 @@
 //Head Links
 require_once 'assets/connect/head.php';
 ?>
+</head>
 
 <body>
 	<!--Header start(101) -->
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container">
-				<a class="navbar-brand" href="#">LU EXAM HIVE</a>
+				<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
 					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -26,20 +27,16 @@ require_once 'assets/connect/head.php';
 						<a class="nav-link active" href="#Reviews">Reviews</a>
 						<a class="nav-link active" href="contact.php">Contact Us</a>
 					</div>
-					<button type="button" class="btn btn-sm btn-dark rounded-pill ml-auto">
-						<a href="teacher_Login.php" class="text-white text-decoration-none">Teacher</a>
-					</button>
-					<button type="button" class="btn btn-sm btn-dark rounded-pill mx-3">
-						<a href="student_login.php" class="text-white text-decoration-none">Student</a>
-					</button>
+
+					<a type="button" href="teacher_Login.php" class="btn btn-sm btn-dark rounded-pill ml-auto">Teacher</a>
+          
+            		<a type="button" href="student_login.php" class="btn btn-sm btn-dark rounded-pill mx-3">Student</a>
+
 				</div>
 			</div>
 		</nav>
 	</header>
 	<!--Header End(101) -->
-
-	<!--Horizontal Line(101)-->
-	<div class="border border-dark border-left-0 border-right-0 border-bottom-0"></div>
 
 	<!--About us start(101) -->
 	<div class="container mt-3 border border-dark border-top-0 border-bottom-0 border-left-0 border-right-0">
@@ -265,7 +262,6 @@ require_once 'assets/connect/head.php';
 				</div>
 			</div>
 		</div>
-		</section>
 	</div>
 	<!--Reviews End(113)-->
 

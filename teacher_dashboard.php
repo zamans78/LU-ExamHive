@@ -30,9 +30,13 @@ require_once 'assets/connect/head.php';
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-      <a class="navbar-brand" href="#">LU EXAM HIVE</a>
-      <button type="button" class="btn btn-sm btn-dark rounded-0 ml-3">
-        <a href="teacher_logout.php" class="text-white text-decoration-none">LOGOUT</a>
+      <div class="container">
+        <a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+        <div class="navbar-nav">
+          <a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+        </div>
+          <a type="button" href="teacher_logout.php" class="btn btn-sm btn-dark ml-auto">Logout <i class="fas fa-door-open"></i></a>
+      </div>
     </nav>
   </header>
   <!--Teacher Dashboard Start(128) -->

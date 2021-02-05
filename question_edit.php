@@ -114,13 +114,13 @@ require_once 'assets/connect/head.php';
 </head>
 <body>
 <header>
-	<nav class="navbar navbar-expand-lg navbar-light sticky-top">
-			<a class="navbar-brand" href="#">LU EXAM HIVE</a>
-			<button type="button" class="btn btn-sm btn-dark rounded-0 ml-3">
-				<a href="teacher_dashboard.php" class="text-white text-decoration-none">Back</a>
-		</nav>
-
-	</header>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container justify-content-start">
+            <a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+            <a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+        </div>
+    </nav>
+</header>
     <div class="card text-center bg-light text-dark ">
             <div class="card-header bg-secondary text-white ">
                 <h2 class="display-4">Edit Question</h2>

@@ -51,10 +51,11 @@ require_once 'assets/connect/head.php';
 <body>
 	<header>
 	<nav class="navbar navbar-expand-lg navbar-light sticky-top">
-			<a class="navbar-brand" href="#">LU EXAM HIVE</a>
-			<button type="button" class="btn btn-sm btn-dark rounded-0 ml-3">
-				<a href="index.php" class="text-white text-decoration-none">Back</a>
-		</nav>
+		<div class="container justify-content-start">
+			<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+			<a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+		</div>
+	</nav>
 
 	</header>
 
@@ -70,14 +71,11 @@ require_once 'assets/connect/head.php';
 							<img src="assets/images/student.jpg" class="card-img" alt="Student">
 						</div>
 						<div class="container my-4">
-							<h1 class="my-2 display-4">Student Login/Registration</h1>
-							<p>Press enter on the card above.</p>
-							<p class="my-3">Pressing the button will redirect you to the teacher dashboard.</p>
+							<h1 class="my-2 display-4">Student Login</h1>
+							<p>User passwords are encrypted.</p>
+							<p class="my-3">New user? <a href="student_Registration.php">Get started with LU Exam Hive</a></p>
 						</div>
 					</div>
-
-					<h1 class="my-2 display-4 d-none d-md-block d-sm-block d-lg-none mb-4 text-center">Student
-						Login/Registration</h1>
 				</div>
 
     <!--Column 2 -->
@@ -96,18 +94,18 @@ if (isset($_SESSION['error'])) {
 						<form method="POST" action="student_login.php">
 						<div class="form-group w-75 ">
 							<input type="email" name="Student_Email" class="form-control " id="exampleInputEmail1"
-								aria-describedby="emailHelp" placeholder="email...">
+								aria-describedby="emailHelp" placeholder="Email...">
 							<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
 								else.</small>
 						</div>
 						<div class="form-group w-75">
 
 							<input type="password" name="Password" class="form-control" id="exampleInputPassword1"
-								placeholder="password...">
+								placeholder="Password...">
 						</div>
 						<div class="w-75 d-flex justify-content-end">
-							<button type="submit" class="btn btn-dark"><a class="text-white text-decoration-none" href="student_Registration.php">Register</a></button>
-							<button type="submit" name="login" class="btn btn-dark ml-2">Login</button>
+							<button type="submit" class="btn btn-dark"><a class="text-white text-decoration-none" href="student_Registration.php">Register <i class="fas fa-user-plus"></i></a></button>
+							<button type="submit" name="login" class="btn btn-dark ml-2">Login <i class="fas fa-sign-in-alt"></i></button>
 						</div>
 
 						<div class="w-75 d-flex justify-content-end mt-5">

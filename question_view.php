@@ -5,112 +5,114 @@ session_start();
 require_once "assets/connect/pdo.php";
 
 if (!isset($_SESSION['Teacher_ID'])) {
-    die("Not logged in");
+	die("Not logged in");
 }
 
 if (isset($_REQUEST['Question_Description_ID'])) {
-    $Question_Description_ID = htmlentities($_REQUEST['Question_Description_ID']);
+	$Question_Description_ID = htmlentities($_REQUEST['Question_Description_ID']);
 
-    $stmt = $pdo->prepare("
+	$stmt = $pdo->prepare("
         SELECT * FROM question_description
         WHERE Question_Description_ID = :Question_Description_ID
     ");
 
-    $stmt->execute([
-        ':Question_Description_ID' => $Question_Description_ID,
-    ]);
+	$stmt->execute([
+		':Question_Description_ID' => $Question_Description_ID,
+	]);
 
-    $question_description = $stmt->fetch(PDO::FETCH_OBJ);
+	$question_description = $stmt->fetch(PDO::FETCH_OBJ);
 
-    $stmt = $pdo->prepare("
+	$stmt = $pdo->prepare("
         SELECT * FROM question
         WHERE Question_Description_ID = :Question_Description_ID
     ");
 
-    $stmt->execute([
-        ':Question_Description_ID' => $Question_Description_ID,
-    ]);
+	$stmt->execute([
+		':Question_Description_ID' => $Question_Description_ID,
+	]);
 
-    $question = [];
+	$question = [];
 
-    while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $question[] = $row;
-    }
+	while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
+		$question[] = $row;
+	}
 
-    $questionLen = count($question);
+	$questionLen = count($question);
 }
 
 ?>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-		<?php
-require_once 'assets/connect/head.php';
-?>
 
-    </head>
-	<header>
-	   <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-        <div class="container justify-content-start">
-            <a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-            <a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
-        </div>
-    </nav>
-	</header>
+<head>
+	<title></title>
+	<?php
+	require_once 'assets/connect/head.php';
+	?>
 
-    <body>
-        <div class="container">
+</head>
+<header>
+	<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+		<div class="container justify-content-start">
+			<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+			<a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+		</div>
+	</nav>
+</header>
 
-            <h1>Question information</h1>
+<body>
+	<div class="container">
 
-            <div class="row">
-                <div class="col-sm-2">Course Code:</div>
-                <div class="col-sm-4">
-                    <?php echo $question_description->Course_Code; ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">Course Name:</div>
-                <div class="col-sm-4">
-                    <?php echo $question_description->Course_Name; ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">Batch:</div>
-                <div class="col-sm-4">
-                    <?php echo $question_description->Batch; ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">Section:</div>
-                <div class="col-sm-4">
-                    <?php echo $question_description->Section; ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">Titel:</div>
-                <div class="col-sm-8">
-                    <?php echo $question_description->Title; ?>
-                </div>
-            </div>
+		<h1>Question information</h1>
 
-            <?php if ($questionLen > 0): ?>
-                <div class="row">
-                    <div class="col-sm-2">Questions:</div>
-                    <div class="col-sm-8">
-                        <ul>
-                            <?php for ($i = 1; $i <= $questionLen; $i++): ?>
-                                <li><?php echo $question[$i - 1]->Question; ?></li>
-                            <?php endfor;?>
-                        </ul>
-                    </div>
-                </div>
-            <?php endif;?>
-        </div>
-		<?php
-require_once 'assets/connect/footer.php';
-?>
-    </body>
+		<div class="row">
+			<div class="col-sm-2">Course Code:</div>
+			<div class="col-sm-4">
+				<?php echo $question_description->Course_Code; ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Course Name:</div>
+			<div class="col-sm-4">
+				<?php echo $question_description->Course_Name; ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Batch:</div>
+			<div class="col-sm-4">
+				<?php echo $question_description->Batch; ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Section:</div>
+			<div class="col-sm-4">
+				<?php echo $question_description->Section; ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Titel:</div>
+			<div class="col-sm-8">
+				<?php echo $question_description->Title; ?>
+			</div>
+		</div>
+
+		<?php if ($questionLen > 0) : ?>
+			<div class="row">
+				<div class="col-sm-2">Questions:</div>
+				<div class="col-sm-8">
+					<ul>
+						<?php for ($i = 1; $i <= $questionLen; $i++) : ?>
+							<li><?php echo $question[$i - 1]->Question; ?></li>
+						<?php endfor; ?>
+					</ul>
+				</div>
+			</div>
+		<?php endif; ?>
+	</div>
+	<?php
+	require_once 'assets/connect/footer.php';
+	?>
+</body>
+
 </html>

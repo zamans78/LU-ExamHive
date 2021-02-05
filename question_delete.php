@@ -32,28 +32,30 @@ if ($row === false) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<?php
-require_once 'assets/connect/head.php';
-?>
+    <?php
+    require_once 'assets/connect/head.php';
+    ?>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container justify-content-start">
             <a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-            <a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+            <a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
         </div>
     </nav>
 </header>
+
 <body>
-<div class="container">
-    <p>Course Code: <?php echo ($row['Course_Code']); ?></p>
-    <p>Course Name: <?php echo ($row['Course_Name']); ?></p>
-    <form method="post"><input type="hidden" name="Question_Description_ID" value="<?php echo $_GET['Question_Description_ID'] ?>">
-        <input type="submit" name="Delete" value="Delete">
-    </form>
-</div>
-<?php
-require_once 'assets/connect/footer.php';
-?>
+    <div class="container">
+        <p>Course Code: <?php echo ($row['Course_Code']); ?></p>
+        <p>Course Name: <?php echo ($row['Course_Name']); ?></p>
+        <form method="post"><input type="hidden" name="Question_Description_ID" value="<?php echo $_GET['Question_Description_ID'] ?>">
+            <input type="submit" name="Delete" value="Delete">
+        </form>
+    </div>
+    <?php
+    require_once 'assets/connect/footer.php';
+    ?>
 </body>

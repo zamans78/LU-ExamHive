@@ -8,44 +8,44 @@ $message = '';
 
 //If url consists of code key.
 if (isset($_GET["code"])) {
-    $Student_Activation_Code = $_GET["code"];
-    $_SESSION['code'] = $Student_Activation_Code;
+  $Student_Activation_Code = $_GET["code"];
+  $_SESSION['code'] = $Student_Activation_Code;
 }
 
 if (isset($_POST["check"])) {
 
-    //If OTP is not present in Post.
-    if (empty($_POST["Student_Otp"])) {
-        $error_Student_Otp = 'Enter OTP Number';
-    } else {
-        //This query will search entered data with data in student table
-        $query = "
+  //If OTP is not present in Post.
+  if (empty($_POST["Student_Otp"])) {
+    $error_Student_Otp = 'Enter OTP Number';
+  } else {
+    //This query will search entered data with data in student table
+    $query = "
 			SELECT * FROM student
 			WHERE Student_Activation_Code = '" . $_SESSION['code'] . "'
 			AND Student_Otp = '" . trim($_POST["Student_Otp"]) . "'
 			";
 
-        $statement = $pdo->prepare($query); //Make query for execution.
-        $statement->execute(); //Will execute above query.
-        //Total no of row affected after abve execution.
-        $total_row = $statement->rowCount();
-        //If true then entered OTP has matched OTP number in database.
-        if ($total_row > 0) {
-            $query = "
+    $statement = $pdo->prepare($query); //Make query for execution.
+    $statement->execute(); //Will execute above query.
+    //Total no of row affected after abve execution.
+    $total_row = $statement->rowCount();
+    //If true then entered OTP has matched OTP number in database.
+    if ($total_row > 0) {
+      $query = "
 				UPDATE student
 				SET Student_Email_Status = 'verified'
 				WHERE Student_Activation_Code = '" . $_SESSION['code'] . "'
 				";
-            $statement = $pdo->prepare($query);
-            if ($statement->execute()) {
-                $_SESSION['registered'] = 'Your Registration is Complete.You may login in.';
-                header('location:student_login.php');
-            }
-        } else {
-            //For invalid OTP number
-            $message = '<label class="text-danger">Invalid OTP Number</label>';
-        }
+      $statement = $pdo->prepare($query);
+      if ($statement->execute()) {
+        $_SESSION['registered'] = 'Your Registration is Complete.You may login in.';
+        header('location:student_login.php');
+      }
+    } else {
+      //For invalid OTP number
+      $message = '<label class="text-danger">Invalid OTP Number</label>';
     }
+  }
 }
 
 ?>
@@ -54,9 +54,9 @@ if (isset($_POST["check"])) {
 <html lang="en">
 
 <head>
-<?php
-require_once "assets/connect/head.php";
-?>
+  <?php
+  require_once "assets/connect/head.php";
+  ?>
 </head>
 
 <body>
@@ -64,7 +64,7 @@ require_once "assets/connect/head.php";
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container justify-content-start">
         <a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-        <a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+        <a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
       </div>
     </nav>
   </header>
@@ -78,48 +78,48 @@ require_once "assets/connect/head.php";
         </div>
       </div>
       <div class="col d-flex justify-content-center ">
-      <?php
-if (isset($_SESSION['Success'])) {
-    echo ('<p style="color: green;">' . htmlentities($_SESSION['Success']) . "</p>\n");
-    unset($_SESSION['Success']);
-}
-?>
-      <?php echo $message; ?>
+        <?php
+        if (isset($_SESSION['Success'])) {
+          echo ('<p style="color: green;">' . htmlentities($_SESSION['Success']) . "</p>\n");
+          unset($_SESSION['Success']);
+        }
+        ?>
+        <?php echo $message; ?>
       </div>
 
       <form method="POST" action="otp.php">
         <div class="form-group">
-        <div class="row">
-          <div class="col"></div>
-        <div class="col-xl-7 col-lg-7 col-md-9 col-sm-10 col-xs-6">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col-xl-7 col-lg-7 col-md-9 col-sm-10 col-xs-6">
 
-          <div class="row ">
-            <div class="col">
-              <label for=""></label>
-              <input type="number"  name="Student_Otp" class="form-control" required>
-              <?php echo $error_Student_Otp; ?>
-            </div>
-          </div>
+              <div class="row ">
+                <div class="col">
+                  <label for=""></label>
+                  <input type="number" name="Student_Otp" class="form-control" required>
+                  <?php echo $error_Student_Otp; ?>
+                </div>
+              </div>
 
-          <div class="row mt-3">
-            <div class="col d-flex justify-content-center">
-              <input class="btn btn-dark my-3" id="btn" type="submit" name="check" value="Submit">
+              <div class="row mt-3">
+                <div class="col d-flex justify-content-center">
+                  <input class="btn btn-dark my-3" id="btn" type="submit" name="check" value="Submit">
+                </div>
+              </div>
             </div>
+            <div class="col"></div>
           </div>
-          </div>
-          <div class="col"></div>
-      </div>
         </div>
       </form>
 
-  </div>
+    </div>
 
   </main>
   <!--OTP End(128) -->
 
-<?php
-require_once "assets/connect/footer.php";
-?>
+  <?php
+  require_once "assets/connect/footer.php";
+  ?>
 </body>
 
 </html>

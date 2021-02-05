@@ -7,19 +7,19 @@ require_once 'assets/connect/pdo.php';
 <html lang="en">
 
 <head>
-<?php
-require_once 'assets/connect/head.php';
-?>
+	<?php
+	require_once 'assets/connect/head.php';
+	?>
 </head>
 
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
-		<div class="container justify-content-start">
-			<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-			<a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
-		</div>
-	</nav>
+			<div class="container justify-content-start">
+				<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+				<a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+			</div>
+		</nav>
 	</header>
 
 	<!--Contact us Start(1712020128) -->
@@ -51,8 +51,7 @@ require_once 'assets/connect/head.php';
 					<div class="row">
 						<div class="col">
 							<div class="mb-3">
-								<textarea class="form-control" id="exampleFormControlTextarea1" rows="8"
-									placeholder="Your text"></textarea>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Your text"></textarea>
 								<div class="d-flex justify-content-end">
 									<input class="btn btn-dark mt-3" id="btn" type="submit" value="Submit">
 								</div>
@@ -69,9 +68,9 @@ require_once 'assets/connect/head.php';
 	<!--Contact us End(1712020128) -->
 
 	<?php
-//Head Links
-require_once 'assets/connect/footer.php';
-?>
+	//Head Links
+	require_once 'assets/connect/footer.php';
+	?>
 </body>
 
 </html>

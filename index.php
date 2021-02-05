@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-<?php
-//Head Links
-require_once 'assets/connect/head.php';
-?>
+	<?php
+	//Head Links
+	require_once 'assets/connect/head.php';
+	?>
 </head>
 
 <body>
@@ -14,8 +14,7 @@ require_once 'assets/connect/head.php';
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container">
 				<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -29,8 +28,8 @@ require_once 'assets/connect/head.php';
 					</div>
 
 					<a type="button" href="teacher_Login.php" class="btn btn-sm btn-dark rounded-pill ml-auto">Teacher</a>
-          
-            		<a type="button" href="student_login.php" class="btn btn-sm btn-dark rounded-pill mx-3">Student</a>
+
+					<a type="button" href="student_login.php" class="btn btn-sm btn-dark rounded-pill mx-3">Student</a>
 
 				</div>
 			</div>
@@ -65,8 +64,7 @@ require_once 'assets/connect/head.php';
 					</div>
 				</div>
 
-				<div class="card text-white bg-dark mb-3 d-none d-md-block d-lg-none d-block d-sm-none"
-					style="max-width: 35rem;">
+				<div class="card text-white bg-dark mb-3 d-none d-md-block d-lg-none d-block d-sm-none" style="max-width: 35rem;">
 					<div class="card-header">EXAM</div>
 					<div class="card-body">
 						<h5 class="card-title">Dark card title</h5>
@@ -266,9 +264,9 @@ require_once 'assets/connect/head.php';
 	<!--Reviews End(113)-->
 
 	<?php
-//Head Links
-require_once 'assets/connect/footer.php';
-?>
+	//Head Links
+	require_once 'assets/connect/footer.php';
+	?>
 </body>
 
 </html>

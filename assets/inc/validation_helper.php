@@ -2,8 +2,10 @@
 
 function validationHelper()
 {
-    if (strlen($_POST['Course_Code']) < 1 || strlen($_POST['Course_Name']) < 1 || strlen($_POST['Title']) < 1 ||
-        strlen($_POST['Batch']) < 1 || strlen($_POST['Section']) < 1) {
+    if (
+        strlen($_POST['Course_Code']) < 1 || strlen($_POST['Course_Name']) < 1 || strlen($_POST['Title']) < 1 ||
+        strlen($_POST['Batch']) < 1 || strlen($_POST['Section']) < 1
+    ) {
         $_SESSION['status'] = "All fields are required";
         return false;
     }

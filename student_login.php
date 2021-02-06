@@ -83,16 +83,20 @@ if (isset($_POST['Student_Email']) && isset($_POST['Password']) && isset($_POST[
 				<!--Column 2 -->
 
 				<div class="col-lg-6 col-md-12 col-sm-12 align-self-center order-xl-1 order-lg-1 order-md-2 order-sm-2 order-xs-2">
-					<?php
-					if (isset($_SESSION['error'])) {
-						echo ('<p style="color: red;">' . htmlentities($_SESSION['error']) . "</p>\n");
-						unset($_SESSION['error']);
-					} else if (isset($_SESSION['registered'])) {
-						echo ('<p style="color: green;">' . htmlentities($_SESSION['registered']) . "</p>\n");
-						unset($_SESSION['registered']);
-					}
-					?>
 					<form method="POST" action="student_login.php">
+						<div class="form-group w-75">
+							
+							<?php
+								if (isset($_SESSION['error'])) {
+									echo ('<p class="alert alert-danger">' . htmlentities($_SESSION['error']) . "</p>\n");
+									unset($_SESSION['error']);
+								} else if (isset($_SESSION['registered'])) {
+									echo ('<p class="alert alert-success">' . htmlentities($_SESSION['registered']) . "</p>\n");
+									unset($_SESSION['registered']);
+								}
+							?>
+							
+						</div>
 						<div class="form-group w-75 ">
 							<input type="email" name="Student_Email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email...">
 							<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone

@@ -38,12 +38,12 @@ if (isset($_POST["check"])) {
 				";
       $statement = $pdo->prepare($query);
       if ($statement->execute()) {
-        $_SESSION['registered'] = 'Your Registration is Complete.You may login in.';
+        $_SESSION['registered'] = 'Your Registration is Complete. You may login in!';
         header('location:student_login.php');
       }
     } else {
       //For invalid OTP number
-      $message = '<label class="text-danger">Invalid OTP Number</label>';
+      $message = '<label class="alert alert-danger">Invalid OTP Number</label>';
     }
   }
 }
@@ -72,15 +72,16 @@ if (isset($_POST["check"])) {
   <!-- OTP Start(128) -->
   <main>
     <div class="container">
+
       <div class="row">
         <div class="col d-flex justify-content-center mt-4">
           <h2 class="display-4 ">OTP Verification</h2>
         </div>
       </div>
-      <div class="col d-flex justify-content-center ">
+      <div class="col d-flex justify-content-center">
         <?php
         if (isset($_SESSION['Success'])) {
-          echo ('<p style="color: green;">' . htmlentities($_SESSION['Success']) . "</p>\n");
+          echo ('<p class="alert alert-success">' . htmlentities($_SESSION['Success']) . "</p>\n");
           unset($_SESSION['Success']);
         }
         ?>
@@ -94,9 +95,9 @@ if (isset($_POST["check"])) {
             <div class="col-xl-7 col-lg-7 col-md-9 col-sm-10 col-xs-6">
 
               <div class="row ">
-                <div class="col">
-                  <label for=""></label>
-                  <input type="number" name="Student_Otp" class="form-control" required>
+                <div class="col mt-3">
+                  
+                  <input type="number" name="Student_Otp" class="form-control" placeholder="Provide the OTP here..." required>
                   <?php echo $error_Student_Otp; ?>
                 </div>
               </div>

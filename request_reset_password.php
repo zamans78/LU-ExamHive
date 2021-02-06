@@ -48,16 +48,32 @@ if (isset($_POST['email'])) {
 		$mail->Subject = 'Your password reset link';
 		$mail->Body    = "<h2>You requested for a password reset</h2>
 	    				  <br>
-	    				  <p>Click <a href='$url'>this link</a> to reset</p>
+	    				  <p>Click <a href='$url'>this link</a> to reset or the button below.</p>
 	    				  <br>
-	    				  <p>Note: If you haven't requested for any password reset please ignore this email or delete it</p>";
-		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+	    				  <div>
+								<a href='$url' style='background:#444857;
+								                      text-decoration:none;
+								                      padding:12px;
+								                      border-radius:3px;
+								                      font-family:arial;
+								                      color:white;
+								                      text-align:center;
+								                      margin-left:50px;
+								'><b>Reset Password<b></a>
+							  <div>
+	    				  <br>
+	    				  <p>Note: If you haven't requested for any password reset please ignore this email or delete it</p>
+	    				  <br>
+	    				  <br>
+	    				  <p>Sincerely,</p>
+	    				  <p>Team LU Exam Hive</p>";
+		$mail->AltBody = 'Click this link to reset password-> $url';
 
 		$mail->send();
 		$_SESSION['Sent'] = 'Reset password link has been sent to your email. You may close this tab.';
 	} catch (Exception $e) {
 
-		$error_message = "<label class='text-danger'>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</label>";
+		$error_message = "<label class='alert alert-danger'>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</label>";
 	}
 }
 
@@ -95,15 +111,16 @@ if (isset($_POST['email'])) {
 					<p>Request for a reset password link.</p>
 				</div>
 			</div>
-
+			<div class="row">
 			<div class="col d-flex justify-content-center ">
 				<?php
 				if (isset($_SESSION['Sent'])) {
-					echo ('<p style="color: green;">' . htmlentities($_SESSION['Sent']) . "</p>\n");
+					echo ('<p class="alert alert-success">' . htmlentities($_SESSION['Sent']) . "</p>\n");
 					unset($_SESSION['Sent']);
 				}
 				?>
 				<?php echo $error_message; ?>
+			</div>
 			</div>
 
 			<form method="POST" action="request_reset_password.php">

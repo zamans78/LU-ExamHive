@@ -180,6 +180,16 @@ if ($row === false) {
                         <input class="form-control" type="text" name="Title" id="Title" value="<?php echo $row['Title'] ?>">
                     </div>
                 </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
+                  <div class="px-3">
+                  <select name="" class="custom-select" id="inputGroupSelect01">
+                    <option value="draft">Draft</option>
+                    <option value="post">Post</option>
+                  </select>
+                  </div>
+                </div>
 
 
 

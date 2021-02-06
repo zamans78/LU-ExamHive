@@ -97,8 +97,14 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 			<h2 class="display-4">Create Question</h2>
 		</div>
 		<div class="row">
+			<div class="col"></div>
 			<div class="col d-flex justify-content-center mt-3">
 				<p class="">Fill the fields below to create question !!!</p>
+			</div>
+			<div class="col d-flex justify-content-center mt-3">
+
+				
+
 			</div>
 		</div>
 		<?php
@@ -140,6 +146,15 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 					<div class="col">
 						<input class="form-control" type="text" name="Title" id="Title">
 					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
+					<div class="px-3">
+				  <select name="" class="custom-select" id="inputGroupSelect01">
+				    <option value="draft">Draft</option>
+				    <option value="post">Post</option>
+				  </select>
+				  </div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left"><b>Add Question:</b></label>

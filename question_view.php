@@ -62,50 +62,60 @@ if (isset($_REQUEST['Question_Description_ID'])) {
 </header>
 
 <body>
-	<div class="container">
+	<h2 class="display-4 bg-secondary text-white p-1 d-flex justify-content-center">Question Information</h2>
 
-		<h1>Question information</h1>
+
+	<div class="container shadow-lg p-3 mb-5 bg-white rounded mt-3">
+		<div class="row">
+			<div class="col d-flex justify-content-center">
+				<h4>Leading University</h4>
+			</div>
+		</div>
 
 		<div class="row">
-			<div class="col-sm-2">Course Code:</div>
-			<div class="col-sm-4">
-				<?php echo $question_description->Course_Code; ?>
+			<div class="col d-flex justify-content-center">
+				<h6>Department of CSE</h6>
 			</div>
 		</div>
+
 		<div class="row">
-			<div class="col-sm-2">Course Name:</div>
-			<div class="col-sm-4">
-				<?php echo $question_description->Course_Name; ?>
+			<div class="col d-flex justify-content-center">
+				<h6><?php echo $question_description->Title; ?></h6>
 			</div>
 		</div>
+
 		<div class="row">
-			<div class="col-sm-2">Batch:</div>
-			<div class="col-sm-4">
-				<?php echo $question_description->Batch; ?>
+			<div class="col d-flex justify-content-center">
+				<h6>Course Title: <?php echo $question_description->Course_Name; ?></h6>
 			</div>
 		</div>
+
 		<div class="row">
-			<div class="col-sm-2">Section:</div>
-			<div class="col-sm-4">
-				<?php echo $question_description->Section; ?>
+			<div class="col d-flex justify-content-center">
+				<h6>Course Code: <?php echo $question_description->Course_Code; ?></h6>
 			</div>
 		</div>
+
 		<div class="row">
-			<div class="col-sm-2">Titel:</div>
-			<div class="col-sm-8">
-				<?php echo $question_description->Title; ?>
+			<div class="col d-flex justify-content-center">
+				<h6>Batch: <?php echo $question_description->Batch; ?>. Section: <?php echo $question_description->Section; ?></h6>
 			</div>
 		</div>
 
 		<?php if ($questionLen > 0) : ?>
 			<div class="row">
-				<div class="col-sm-2">Questions:</div>
-				<div class="col-sm-8">
-					<ul>
+				<div class="col d-flex justify-content-center">
+				<h6><u>Questions</u></h6>
+			</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<ol class="px-xs-0 px-sm-0 px-md-3 px-lg-5 px-xl-5 mx-xs-1 mx-sm-1 mx-md-3 mx-lg-5 mx-xl-5">
 						<?php for ($i = 1; $i <= $questionLen; $i++) : ?>
 							<li><?php echo $question[$i - 1]->Question; ?></li>
+							<br>
 						<?php endfor; ?>
-					</ul>
+					</ol>
 				</div>
 			</div>
 		<?php endif; ?>

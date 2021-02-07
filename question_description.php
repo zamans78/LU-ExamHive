@@ -44,7 +44,7 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 		':Course_Name' => $Course_Name,
 		':Batch' => $Batch,
 		':Section' => $Section,
-		':Title' => $Batch,
+		':Title' => $Title,
 	]);
 
 	$Question_Description_ID = $pdo->lastInsertId();

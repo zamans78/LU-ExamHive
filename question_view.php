@@ -62,8 +62,12 @@ if (isset($_REQUEST['Question_Description_ID'])) {
 </header>
 
 <body>
-	<h2 class="display-4 bg-secondary text-white p-1 d-flex justify-content-center">Question Information</h2>
-
+	
+	<div class="card text-center bg-light text-dark ">
+		<div class="card-header bg-secondary text-white ">
+			<h2 class="display-4">Question Information</h2>
+		</div>
+	</div>
 
 	<div class="container shadow-lg p-3 mb-5 bg-white rounded mt-3">
 		<div class="row">
@@ -75,12 +79,6 @@ if (isset($_REQUEST['Question_Description_ID'])) {
 		<div class="row">
 			<div class="col d-flex justify-content-center">
 				<h6>Department of CSE</h6>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col d-flex justify-content-center">
-				<h6><?php echo $question_description->Title; ?></h6>
 			</div>
 		</div>
 

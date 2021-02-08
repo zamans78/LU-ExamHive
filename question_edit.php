@@ -59,7 +59,7 @@ if (
                 ':Batch' => $_POST['Batch'],
                 ':Section' => $_POST['Section'],
                 ':Title' => $_POST['Title'],
-                ':Question_Description_ID' => $_GET['Question_Description_ID']
+                ':Question_Description_ID' => $_GET['Question_Description_ID'],
             )
         );
         $_SESSION['success'] = 'Record updated';
@@ -80,7 +80,7 @@ if (
             $stmt->execute(
                 array(
                     ':Question_Description_ID' => $_REQUEST['Question_Description_ID'],
-                    ':Question' => $Question
+                    ':Question' => $Question,
                 )
             );
         }
@@ -117,8 +117,8 @@ if ($row === false) {
 
 <head>
     <?php
-    require_once 'assets/connect/head.php';
-    ?>
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -142,11 +142,11 @@ if ($row === false) {
 
         <div class="container col-xl-7 col-lg-7 col-md-7">
             <?php
-            if (isset($_SESSION['error'])) {
-                echo ('<p style="color: red;">' . htmlentities($_SESSION['error']) . "</p>\n");
-                unset($_SESSION['error']);
-            }
-            ?>
+if (isset($_SESSION['error'])) {
+    echo ('<p style="color: red;">' . htmlentities($_SESSION['error']) . "</p>\n");
+    unset($_SESSION['error']);
+}
+?>
 
 
             <form method="post" class="form-horizontal">
@@ -180,7 +180,7 @@ if ($row === false) {
                         <input class="form-control" type="text" name="Title" id="Title" value="<?php echo $row['Title'] ?>">
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                   <label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
                   <div class="px-3">
@@ -190,70 +190,80 @@ if ($row === false) {
                   </select>
                   </div>
                 </div>
+                <div class="form-group">
+					<label class="control-label col-sm-12 d-flex justify-content-left"><b>Add Question:</b></label>
+					<div class="col">
+						<button id="addPos" class="btn btn-success btn-md btn-block"><i class="fas fa-pencil-alt"></i></button>
+					</div>
+				</div>
 
+                <div id="position_fields" class="p-3">
+                <?php
+$countPos = 1;
+foreach ($rowOfPosition as $row) {?>
+    <div id="inputFormRow">
+    <div class="input-group mb-3">
+    <textarea class="form-control m-input"  name="Question<?=$countPos?>" placeholder="Q..." id="floatingTextarea2" style="height: 70px" autocomplete="off"> <?=$row['Question']?></textarea>
+    <div class="input-group-append">
+    <button id="removeRow" type="button" class="ml-2 btn btn-danger">Remove</button>
+    </div>
+    </div>
+    </div>
 
+<?php
+$countPos++;
+}?>
+<script type="text/javascript">
+let nxtContpos = <?=$countPos?>;
+$(document).ready(function(){
+$('#addPos').click(function(event){
+    event.preventDefault();
 
+    if (nxtContpos >= 11) {
+    alert("Maximum of 10 position entries exceeded");
+    return;
+}
+nxtContpos++;
 
-                <!-------------------------------------------------------------                -->
-                <div id="position_fields" class="py-5">
-                    <?php
-                    $count = 1;
-                    foreach ($rowOfPosition as $row) {
-                        echo "<div id=\"position" . $count . "\">
- <p>
- <input type=\"button\" value=\"-\" onclick=\"$('#position" . $count . "').remove();return false;\"></p>
- <textarea name=\"Question" . $count . "\"').\" rows=\"4\" cols=\"90\">" . $row['Question'] . "</textarea>
- </div>";
-                        $count++;
-                    } ?>
+let html = '';
+html += '<div id="inputFormRow">';
+html += '<div class="input-group mb-3">';
+html += '  <textarea class="form-control m-input" name="Question' + nxtContpos + '" placeholder="Q..." id="floatingTextarea2" style="height: 70px" autocomplete="off"></textarea>';
+html += '<div class="input-group-append">';
+html += '<button id="removeRow" type="button" class="ml-2 btn btn-danger">Remove</button>';
+html += '</div>';
+html += '</div>';
+
+$('#position_fields').append(html);
+
+$(document).on('click', '#removeRow', function () {
+$(this).closest('#inputFormRow').remove();
+});
+
+});
+});
+
+</script>
+
                 </div>
-                <input type="submit" value="Save">
-                <input type="submit" name="cancel" value="Cancel">
-                </p>
+                <div class="form-group d-flex justify-content-center">
+					<div class="col-sm-4 col-sm-offset-2 p-1">
+						<input class="btn btn-dark btn-block mb-5" type="submit" value="Save">
+					</div>
+				</div>
+                </div>
+
             </form>
-            <p>
+
+            </div>
 
 
-                <script>
-                    countPos = 0;
 
-                    // http://stackoverflow.com/questions/17650776/add-remove-html-inside-div-using-javascript
-                    $(document).ready(function() {
-                        window.console && console.log('Document ready called');
-                        $('#addPos').click(function(event) {
-                            // http://api.jquery.com/event.preventdefault/
-                            event.preventDefault();
-                            if (countPos >= 50) {
-                                alert("Maximum of nine position entries exceeded");
-                                return;
-                            }
-                            countPos++;
-                            window.console && console.log("Adding position " + countPos);
 
-                            $('#position_fields').append(
-                                '<div class="pt-5" id="position' + countPos + '">\
-   <div class="form-group "> \
-   <div class="col"> \
-   <button class="btn btn-danger btn-block" \
-   onclick="$(\'#position' + countPos + '\').remove();return false;" \
-   ><i class="fas fa-eraser"></i></button> \
-   </div> \
-   </div> \
-   <div class="form-group m-0 p-0"> \
-   <label class="control-label col-sm-2"></label> \
-   <div class="col"> \
-   <textarea class="form-control" name="Question' + countPos + '" rows="4" ></textarea> \
-   </div> \
-   </div> \
-   </div>'
-                            );
-                        });
-                    });
-                </script>
-        </div>
-        <?php
-        require_once 'assets/connect/footer.php';
-        ?>
+<?php
+require_once 'assets/connect/footer.php';
+?>
+
 </body>
-
 </html>
+

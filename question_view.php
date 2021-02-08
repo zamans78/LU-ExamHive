@@ -63,7 +63,7 @@ require_once 'assets/connect/head.php';
 
 <body>
 
-	<div class="card text-center bg-light text-dark ">
+	<div class="card text-center bg-light text-dark mb-5">
 		<div class="card-header bg-secondary text-white ">
 			<h2 class="display-4">Question Information</h2>
 		</div>
@@ -71,7 +71,7 @@ require_once 'assets/connect/head.php';
 
 	<div class="container shadow-lg p-3 mb-5 bg-white rounded mt-3">
 		<div class="row">
-			<div class="col d-flex justify-content-center">
+			<div class="col d-flex justify-content-center mt-5">
 				<h4>Leading University</h4>
 			</div>
 		</div>
@@ -102,16 +102,16 @@ require_once 'assets/connect/head.php';
 
 		<?php if ($questionLen > 0): ?>
 			<div class="row">
-				<div class="col d-flex justify-content-center">
+				<div class="col d-flex justify-content-center mb-5">
 				<h6><u>Questions</u></h6>
 			</div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<p class="px-xs-0 px-sm-0 px-md-3 px-lg-5 px-xl-5 mx-xs-1 mx-sm-1 mx-md-3 mx-lg-5 mx-xl-5">
+					<p class="px-xs-0 px-sm-0 px-md-3 px-lg-5 px-xl-5 mx-xs-1 mx-sm-1 mx-md-3 mx-lg-5 mx-xl-5 mb-5">
 						<?php for ($i = 1; $i <= $questionLen; $i++): ?>
 							<?php echo $question[$i - 1]->Question; ?>
-							<br>
+							<br><br>
 						<?php endfor;?>
 					</p>
 				</div>

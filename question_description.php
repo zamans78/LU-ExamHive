@@ -162,7 +162,7 @@ if ($status !== false) {
 						<button id="addPos" class="btn btn-success btn-md btn-block"><i class="fas fa-pencil-alt"></i></button>
 					</div>
 				</div>
-				<div id="position_fields" class="py-5">
+				<div id="position_fields" class="p-3" >
 
 				</div>
 				<div class="form-group d-flex justify-content-center">
@@ -191,7 +191,7 @@ countPos++;
 let html = '';
 html += '<div id="inputFormRow">';
 html += '<div class="input-group mb-3">';
-html += '  <textarea class="form-control m-input" name="Question' + countPos + '" placeholder="Q..." id="floatingTextarea2" style="height: 100px" autocomplete="off"></textarea>';
+html += '  <textarea class="form-control m-input"  name="Question' + countPos + '" placeholder="Q..." id="floatingTextarea2" style="height: 70px" autocomplete="off"></textarea>';
 html += '<div class="input-group-append">';
 html += '<button id="removeRow" type="button" class="ml-2 btn btn-danger">Remove</button>';
 html += '</div>';

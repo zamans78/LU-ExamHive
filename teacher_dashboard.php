@@ -46,7 +46,9 @@ require_once 'assets/connect/head.php';
         <div class="col">
           <h3 class="display-4">Dashboard</h3>
         </div>
-        <div class="col mt-3">
+      </div>
+      <div class="row">
+        <div class="col">
           <button type="button" class="btn btn-dark float-right"><a href="question_description.php" class="text-white text-decoration-none">Create Question</a>
             <span>
               <i class="fas fa-plus-square"></i>
@@ -55,9 +57,14 @@ require_once 'assets/connect/head.php';
         </div>
       </div>
       <div class="row">
-        <div class="col d-flex justify-content-center mt-3">
-          <!-- <p class="">Something</p> -->
+        <div class="col mt-2">
+          <button type="button" class="btn btn-dark float-right"><a href="teacher_meeting.php" class="text-white text-decoration-none">Create Meeting</a>
+            <span>
+              <i class="fas fa-video"></i>
+            </span>
+          </button>
         </div>
+      </div>
       </div>
 
       <div class="row">

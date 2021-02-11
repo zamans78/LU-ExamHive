@@ -54,16 +54,15 @@ require_once 'assets/connect/head.php';
               <i class="fas fa-plus-square"></i>
             </span>
           </button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col mt-2">
-          <button type="button" class="btn btn-dark float-right"><a href="teacher_meeting.php" class="text-white text-decoration-none">Create Meeting</a>
+          <button type="button" class="mr-2 btn btn-dark float-right"><a href="teacher_meeting.php" class="text-white text-decoration-none">Create Meeting</a>
             <span>
               <i class="fas fa-video"></i>
             </span>
           </button>
         </div>
+      </div>
+      <div class="row">
+        
       </div>
       </div>
 

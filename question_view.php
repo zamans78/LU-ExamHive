@@ -5,39 +5,39 @@ session_start();
 require_once "assets/connect/pdo.php";
 
 if (!isset($_SESSION['Teacher_ID'])) {
-    die("Not logged in");
+	die("Not logged in");
 }
 
 if (isset($_REQUEST['Question_Description_ID'])) {
-    $Question_Description_ID = htmlentities($_REQUEST['Question_Description_ID']);
+	$Question_Description_ID = htmlentities($_REQUEST['Question_Description_ID']);
 
-    $stmt = $pdo->prepare("
+	$stmt = $pdo->prepare("
         SELECT * FROM question_description
         WHERE Question_Description_ID = :Question_Description_ID
     ");
 
-    $stmt->execute([
-        ':Question_Description_ID' => $Question_Description_ID,
-    ]);
+	$stmt->execute([
+		':Question_Description_ID' => $Question_Description_ID,
+	]);
 
-    $question_description = $stmt->fetch(PDO::FETCH_OBJ);
+	$question_description = $stmt->fetch(PDO::FETCH_OBJ);
 
-    $stmt = $pdo->prepare("
+	$stmt = $pdo->prepare("
         SELECT * FROM question
         WHERE Question_Description_ID = :Question_Description_ID
     ");
 
-    $stmt->execute([
-        ':Question_Description_ID' => $Question_Description_ID,
-    ]);
+	$stmt->execute([
+		':Question_Description_ID' => $Question_Description_ID,
+	]);
 
-    $question = [];
+	$question = [];
 
-    while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
-        $question[] = $row;
-    }
+	while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
+		$question[] = $row;
+	}
 
-    $questionLen = count($question);
+	$questionLen = count($question);
 }
 
 ?>
@@ -48,8 +48,8 @@ if (isset($_REQUEST['Question_Description_ID'])) {
 <head>
 	<title></title>
 	<?php
-require_once 'assets/connect/head.php';
-?>
+	require_once 'assets/connect/head.php';
+	?>
 
 </head>
 <header>
@@ -84,6 +84,12 @@ require_once 'assets/connect/head.php';
 
 		<div class="row">
 			<div class="col d-flex justify-content-center">
+				<h6><?php echo $question_description->Title; ?></h6>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col d-flex justify-content-center">
 				<h6>Course Title: <?php echo $question_description->Course_Name; ?></h6>
 			</div>
 		</div>
@@ -100,27 +106,27 @@ require_once 'assets/connect/head.php';
 			</div>
 		</div>
 
-		<?php if ($questionLen > 0): ?>
+		<?php if ($questionLen > 0) : ?>
 			<div class="row">
 				<div class="col d-flex justify-content-center mb-5">
-				<h6><u>Questions</u></h6>
-			</div>
+					<h6><u>Questions</u></h6>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col">
 					<p class="px-xs-0 px-sm-0 px-md-3 px-lg-5 px-xl-5 mx-xs-1 mx-sm-1 mx-md-3 mx-lg-5 mx-xl-5 mb-5">
-						<?php for ($i = 1; $i <= $questionLen; $i++): ?>
+						<?php for ($i = 1; $i <= $questionLen; $i++) : ?>
 							<?php echo $question[$i - 1]->Question; ?>
 							<br><br>
-						<?php endfor;?>
+						<?php endfor; ?>
 					</p>
 				</div>
 			</div>
-		<?php endif;?>
+		<?php endif; ?>
 	</div>
 	<?php
-require_once 'assets/connect/footer.php';
-?>
+	require_once 'assets/connect/footer.php';
+	?>
 </body>
 
 </html>

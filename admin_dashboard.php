@@ -32,16 +32,16 @@
 
           <div class="row my-5">
             <div class="col-sm-4 pb-3">
-              <div class="card">
+              <div class="card contact-shadow">
                 <div class="card-body">
                   <h5 class="card-title">Contact info</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-dark">More info</a>
+                  <a href="admin_contact_view.php" class="btn btn-dark">More info</a>
                 </div>
               </div>
             </div>
             <div class="col-sm-4 pb-3">
-              <div class="card">
+              <div class="card teacher-shadow">
                 <div class="card-body">
                   <h5 class="card-title">Teacher info</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -50,7 +50,7 @@
               </div>
             </div>
             <div class="col-sm-4 pb-3">
-              <div class="card">
+              <div class="card student-shadow">
                 <div class="card-body">
                   <h5 class="card-title">Student info</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>

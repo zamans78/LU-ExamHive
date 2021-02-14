@@ -131,5 +131,22 @@ body {
     overflow-x: hidden;
 }
 
-
 /*--Display End--*/
+
+
+/*-- Admin Dashboard Start --*/
+
+.contact-shadow {
+    box-shadow: 1px 1px 15px #7c4dff;
+}
+
+.teacher-shadow {
+    box-shadow: 1px 1px 20px #76ff03;
+}
+
+.student-shadow {
+    box-shadow: 1px 1px 15px #00bcd4;
+}
+
+
+/*-- Admin Dashboard End --*/

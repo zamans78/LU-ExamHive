@@ -1,3 +1,11 @@
+<?php
+require_once "assets/connect/pdo.php";
+
+  $stmt = $pdo->query("SELECT * from contact_us ORDER BY Received_Datetime");
+  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,35 +51,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr onclick="window.location='#';">
-                <th scope="row">6</th>
-                <td>Modoris Ali</td>
-                <td>modoris@gmail.com</td>
-                <td>2021-02-06 18:54:51</td>
-                <td><a href="#">View</a> / <a href="#">Delete</a></td>
-              </tr>
-              <tr onclick="window.location='#';">
-                <th scope="row">6</th>
-                <td>Modoris Ali</td>
-                <td>modoris@gmail.com</td>
-                <td>2021-02-06 18:54:51</td>
-                <td><a href="#">View</a> / <a href="#">Delete</a></td>
-              </tr>
-              <tr onclick="window.location='#';">
-                <th scope="row">6</th>
-                <td>Modoris Ali</td>
-                <td>modoris@gmail.com</td>
-                <td>2021-02-06 18:54:51</td>
-                <td><a href="#">View</a> / <a href="#">Delete</a></td>
-              </tr>
-              <tr onclick="window.location='#';">
-                <th scope="row">6</th>
-                <td>Kodoris Ali</td>
-                <td>Kodoris@gmail.com</td>
-                <td>2021-02-06 13:54:51</td>
-                <td><a href="#">View</a> / <a href="#">Delete</a></td>
+            <?php foreach ($infos as $info){ ?>
+
+              <tr onclick="window.location='admin_contact_details.php?id=<?php echo $info['ID'] ?>';">
+                <th scope="row"><?php echo htmlspecialchars($info['ID']); ?></th>
+                <td><?php echo htmlspecialchars($info['Name']); ?></td>
+                <td><?php echo htmlspecialchars($info['Email']); ?></td>
+                <td><?php echo htmlspecialchars($info['Received_Datetime']); ?></td>
+                <td><a href="admin_contact_details.php?id=<?php echo $info['ID'] ?>">View / Delete</a></td>
               </tr>
               
+              <?php } ?>
             </tbody>
           </table>
 

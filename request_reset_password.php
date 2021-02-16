@@ -45,28 +45,66 @@ if (isset($_POST['email'])) {
 		// Content
 		$url = "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . "/reset_password.php?code=$code";
 		$mail->isHTML(true);                                  // Set email format to HTML
-		$mail->Subject = 'Your password reset link';
-		$mail->Body    = "<h2>You requested for a password reset</h2>
-	    				  <br>
-	    				  <p>Click <a href='$url'>this link</a> to reset or the button below.</p>
-	    				  <br>
-	    				  <div>
-								<a href='$url' style='background:#444857;
-								                      text-decoration:none;
-								                      padding:12px;
-								                      border-radius:3px;
-								                      font-family:arial;
-								                      color:white;
-								                      text-align:center;
-								                      margin-left:50px;
-								'><b>Reset Password<b></a>
-							  <div>
-	    				  <br>
-	    				  <p>Note: If you haven't requested for any password reset please ignore this email or delete it</p>
-	    				  <br>
-	    				  <br>
-	    				  <p>Sincerely,</p>
-	    				  <p>Team LU Exam Hive</p>";
+		$mail->Subject = 'Reset password instructions';
+		$mail->Body    = "<body style='color: #424647; font-size: 16px; text-decoration: none; font-family: Helvetica, Arial, sans-serif; background-color: #dee2e3;'>
+
+		<div id='wrapper' style='max-width: 600px; margin: auto auto; padding: 20px;'>
+	
+			<div id='logo'>
+				<center><h1 style='margin: 0px; margin: 16px 0px;'><a href='#' target='_blank'><img style='max-height: 75px;' src='https://imgur.com/RiQuBgl.png'></a></h1></center>
+			</div>
+	
+			<div id='hr'>
+				<hr style='border: 1px solid #8b8f90;'>
+			</div>
+	
+			<div id='message'>
+				<h1>Hello,</h1>
+	
+				<p style='font-size: 20px;'>Someone has requested a link to change your password. You can do this through the button below.</p>
+	
+				<p style='display: flex; justify-content: center; margin-top: 10px;'>
+					<center>
+						<a href='$url' target='_blank' style='border: 1px solid #17163e; border-radius: 5px; background-color: #444857; color: #fff; text-decoration: none; font-size: 18px; padding: 10px 20px;'>Change my password</a>
+					</center>
+				</p>
+	
+				<p style='font-size: 14px; padding: 16px 0px;'>If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.</p>
+	
+				<p>Thank you,</p>
+				<p>LU Exam Hive Team.</p>
+			</div>
+	
+			<div id='hr'>
+				<hr style='border: 1px solid #8b8f90;'>
+			</div>
+	
+			<center id='footer'>
+	
+				<div style='line-height: 2px;'>
+					<p>© LU Exam Hive</p>
+					<p>A product of Leading University</p>
+				</div>
+	
+				 
+				<p style='margin: 0; padding-bottom: 5px;'>This email was sent by:</p>
+				<address>
+					LU Exam Hive,<br>
+					<u>Leading University, Ragib Nagar,</u><br>
+					<u>Sylhet, Bangladesh.</u>
+				</address>
+	
+				<div id='hr'>
+					<hr style='border: 0.1px transparent #95999a;'>
+				</div>
+	
+				<p style='color: #95999a;'>This eamil is a service from LU Exam Hive. Delivered by PHPMailer.</p>
+	
+			</center>
+	
+		</div>
+	
+	</body>";
 		$mail->AltBody = 'Click this link to reset password-> $url';
 
 		$mail->send();
@@ -112,15 +150,15 @@ if (isset($_POST['email'])) {
 				</div>
 			</div>
 			<div class="row">
-			<div class="col d-flex justify-content-center ">
-				<?php
-				if (isset($_SESSION['Sent'])) {
-					echo ('<p class="alert alert-success">' . htmlentities($_SESSION['Sent']) . "</p>\n");
-					unset($_SESSION['Sent']);
-				}
-				?>
-				<?php echo $error_message; ?>
-			</div>
+				<div class="col d-flex justify-content-center ">
+					<?php
+					if (isset($_SESSION['Sent'])) {
+						echo ('<p class="alert alert-success">' . htmlentities($_SESSION['Sent']) . "</p>\n");
+						unset($_SESSION['Sent']);
+					}
+					?>
+					<?php echo $error_message; ?>
+				</div>
 			</div>
 
 			<form method="POST" action="request_reset_password.php">

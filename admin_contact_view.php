@@ -58,7 +58,7 @@ require_once "assets/connect/pdo.php";
                 <td><?php echo htmlspecialchars($info['Name']); ?></td>
                 <td><?php echo htmlspecialchars($info['Email']); ?></td>
                 <td><?php echo htmlspecialchars($info['Received_Datetime']); ?></td>
-                <td><a href="admin_contact_details.php?id=<?php echo $info['ID'] ?>">View / Delete</a></td>
+                <td><a href="admin_contact_details.php?id=<?php echo $info['ID'] ?>"><i class="fas fa-edit"></i> / <i class="far fa-trash-alt"></i></a></td>
               </tr>
               
               <?php } ?>

@@ -165,7 +165,7 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 				</div>
 				<div class="form-group d-flex justify-content-center">
                     <div class="col-sm-4 col-sm-offset-2 p-1">
-						<button type="submit" class="btn btn-dark btn-block"><a href="https://calendar.google.com/calendar/u/0/r/day" target="_blank" class="text-white text-decoration-none">Get Meeting Link 
+						<button type="submit" class="btn btn-dark btn-block"><a href="https://calendar.google.com/calendar/u/0/r/day" target="_blank" class="text-white text-decoration-none">Get Meet Link 
 						<img src="assets/images/meet.svg" alt=""></a></button>
 					</div>
 					<div class="form-group d-flex justify-content-center">

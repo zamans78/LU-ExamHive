@@ -139,7 +139,7 @@ if (isset($_POST['email'])) {
 	</header>
 	<main>
 		<div class="container">
-			<div class="row">
+			<div class="row text-center">
 				<div class="col d-flex justify-content-center mt-4">
 					<h2 class="display-4 ">Forgot Password?</h2>
 				</div>

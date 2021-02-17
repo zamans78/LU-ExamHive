@@ -2,6 +2,8 @@
 session_start();
 require_once "assets/connect/pdo.php";
 
+$FirstName = $LastName = $Student_ID = $Student_Email = $Batch = $Section = '';
+
 $message = '';
 $error_Student_ID = '';
 $error_FirstName = '';
@@ -178,8 +180,7 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
       </div>
       <div class="row">
         <div class="col d-flex justify-content-center mt-3">
-          <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-            obcaecati incidunt veritatis totam!</p>
+          <p class="">New Students may register using the form below. Already registered? <a href="student_login.php">Log in</a> instead.</p>
         </div>
       </div>
       <div class="row">
@@ -195,28 +196,28 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
               <div class="row mt-3">
                 <div class="col">
                   <label for="">First Name</label>
-                  <input type="text" name="FirstName" class="form-control">
+                  <input type="text" name="FirstName" class="form-control" value="<?php echo $FirstName ?>">
                   <?php echo $error_FirstName; ?>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col">
                   <label for="">Last Name</label>
-                  <input type="text" name="LastName" class="form-control">
+                  <input type="text" name="LastName" class="form-control" value="<?php echo $LastName ?>">
                   <?php echo $error_LastName; ?>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col">
                   <label for="">Student Id</label>
-                  <input type="number" name="Student_ID" class="form-control">
+                  <input type="number" name="Student_ID" class="form-control" value="<?php echo $Student_ID ?>">
                   <?php echo $error_Student_ID; ?>
                 </div>
               </div>
               <div class="row mt-3">
                 <div class="col">
                   <label for="">Email</label>
-                  <input type="email" name="Student_Email" class="form-control">
+                  <input type="email" name="Student_Email" class="form-control" value="<?php echo $Student_Email ?>">
                   <?php echo $error_Student_Email; ?>
                 </div>
               </div>
@@ -230,13 +231,13 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
               <div class="row mt-3">
                 <div class="col">
                   <label for="">Batch</label>
-                  <input type="number" name="Batch" class="form-control">
+                  <input type="number" name="Batch" class="form-control" value="<?php echo $Batch ?>">
                   <?php echo $error_Batch; ?>
                 </div>
 
                 <div class="col">
                   <label for="">Section</label>
-                  <input type="text" name="Section" class="form-control">
+                  <input type="text" name="Section" class="form-control" value="<?php echo $Section ?>">
                   <?php echo $error_Section; ?>
                 </div>
               </div>

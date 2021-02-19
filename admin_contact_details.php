@@ -65,12 +65,12 @@ if (isset($_GET['id'])) {
         <div class="col"></div>
         <div class="col-xl-9 col-lg-9 col-md-10 col-sm-9 col-xs-6 my-5">
           <?php foreach ($infos as $info) { ?>
-
-            <p><b>Name: </b><?php echo $info['Name']; ?></p>
+            <p><b>Name: </b><?php echo $info['Name']; ?> &emsp; <b> ID:</b> <?php echo $info['ID'] ?></p>
             <p><b>Email: </b><?php echo $info['Email']; ?></p>
+            <p class="mb-4"><b>Received Date & Time: </b><?php echo $info['Received_Datetime']; ?></p>
             <p style="overflow-wrap: break-word;"><b>Message: </b><?php echo $info['Message']; ?></p>
-            <p class="mt-4"><b>Received Time: </b><?php echo $info['Received_Datetime']; ?></p>
-            <p><b>ID:</b> <?php echo $info['ID'] ?></p>
+            
+            
             <!-- Delete Button -->
 
             <form action="admin_contact_details.php" method="POST" class="d-flex justify-content-end">

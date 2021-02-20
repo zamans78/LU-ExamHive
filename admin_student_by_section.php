@@ -1,23 +1,22 @@
 <?php
 require "assets/connect/pdo.php";
 $no_data = '';
+$status = '';
 
 //getting the data by query parameter
-if (isset($_GET['batch'])) {
+if (isset($_GET['batch']) && isset($_GET['section'])) {
   $batch = $_GET['batch'];
+  $section = $_GET['section'];
 
-  $stmt = $pdo->query("SELECT * from Student WHERE Batch = $batch  ORDER BY Student_ID");
+  $stmt = $pdo->query("SELECT * from Student WHERE Batch = $batch AND Section = '$section' ORDER BY Student_ID");
   $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  // counting
-  $stmt2 = $pdo->query("SELECT COUNT(Section), Section, Batch from Student WHERE Batch = $batch GROUP BY Section");
-  $sections = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
+  //total student count
+  $stmt2 = $pdo->query("SELECT COUNT(Section) from Student WHERE Batch = $batch AND Section = '$section'");
+  $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 } else {
   $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
 }
-
-
 
 ?>
 
@@ -47,37 +46,25 @@ if (isset($_GET['batch'])) {
     <div class="container">
       <div class="row mt-4">
         <div class="col">
-          <h3 class="display-4">Student Info by Batch</h3>
+          <h3 class="display-4">Student Info by Section</h3>
         </div>
       </div>
 
-      <div class="row mt-4">
-      <div class="col"></div>
-        <div class="col-7">
-        <table class="table text-center">
-            <thead class="table-dark">
-              <tr>
-                <th scope="col" colspan="8">Sort by Section</th>
-              </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($sections as $sec){ ?>
-            
-                <td><a href="admin_student_by_section.php?batch=<?php echo $sec['Batch']; ?>&section=<?php echo $sec['Section']; ?>">Sec: <?php echo htmlspecialchars($sec['Section']); ?></a></td>
-              
-              <?php } ?>
-            </tbody>
-            
-          </table>
+      <div class="row mt-5">
+        <div class="col">
+          <h4 class="d-flex justify-content-center">Section:&nbsp;<span class="text-success"><?php echo $section ?></span></h4>
+
+          <h4 class="d-flex justify-content-center">Total Number of Registerd Students: &nbsp;<span class="text-success"><?php foreach ($infos2 as $info2) {
+                                                                                                                            echo htmlspecialchars($info2['COUNT(Section)']);
+                                                                                                                          } ?></span></h4>
         </div>
-        <div class="col"></div>
       </div>
 
 
       <div class="row">
         <div class="col"></div>
         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-xs-6 my-5">
-        <?php echo $no_data; ?>
+
           <table class="table table-hover text-center">
             <thead class="table-secondary">
               <tr>
@@ -91,32 +78,32 @@ if (isset($_GET['batch'])) {
               </tr>
             </thead>
             <tbody>
-            <?php foreach ($infos as $info){ ?>
+              <?php foreach ($infos as $info) { ?>
 
-              <tr onclick="window.location='admin_student_details.php?id=<?php echo $info['Student_ID'] ?>';">
-                <th scope="row"><?php echo htmlspecialchars($info['Student_ID']); ?></th>
-                <td><?php echo htmlspecialchars($info['FirstName'].' '.$info['LastName']); ?></td>
-                <td><?php echo htmlspecialchars($info['Section']); ?></td>
-                <td><?php echo htmlspecialchars($info['Batch']); ?></td>
-                <td><?php echo htmlspecialchars($info['Student_Email']); ?></td>
-                <td><span class="<?php if ($info['Student_Email_Status'] != 'verified') {
+                <tr onclick="window.location='admin_student_details.php?id=<?php echo $info['Student_ID'] ?>';">
+                  <th scope="row"><?php echo htmlspecialchars($info['Student_ID']); ?></th>
+                  <td><?php echo htmlspecialchars($info['FirstName'] . ' ' . $info['LastName']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Section']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Batch']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Student_Email']); ?></td>
+                  <td><span class="<?php if ($info['Student_Email_Status'] != 'verified') {
                                       $status = 'text-danger';
                                     } else {
                                       $status = 'text-success';
                                     }
                                     echo $status ?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></td>
-                <td><a href="admin_student_details.php?id=<?php echo $info['Student_ID'] ?>">More info</a></td>
-              </tr>
+                  <td><a href="admin_student_details.php?id=<?php echo $info['Student_ID'] ?>">More info</a></td>
+                </tr>
 
               <?php } ?>
             </tbody>
           </table>
-          
+
         </div>
-        
+
         <div class="col"></div>
       </div>
-      
+
     </div>
   </main>
 

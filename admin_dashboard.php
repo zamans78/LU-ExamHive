@@ -36,7 +36,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Contact info</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="admin_contact_view.php" class="btn btn-dark">More info</a>
+                  <a href="admin_contact_info.php" class="btn btn-dark">More info</a>
                 </div>
               </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Student info</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-dark">More info</a>
+                  <a href="admin_student_info.php" class="btn btn-dark">More info</a>
                 </div>
               </div>
             </div>

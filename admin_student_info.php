@@ -1,9 +1,11 @@
 <?php
 require_once "assets/connect/pdo.php";
-  $verified = "verified";
-  
-  $stmt = $pdo->query("SELECT COUNT(Batch), Batch from Student GROUP BY Batch");
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$verified = "verified";
+$output = '';
+$id = '';
+
+$stmt = $pdo->query("SELECT COUNT(Batch), Batch from Student GROUP BY Batch");
+$infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -41,14 +43,38 @@ require_once "assets/connect/pdo.php";
       <div class="row mt-5">
 
         <div class="col">
-          <button type="button" class="mr-2 btn btn-dark float-right"><a href="#" class="text-white text-decoration-none">See Unregistered Students List</a>
+          <button type="button" class="mr-2 btn btn-dark float-right"><a href="admin_student_unverified.php" class="text-white text-decoration-none">See Unverified Students List</a>
           </button>
         </div>
         <div class="col">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Student by ID" aria-label="Search">
-            <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search">
+
+          <form method="post" class="form-inline my-2 mt-lg-0">
+            <input class="form-control mr-sm-2" type="number" name="id_to_search" placeholder="Search by ID">
+            <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search" value="Search">
+
           </form>
+          <!-- Search Button Functionality -->
+          <?php
+
+          require_once "assets/connect/pdo.php";
+          
+          if (isset($_POST["search"])) {
+            $id = $_POST["id_to_search"];
+
+            $sql = $pdo->prepare("SELECT * FROM `Student` WHERE Student_ID = '$id'");
+            $sql->setFetchMode(PDO::FETCH_OBJ);
+            $sql->execute();
+
+            if ($row = $sql->fetch()) {
+          ?>
+            <p class="mt-3 text-success"><?php echo $row->Student_ID . ' - ' . $row->FirstName . ' ' . $row->LastName. ' '; ?><a href="admin_student_details.php?id=<?php echo $row->Student_ID; ?>"> (More details)</a></p>   
+          <?php
+            } else {
+              echo "<label class='alert alert-danger'>ID does not exist.</label>";
+            }
+          }
+
+          ?>
         </div>
 
       </div>
@@ -64,12 +90,12 @@ require_once "assets/connect/pdo.php";
               </tr>
             </thead>
             <tbody>
-            <?php foreach ($infos as $info){ ?>
+              <?php foreach ($infos as $info) { ?>
 
-              <tr onclick="window.location='admin_student_by_batch.php?batch=<?php echo $info['Batch'] ?>';">
-                <th scope="row">Batch: <span class="text-primary"><?php echo htmlspecialchars($info['Batch']); ?></span></th>
-                <td class="text-right">Total Number of Registerd Student: <b class="text-success"> <?php echo htmlspecialchars($info['COUNT(Batch)']); ?></b></td>
-              </tr>
+                <tr onclick="window.location='admin_student_by_batch.php?batch=<?php echo $info['Batch'] ?>';">
+                  <th scope="row">Batch: <span class="text-primary"><?php echo htmlspecialchars($info['Batch']); ?></span></th>
+                  <td class="text-right">Total Number of Registerd Student: <b class="text-success"> <?php echo htmlspecialchars($info['COUNT(Batch)']); ?></b></td>
+                </tr>
 
               <?php } ?>
             </tbody>
@@ -78,7 +104,7 @@ require_once "assets/connect/pdo.php";
         </div>
         <div class="col"></div>
       </div>
-    
+
     </div>
   </main>
 

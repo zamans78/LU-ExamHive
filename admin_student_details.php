@@ -8,12 +8,12 @@ $no_data = '';
 if (isset($_POST['delete'])) {
   $id_to_delete = $_POST['id_to_delete'];
 
-  $sql = "DELETE FROM Student WHERE ID=$id_to_delete";
+  $sql = "DELETE FROM Student WHERE Student_ID = $id_to_delete";
   $stmt = $pdo->prepare($sql);
   $stmt = $pdo->query($sql);
 
   if ($stmt) {
-    header('Location: javascript:history.back(1)');
+    header('Location: admin_student_info.php');
   } else {
     $error = '<label class="alert alert-danger">Something went wrong.</label>';
   }
@@ -66,31 +66,34 @@ if (isset($_GET['id'])) {
         <div class="col"></div>
         <div class="col-xl-9 col-lg-9 col-md-10 col-sm-9 col-xs-6 my-5">
           <?php foreach ($infos as $info) { ?>
-          
-            <p><b>Name: </b><span class="text-primary"><?php echo $info['FirstName'].' '.$info['LastName']; ?></span> &emsp; <b> Student ID: </b><span class="text-primary"><?php echo $info['Student_ID']; ?></span></p>
 
-            <p><b>Batch: </b><span class="text-primary"><?php echo $info['Batch']; ?></span> &emsp; <b>Section: </b><span class="text-primary"><?php echo $info['Section']; ?></span> &emsp; <b> Profile ID: </b><span class="text-primary"><?php echo $info['Profile_ID']; ?></span></p>
+            <p><b>Name: </b><span class="text-primary"><?php echo $info['FirstName'] . ' ' . $info['LastName']; ?></span></p>
+            <p><b>Profile ID: </b><span class="text-primary"><?php echo $info['Profile_ID']; ?></span></p>
+            <p><b>Student ID: </b><span class="text-primary"><?php echo $info['Student_ID']; ?></span></p>
+            <p><b>Batch: </b><span class="text-primary"><?php echo $info['Batch']; ?></span></p>
+            <p><b>Section: </b><span class="text-primary"><?php echo $info['Section']; ?></span></p>
+            <p><b>Email: </b><span class="text-primary"><?php echo $info['Student_Email']; ?></span></p>
+            <p><b>Email Status: </b><span class="<?php if ($info['Student_Email_Status'] != 'verified') {
+                                                    $status = 'text-danger';
+                                                  } else {
+                                                    $status = 'text-success';
+                                                  }
+                                                  echo $status ?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></p>
+            <p><b>OTP: </b><span class="text-primary"><?php echo $info['Student_Otp']; ?></span></p>
+            <p><b>Activation Code: </b><span class="text-primary"><?php echo $info['Student_Activation_Code']; ?></span></p>
+            <p><b>Registration Date & Time: </b><span class="text-primary"><?php echo $info['Registration_Datetime']; ?></span></p>
 
-            <p><b>Email: </b><span class="text-primary"><?php echo $info['Student_Email']; ?></span> &emsp; <b>Email Status: </b><span class="text-primary"><?php echo $info['Student_Email_Status']; ?></span></p>
-
-
-            <p class="mt-5"><b>Activation Code: </b><span class="text-primary"><?php echo $info['Student_Activation_Code']; ?></span> &emsp; <b>OTP: </b><span class="text-primary"><?php echo $info['Student_Otp']; ?></span></p>
-
-            <p><b>Received Date & Time: </b><span class="text-primary"><?php echo $info['Registration_Datetime']; ?></span></p>
-            
-            
-            
             <!-- Delete Button -->
 
-            <form action="admin_contact_details.php" method="POST" class="d-flex justify-content-end">
+            <form action="admin_student_details.php" method="POST" class="d-flex justify-content-end">
 
-              <input type="hidden" name="id_to_delete" value="">
+              <input type="hidden" name="id_to_delete" value="<?php echo $info['Student_ID'] ?>">
               <input type="submit" name="delete" value="Delete record" class="btn btn-danger mt-5">
-              
+
             </form>
-         
-            <?php } ?>
-          
+
+          <?php } ?>
+
           <?php echo $no_data; ?>
         </div>
         <div class="col"></div>

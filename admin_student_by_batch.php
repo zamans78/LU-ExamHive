@@ -57,7 +57,7 @@ if (isset($_GET['batch'])) {
         <table class="table text-center">
             <thead class="table-dark">
               <tr>
-                <th scope="col" colspan="8">Sort by Section</th>
+                <th scope="col" colspan="12">Sort by Section</th>
               </tr>
             </thead>
             <tbody>
@@ -77,7 +77,7 @@ if (isset($_GET['batch'])) {
       <div class="row">
         <div class="col"></div>
         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-xs-6 my-5">
-        <?php echo $no_data; ?>
+        
           <table class="table table-hover text-center">
             <thead class="table-secondary">
               <tr>
@@ -109,6 +109,8 @@ if (isset($_GET['batch'])) {
               </tr>
 
               <?php } ?>
+
+              <?php echo $no_data; ?>
             </tbody>
           </table>
           

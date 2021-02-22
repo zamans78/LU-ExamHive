@@ -1,12 +1,16 @@
+<?php
+session_start();
+require_once "assets/connect/pdo.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -68,8 +72,8 @@
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

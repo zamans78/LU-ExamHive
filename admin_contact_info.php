@@ -1,8 +1,8 @@
 <?php
 require_once "assets/connect/pdo.php";
 
-  $stmt = $pdo->query("SELECT * from contact_us ORDER BY Received_Datetime");
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->query("SELECT * from contact_us ORDER BY Received_Datetime");
+$infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -12,9 +12,9 @@ require_once "assets/connect/pdo.php";
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -51,7 +51,7 @@ require_once "assets/connect/pdo.php";
               </tr>
             </thead>
             <tbody>
-            <?php foreach ($infos as $info){ ?>
+            <?php foreach ($infos as $info) {?>
 
               <tr onclick="window.location='admin_contact_details.php?id=<?php echo $info['ID'] ?>';">
                 <th scope="row"><?php echo htmlspecialchars($info['ID']); ?></th>
@@ -60,8 +60,8 @@ require_once "assets/connect/pdo.php";
                 <td><?php echo htmlspecialchars($info['Received_Datetime']); ?></td>
                 <td><a href="admin_contact_details.php?id=<?php echo $info['ID'] ?>"><i class="fas fa-edit"></i> / <i class="far fa-trash-alt"></i></a></td>
               </tr>
-              
-              <?php } ?>
+
+              <?php }?>
             </tbody>
           </table>
 
@@ -73,8 +73,8 @@ require_once "assets/connect/pdo.php";
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

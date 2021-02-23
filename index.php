@@ -3,9 +3,10 @@
 
 <head>
 	<?php
-	//Head Links
-	require_once 'assets/connect/head.php';
-	?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
+<link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -83,10 +84,11 @@
 			<!--Column 1 -->
 			<div class="col">
 				<h1 class="display-3" id="AboutUs">About Us</h1>
-				<video class="mt-4" width="500" height="285" controls>
-					<source src="assets/videos/AboutUs.mp4" type="video/mp4">
-					Sorry your browser does not support the video.
-				</video>
+
+		<video id="my-video" class="video-js" controls preload="auto" width="498" height="280" poster="assets/images/LuExamHiveLogo.png" data-setup="{}">
+		<source src="assets/videos/AboutUs.mp4" type="video/mp4" />
+	    </video>
+
 			</div>
 
 			<!--Column 2-->
@@ -264,9 +266,10 @@
 	<!--Reviews End(113)-->
 
 	<?php
-	//Head Links
-	require_once 'assets/connect/footer.php';
-	?>
+//Head Links
+require_once 'assets/connect/footer.php';
+?>
+<script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
 </body>
 
 </html>

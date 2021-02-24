@@ -1,3 +1,12 @@
+<?php
+
+require_once "assets/connect/pdo.php";
+
+$stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
+$infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,51 +42,34 @@
 
       <div class="row">
         <div class="col"></div>
-        <div class="col-xl-9 col-lg-9 col-md-10 col-sm-9 col-xs-6 my-5">
+        <div class="col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-5">
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">Question Id</th>
+                <th scope="col">Exam</th>
+                <th scope="col">Course Code</th>
+                <th scope="col">Course Name</th>
                 <th scope="col">Batch</th>
                 <th scope="col">Section</th>
-                <th scope="col">Course Code</th>
                 <th scope="col">Posted by</th>
-                <th scope="col">Posted Date</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr onclick="window.location='index.html';">
-                <th scope="row">2021</th>
-                <td>56</td>
-                <td>_</td>
-                <td>PHY - 2111</td>
-                <td>MRI</td>
-                <td>date and time here</td>
-              </tr>
-              <tr onclick="window.location='index.html';">
-                <th scope="row">2025</th>
-                <td>50</td>
-                <td>F</td>
-                <td>CSE - 1212</td>
-                <td>AAC</td>
-                <td>date and time here</td>
-              </tr>
-              <tr onclick="window.location='index.html';">
-                <th scope="row">2030</th>
-                <td>44</td>
-                <td>C</td>
-                <td>CSE - 1111</td>
-                <td>MHB</td>
-                <td>date and time here</td>
-              </tr>
-              <tr onclick="window.location='index.html';">
-                <th scope="row">2031</th>
-                <td>44</td>
-                <td>A</td>
-                <td>CSE - 1111</td>
-                <td>MHB</td>
-                <td>date and time here</td>
-              </tr>
+              <?php foreach ($infos as $info) { ?>
+
+                <tr onclick="window.location='#';">
+                  <td><?php echo htmlspecialchars($info['Title']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Course_Code']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Course_Name']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Batch']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Section']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Name']); ?></td>
+                  <td><a href="answer_script.php?question_description_id=<?php echo $info['Question_Description_ID'];?>">Take the exam</a></td>
+                </tr>
+
+              <?php } ?>
+
             </tbody>
           </table>
 

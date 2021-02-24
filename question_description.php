@@ -20,7 +20,7 @@ if (isset($_SESSION['status'])) {
 $_SESSION['color'] = 'red';
 
 // Check to see if we have some POST data, if we do process it
-if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title'])) {
+if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title']) && isset($_POST['Action'])) {
 
     if (!validationHelper()) {
         header("Location: question_description.php");
@@ -32,10 +32,11 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
     $Batch = htmlentities($_POST['Batch']);
     $Section = htmlentities($_POST['Section']);
     $Title = htmlentities($_POST['Title']);
+    $Action = htmlentities($_POST['Action']);
 
     $stmt = $pdo->prepare("
-        INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title)
-        VALUES (:Teacher_ID, :Course_Code, :Course_Name, :Batch, :Section, :Title)
+        INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title, Action)
+        VALUES (:Teacher_ID, :Course_Code, :Course_Name, :Batch, :Section, :Title, :Action)
     ");
 
     $stmt->execute([
@@ -45,6 +46,7 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
         ':Batch' => $Batch,
         ':Section' => $Section,
         ':Title' => $Title,
+        ':Action' => $Action,
     ]);
 
     $Question_Description_ID = $pdo->lastInsertId();
@@ -150,7 +152,7 @@ if ($status !== false) {
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
 					<div class="px-3">
-				  <select name="" class="custom-select" id="inputGroupSelect01">
+				  <select name="Action" class="custom-select" id="inputGroupSelect01">
 				    <option value="draft">Draft</option>
 				    <option value="post">Post</option>
 				  </select>

@@ -22,11 +22,13 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
     $Batch = htmlentities($_POST['Batch']);
     $Section = htmlentities($_POST['Section']);
     $Title = htmlentities($_POST['Title']);
+    $Meeting_Link = htmlentities($_POST['Meeting_Link']);
+    $Action = htmlentities($_POST['Action']);
 
     $stmt = $pdo->prepare("
-        INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title)
-        VALUES (:Teacher_ID, :Course_Code, :Course_Name, :Batch, :Section, :Title)
-    ");
+	INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title, Meeting_Link, Action)
+	VALUES (:Teacher_ID, :Course_Code, :Course_Name, :Batch, :Section, :Title, :Meeting_Link, :Action)
+");
 
     $stmt->execute([
         ':Teacher_ID' => $_SESSION['Teacher_ID'],
@@ -35,6 +37,8 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
         ':Batch' => $Batch,
         ':Section' => $Section,
         ':Title' => $Title,
+        ':Meeting_Link' => $Meeting_Link,
+        ':Action' => $Action,
     ]);
 
     $Question_Description_ID = $pdo->lastInsertId();
@@ -122,14 +126,14 @@ require_once 'assets/connect/head.php';
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Title"><b>Meeting Link:</b></label>
 					<div class="col input-group mb-3">
-						<input type="url" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+						<input type="url" name="Meeting_Link" class="form-control" id="basic-url" aria-describedby="basic-addon3">
 					</div>
 
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
 					<div class="px-3">
-				  <select name="" class="custom-select" id="inputGroupSelect01">
+				  <select name="Action" class="custom-select" id="inputGroupSelect01">
 				    <option value="draft">Draft</option>
 				    <option value="post">Post</option>
 				  </select>

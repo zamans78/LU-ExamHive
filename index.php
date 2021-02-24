@@ -2,19 +2,20 @@
 <html lang="en">
 
 <head>
-	<?php
-//Head Links
+<?php
 require_once 'assets/connect/head.php';
 ?>
+<!-- videojs-->
 <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
 </head>
 
 <body>
+
 	<!--Header start(101) -->
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container">
-				<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+				<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -22,68 +23,66 @@ require_once 'assets/connect/head.php';
 					<div class="navbar-nav">
 						<a class="nav-link active" href="#Home">Home</a>
 						<a class="nav-link active" href="#AboutUs">About Us</a>
-						<a class="nav-link active" href="#FAQ">FAQ</a>
+						<a class="nav-link active" href="#WhyUs">Why Us</a>
 						<a class="nav-link active" href="#Features">Features</a>
-						<a class="nav-link active" href="#Reviews">Reviews</a>
+						<a class="nav-link active" href="#FAQ">FAQ</a>
 						<a class="nav-link active" href="contact.php">Contact Us</a>
 					</div>
-
 					<a type="button" href="teacher_Login.php" class="btn btn-sm btn-dark rounded-pill ml-auto">Teacher</a>
-
 					<a type="button" href="student_login.php" class="btn btn-sm btn-dark rounded-pill mx-3">Student</a>
-
 				</div>
 			</div>
 		</nav>
 	</header>
 	<!--Header End(101) -->
 
-	<!--About us start(101) -->
+
+<!--Home start -->
+  <div class="jumbotron" id="cover">
+  <h1 class="display-2 text-white"><span class=" d-xs-none">Welcome to </span><br> LU EXAM HIVE</h1>
+  <p class="lead  text-white" id="space1">Note: LEH is a project conducted by a team of 3 people from 44th Batch Leading University, Sylhet.</p>
+  <p class=" text-white">Be adviced this website has been created only for the purpose of LU Students.</p>
+  <a class="btn btn btn-light btn-lg mr-3 d-xl-none d-lg-none d-md" href="#" role="button">Teacher</a>
+  <a class="btn btn btn-light btn-lg  d-xl-none d-lg-none d-md d-sm" href="#" role="button">Student</a>
+</div>
+
 	<div class="container mt-3 border border-dark border-top-0 border-bottom-0 border-left-0 border-right-0">
 		<!--Row 1 -->
 		<div class="row">
 			<!--Column 1 -->
 			<div class="col-md-6 col-sm-12" id="Home">
 				<h1 class="display-4">Online Exam Platform</h1>
-				<p class="text-justify font-weight-normal ml-1">Lorem ipsum dolor, sit amet consectetur adipisicing
-					elit. Culpa, pariatur iure iste maiores et voluptatem, aliquam vel repellat nemo atque laudantium
-					perspiciatis obcaecati distinctio ad ullam vero, molestiae velit facere?elit. Culpa, pariatur iure
-					iste maiores et voluptatem, aliquam vel repellat nemo atque laudantium elit. Culpa, pariatur iure
-					iste maiores et voluptatem, aliquam vel repellat nemo atque laudantium </p>
+				<p class="text-justify font-weight-normal ml-1">Online examination is conducting a test online to measure the knowledge of the participants on a given topic. In the olden days, everybody had to gather in a classroom at the same time to take an exam. With online examination students can do the exam online, in their own time, with their own device, regardless of where they live. You only need a browser and an internet connection. </p>
 			</div>
 			<!--Column 2 -->
 			<div class="col-md-6 col-sm-12 mt-4  border border-dark border-top-0 border-bottom-0  border-right-0">
 				<div class="card border-dark mb-3 d-md-none d-lg-block" style="max-width: 35rem;">
-					<div class="card-header">Education</div>
+					<div class="card-header">EXAM</div>
 					<div class="card-body text-dark">
-						<h5 class="card-title">Dark card title</h5>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of
-							the card's content.loremSome quick example text to build on the card title and make up the
-							bulk of the card's content.loremSome quick example text to build on the card title and make
-							up the bulk of the card's content.Some quick example text to build on the card title and
-							make up the bulk of the card's content.</p>
+						<h5 class="card-title">Tips</h5>
+						<p class="card-text text-justify">Life is the most difficult exam. Many people fail because they try to copy others, not realizing that everyone has a different question paper. Be myself in personality, in sports, and in academics. Go through different methods of studying to constantly improve how you work. Always aim to be efficient.</p>
 					</div>
 				</div>
 
 				<div class="card text-white bg-dark mb-3 d-none d-md-block d-lg-none d-block d-sm-none" style="max-width: 35rem;">
-					<div class="card-header">EXAM</div>
+					<div class="card-header">Education</div>
 					<div class="card-body">
-						<h5 class="card-title">Dark card title</h5>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of
-							the card's content.loremSome quick example text to build on the card title and make up the
-							bulk of the card's content.loremSome quick example text to build on the card title and make
-							up the bulk of the card's content.Some quick example text to build on the card title and
-							make up the bulk of the card's content.</p>
+						<h5 class="card-title">Life Hacks</h5>
+						<p class="card-text text-justify">Keep away from people who try to belittle your ambitions. Small people always do that, but the really great make you feel that you, too, can become great. Education is the passport to the future, for tomorrow belongs to those who prepare for it today.Start where you are. Use what you have. Do what you can.</p>
 					</div>
 				</div>
 			</div>
 		</div>
+	<!--Home End-->
+
+
+	<!--About us Start-->
 
 		<!--Row 2 -->
-		<div class="row">
+		<div class="row mt-5">
 			<!--Column 1 -->
 			<div class="col">
-				<h1 class="display-3" id="AboutUs">About Us</h1>
+				<h2 class="display-3" id="AboutUs">About Us</h2>
 
 		<video id="my-video" class="video-js" controls preload="auto" width="498" height="280" poster="assets/images/LuExamHiveLogo.png" data-setup="{}">
 		<source src="assets/videos/AboutUs.mp4" type="video/mp4" />
@@ -95,10 +94,10 @@ require_once 'assets/connect/head.php';
 			<div class="col mt-4 d-flex justify-content-center align-items-center ">
 				<figure class="text-center mt-5">
 					<blockquote class="blockquote">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+						<p>Success consists of going from failure to failure without loss of enthusiasm.</p>
 					</blockquote>
 					<figcaption class="blockquote-footer">
-						Someone famous in <cite title="Source Title">Source Title</cite>
+					<cite title="Source Title">Winston Churchill</cite>
 					</figcaption>
 				</figure>
 			</div>
@@ -106,8 +105,178 @@ require_once 'assets/connect/head.php';
 	</div>
 	<!--About us End(101) -->
 
-	<!--FAQ start(113)(+101) -->
-	<div class="container border border-dark border-left-0 border-right-0 mt-5 pb-5 ">
+
+	<!--Why Us? Start -->
+
+	<div class="container my-5 border border-dark border-left-0 border-bottom-0 border-right-0">
+		<h2 class="display-3 mt-4" id="Features">Why Exam Hive?</h2>
+		<div class="container mt-4">
+			<div class="row blog-inner justify-content-center">
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<img src="assets/images/feature1.jfif" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Stay Safe</h5>
+							<p class="card-text">Stay Home, Stay Safe. During Covid-19 students are adviced to remain within the safety of their house premisis.</p>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<img src="assets/images/feature2.jpg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Always Present</h5>
+							<p class="card-text">Regardless of you or your lecturer missing out on an exam day, remain tenshon free & contact your teacher to execute exam on Lu Exam Hive.</p>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-12 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<img src="assets/images/feature3.jpeg" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Video Conferencing</h5>
+							<p class="card-text">Yes now your favorite video communication mediums (Google meet & Zoom) are integrated with Lu Exam Hive.</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Why Us? End -->
+
+
+<!--Features Start -->
+
+<div class="wrapper p-5" id="cover2">
+	<div class="container mb-5">
+		<h2 class="display-3 mt-4 text-white" id="Features">Features</h2>
+		<div class="container mt-4">
+			<div class="row blog-inner justify-content-center">
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<div class="pt-4 mt-3 ml-2">
+										<h1><i class="fas fa-mobile-alt"></i></h1>
+									</div>
+								</div>
+								<div class="col-9">
+									<h5 class="card-title">Mobile Friendly</h5>
+									<p class="card-text">Our website works perfectly on moblie devices. Student can join in exam via mobile phone.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<div class="pt-4 mt-3 ml-2">
+										<h1><i class="fas fa-globe"></i></h1>
+									</div>
+								</div>
+								<div class="col-9">
+									<h5 class="card-title">Access Anywhere</h5>
+									<p class="card-text">With the website link users can access from anywhere.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<div class="pt-4 mt-3 ml-2">
+										<h1><i class="fas fa-american-sign-language-interpreting"></i></h1>
+									</div>
+								</div>
+								<div class="col-9">
+									<h5 class="card-title">Easy to Use</h5>
+									<p class="card-text">The website interface is very userfriendly anyone with basic website idea can use it.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<div class="pt-4 mt-3 ml-2">
+										<h1><i class="fas fa-lock"></i></h1>
+									</div>
+								</div>
+								<div class="col-9">
+									<h5 class="card-title">Secured</h5>
+									<p class="card-text">All the data is secured and users passwords are encrypted. Only the registerd students can participate in exam.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<div class="pt-4 mt-3 ml-2">
+										<h1><i class="fas fa-keyboard"></i></h1>
+									</div>
+								</div>
+								<div class="col-9">
+									<h5 class="card-title">Responsive</h5>
+									<p class="card-text">LU Exam Hive is compatible with both smartphone and laptop as well as other devices like tablet.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<div class="pt-4 mt-3 ml-2">
+										<h1><i class="fas fa-mobile-alt"></i></h1>
+									</div>
+								</div>
+								<div class="col-9">
+									<h5 class="card-title">Support</h5>
+									<p class="card-text">For any assistance we are always available via Contact form submission moreover our User Manual is equally helpful. </p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!--Features End-->
+
+	<!--FAQ start -->
+
+	<div class="container  mt-5 pb-5  class="accordion accordion-flush" id="accordionFlushExample"">
 		<h2 class="display-3 mt-4" id="FAQ">FAQ</h2>
 		<div class="row mt-4">
 			<div class="col-md-6">
@@ -158,117 +327,15 @@ require_once 'assets/connect/head.php';
 			</div>
 		</div>
 	</div>
-	<!--FAQ End(113)(+101) -->
-
-	<!--Features Start(113) -->
+	<!--FAQ End -->
 
 
-	<div class="container mb-5">
-		<h2 class="display-3 mt-4" id="Features">Features</h2>
-		<div class="container mt-4">
-			<div class="row blog-inner justify-content-center">
-				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
-					<div class="card" style="width: 18rem;">
-						<img src="assets/images/feature1.jfif" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk
-								of
-								the card's content.</p>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-					</div>
-				</div>
 
-				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">
-					<div class="card" style="width: 18rem;">
-						<img src="assets/images/feature2.jpg" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk
-								of
-								the card's content.</p>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-					</div>
-				</div>
+<?php
 
-				<div class="col-lg-4 col-md-12 mt-5 col-sm-12 d-flex justify-content-center">
-					<div class="card" style="width: 18rem;">
-						<img src="assets/images/feature3.jfif" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and
-								make up the bulk
-								of
-								the card's content.</p>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--Features End(113) -->
-
-	<!--Reviews Start(113)-->
-
-	<div class="container border border-dark border-left-0 border-right-0 border-bottom-0 mb-5">
-		<h2 class="display-3 mt-4" id="Reviews">Reviews</h2>
-		<div class="container mt-5">
-			<div class="row d-flex justify-content-center">
-				<div class="col-lg-4 col-md-6 mt-5 col-sm-12" id="review">
-					<div class="user-review">
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
-							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
-							necessitatibus voluptas sapiente! Ut, deserunt?
-						</p>
-						<h5>Zaman</h5>
-						<small>CSE</small>
-					</div>
-					<img src="assets/images/user1.png" alt="">
-				</div>
-				<div class="col-lg-4 col-md-6 mt-5 col-sm-12" id="review">
-					<div class="user-review">
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
-							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
-							necessitatibus voluptas sapiente! Ut, deserunt?</p>
-						<h5>Pabel</h5>
-						<small>CSE</small>
-					</div>
-					<img src="assets/images/user2.png" alt="">
-				</div>
-				<div class="col-lg-4 col-md-6 mt-5 col-sm-12" id="review">
-					<div class="user-review">
-						<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure nesciunt ea, consequuntur
-							rerum, eos, voluptatibus iste tempora amet quod explicabo esse suscipit culpa vero quisquam
-							necessitatibus voluptas sapiente! Ut, deserunt?</p>
-						<h5>TAT</h5>
-						<small>CSE</small>
-					</div>
-					<img src="assets/images/user3.png" alt="">
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--Reviews End(113)-->
-
-	<?php
-//Head Links
 require_once 'assets/connect/footer.php';
 ?>
+<!-- videojs-->
 <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
 </body>
 

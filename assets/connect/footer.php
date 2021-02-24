@@ -3,10 +3,10 @@
 	<div class="container">
 		<div class="row pt-5">
 			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-				<h1 class="display-4 mr-2 mb-5">LU EXAM HIVE</h1>
+				<h1 class="display-4 mr-2 mb-5">LU EXAM HIVE<a class="navbar-brand" href="index.php"><img id="logo2" src="assets/images/LuExamHiveLogo.png" height="60px"></a></h1>
 			</div>
 			<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-				<h6 class="text-uppercase font-weight-bold mb-3 pt-1">PRODUCT</h6>
+				<h6 class="text-uppercase font-weight-bold mb-3 pt-0">PRODUCT</h6>
 				<ul class="list-unstyled mb-0">
 					<li class="mb-2"><a href="index.html#Features" class="text-muted">Features</a></li>
 					<li class="mb-2">
@@ -30,17 +30,6 @@
 					<a href="https://www.linkedin.com/company/leading-university/about/"><i class="fab fa-linkedin"></i></i></a>
 
 				</h2>
-				<!--<h6 class="text-uppercase font-weight-bold mb-4">SUBSCRIBE</h6>
-					<div class="p-1 rounded border border-white mb-3">
-						<div class="input-group">
-							<input type="email" placeholder="Enter your email address" aria-describedby="button-addon1"
-								class="form-control border-0 shadow-0" />
-							<div class="input-group-append">
-								<button id="button-addon1" type="submit" class="btn btn-link">
-									<i class="fa fa-paper-plane"></i>
-								</button>
-							</div>
-						</div>-->
 			</div>
 		</div>
 	</div>

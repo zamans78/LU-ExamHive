@@ -50,7 +50,7 @@ require_once 'assets/connect/head.php';
 		<!--Row 1 -->
 		<div class="row">
 			<!--Column 1 -->
-			<div class="col-md-6 col-sm-12" id="Home">
+			<div class="col-md-6 col-sm-12">
 				<h1 class="display-4">Online Exam Platform</h1>
 				<p class="text-justify font-weight-normal ml-1">Online examination is conducting a test online to measure the knowledge of the participants on a given topic. In the olden days, everybody had to gather in a classroom at the same time to take an exam. With online examination students can do the exam online, in their own time, with their own device, regardless of where they live. You only need a browser and an internet connection. </p>
 			</div>
@@ -109,7 +109,7 @@ require_once 'assets/connect/head.php';
 	<!--Why Us? Start -->
 
 	<div class="container my-5 border border-dark border-left-0 border-bottom-0 border-right-0">
-		<h2 class="display-3 mt-4" id="Features">Why Exam Hive?</h2>
+		<h2 class="display-3 mt-4" id="WhyUs">Why Exam Hive?</h2>
 		<div class="container mt-4">
 			<div class="row blog-inner justify-content-center">
 				<div class="col-lg-4 col-md-6 mt-5 col-sm-12 d-flex justify-content-center">

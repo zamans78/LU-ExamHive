@@ -131,12 +131,8 @@ require_once 'assets/connect/head.php';
 
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
 					<div class="px-3">
-				  <select name="Action" class="custom-select" id="inputGroupSelect01">
-				    <option value="draft">Draft</option>
-				    <option value="post">Post</option>
-				  </select>
+				  <input type="hidden" name="Action" value="meeting">
 				  </div>
 				</div>
 				<div class="form-group d-flex justify-content-center">

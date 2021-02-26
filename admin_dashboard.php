@@ -48,7 +48,7 @@ require_once 'assets/connect/head.php';
                 <div class="card-body">
                   <h5 class="card-title">Teacher info</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-dark">More info</a>
+                  <a href="admin_teacher_info.php" class="btn btn-dark">More info</a>
                 </div>
               </div>
             </div>

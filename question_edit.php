@@ -34,7 +34,7 @@ function validatePos()
 
 if (
     isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Title']) && isset($_POST['Batch'])
-    && isset($_POST['Section'])
+    && isset($_POST['Section']) && isset($_POST['Action'])
 ) {
 
     if (
@@ -49,8 +49,7 @@ if (
         $_SESSION['error'] = validatePos();
         header("Location: question_edit.php");
     } else {
-        $sql = "UPDATE question_description SET Course_Code = :Course_Code, Course_Name = :Course_Name,Batch=:Batch,Section=:Section,Title=:Title
-            WHERE Question_Description_ID = :Question_Description_ID";
+        $sql = "UPDATE question_description SET Course_Code = :Course_Code, Course_Name = :Course_Name,Batch=:Batch,Section=:Section,Title=:Title,Action = :Action WHERE Question_Description_ID = :Question_Description_ID";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(
             array(
@@ -59,6 +58,7 @@ if (
                 ':Batch' => $_POST['Batch'],
                 ':Section' => $_POST['Section'],
                 ':Title' => $_POST['Title'],
+                ':Action' => $_POST['Action'],
                 ':Question_Description_ID' => $_GET['Question_Description_ID'],
             )
         );
@@ -147,8 +147,6 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 ?>
-
-
             <form method="post" class="form-horizontal">
                 <div class="form-group input-group input-group-lg">
                     <label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Code"><b>Course Code:</b></label>
@@ -184,7 +182,8 @@ if (isset($_SESSION['error'])) {
                 <div class="form-group">
                   <label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
                   <div class="px-3">
-                  <select name="" class="custom-select" id="inputGroupSelect01">
+                  <select name="Action" class="custom-select" id="inputGroupSelect01">
+                  <option selected>--Choose--</option>
                     <option value="draft">Draft</option>
                     <option value="post">Post</option>
                   </select>

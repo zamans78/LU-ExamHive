@@ -3,18 +3,18 @@ require "assets/connect/pdo.php";
 
 //getting the data by query parameter
 if (isset($_GET['batch']) && isset($_GET['sec'])) {
-	$batch = $_GET['batch'];
-	$sec = $_GET['sec'];
+    $batch = $_GET['batch'];
+    $sec = $_GET['sec'];
 
-	$stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Batch = $batch AND Section = '$sec' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
-	$infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Batch = $batch AND Section = '$sec' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	$stmt1 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'meeting' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
-	$rows = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+    $stmt1 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'meeting' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
+    $rows = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 }
-		// echo '<pre>';
-		// var_dump($rows);
-		// echo '</pre>';
+// echo '<pre>';
+// var_dump($rows);
+// echo '</pre>';
 
 ?>
 
@@ -23,8 +23,8 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 
 <head>
 	<?php
-	require_once 'assets/connect/head.php';
-	?>
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -67,7 +67,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 						</thead>
 						<tbody>
 
-							<?php foreach ($infos as $info) { ?>
+							<?php foreach ($infos as $info) {?>
 
 								<tr onclick="window.location='answer_script.php';">
 									<th scope="row"><?php echo htmlspecialchars($info['Title']); ?></th>
@@ -79,7 +79,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 									<td><a href="answer_script.php">Take the exam</a></td>
 								</tr>
 
-							<?php } ?>
+							<?php }?>
 
 						</tbody>
 					</table>
@@ -101,9 +101,9 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 						<div class="card card-body">
 							<ul class="list-group">
 
-							<?php foreach ($rows as $row) { ?>
+							<?php foreach ($rows as $row) {?>
 								<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?> by <?php echo $row['Name']; ?></a></li>
-							<?php } ?>
+							<?php }?>
 
 							</ul>
 						</div>
@@ -125,8 +125,8 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 
 	<!--footer Start -->
 	<?php
-	require_once 'assets/connect/footer.php';
-	?>
+require_once 'assets/connect/footer.php';
+?>
 	<!--footer End -->
 </body>
 

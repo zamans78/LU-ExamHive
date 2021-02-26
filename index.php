@@ -40,7 +40,6 @@ require_once 'assets/connect/head.php';
 <!--Home start -->
   <div class="jumbotron" id="cover">
   <h1 class="display-2 text-white"><span class=" d-xs-none">Welcome to </span><br> LU EXAM HIVE</h1>
-  <p class="lead  text-white" id="space1">Note: LEH is a project conducted by a team of 3 people from 44th Batch Leading University, Sylhet.</p>
   <p class=" text-white">Be adviced this website has been created only for the purpose of LU Students.</p>
   <a class="btn btn btn-light btn-lg mr-3 d-xl-none d-lg-none d-md" href="#" role="button">Teacher</a>
   <a class="btn btn btn-light btn-lg  d-xl-none d-lg-none d-md d-sm" href="#" role="button">Student</a>
@@ -100,6 +99,12 @@ require_once 'assets/connect/head.php';
 					<cite title="Source Title">Winston Churchill</cite>
 					</figcaption>
 				</figure>
+			</div>
+		</div>
+		<div class="row mt-5">
+			<!--Column 1 -->
+			<div class="col">
+			<p class="lead" id="space1">Note: LEH is a project conducted by a team of 3 people from 44th Batch Leading University, Sylhet.</p>
 			</div>
 		</div>
 	</div>
@@ -299,7 +304,7 @@ require_once 'assets/connect/head.php';
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		</div>
 		<div class="accordion" id="accordionExample">
@@ -323,7 +328,7 @@ require_once 'assets/connect/head.php';
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		</div>
 		<div class="accordion" id="accordionExample">
@@ -347,7 +352,7 @@ require_once 'assets/connect/head.php';
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 		</div>
 		<div class="accordion" id="accordionExample">
 		<div class="row mt-4">
@@ -370,7 +375,7 @@ require_once 'assets/connect/head.php';
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		</div>
 		<div class="accordion" id="accordionExample">
@@ -394,7 +399,7 @@ require_once 'assets/connect/head.php';
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		</div>
 	</div>

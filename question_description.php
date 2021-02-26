@@ -7,18 +7,6 @@ if (!isset($_SESSION['Teacher_ID'])) {
     die("Not logged in");
 }
 
-$status = false;
-
-if (isset($_SESSION['status'])) {
-    $status = htmlentities($_SESSION['status']);
-    $status_color = htmlentities($_SESSION['color']);
-
-    unset($_SESSION['status']);
-    unset($_SESSION['color']);
-}
-
-$_SESSION['color'] = 'red';
-
 // Check to see if we have some POST data, if we do process it
 if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title']) && isset($_POST['Action'])) {
 
@@ -67,10 +55,6 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
             ':Question' => $Question,
         ]);
     }
-
-    $_SESSION['status'] = 'Record added';
-    $_SESSION['color'] = 'green';
-
     header('Location: teacher_dashboard.php');
     return;
 }
@@ -109,14 +93,6 @@ require_once 'assets/connect/head.php';
 
 			</div>
 		</div>
-		<?php
-if ($status !== false) {
-    // Look closely at the use of single and double quotes
-    echo ('<p style="color: ' . $status_color . ';" class="col-sm-10 col-sm-offset-2">' .
-        htmlentities($status) .
-        "</p>\n");
-}
-?>
 		<div class="container col-xl-7 col-lg-7 col-md-7">
 			<form method="post" class="form-horizontal">
 				<div class="form-group input-group input-group-lg">
@@ -153,6 +129,7 @@ if ($status !== false) {
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
 					<div class="px-3">
 				  <select name="Action" class="custom-select" id="inputGroupSelect01">
+				  <option selected>--Choose--</option>
 				    <option value="draft">Draft</option>
 				    <option value="post">Post</option>
 				  </select>

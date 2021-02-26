@@ -58,25 +58,23 @@ require_once 'assets/connect/head.php';
 							<tr>
 								<th scope="col">Title</th>
 								<th scope="col">Course Code</th>
-								<th scope="col">Course Code</th>
+								<th scope="col" class="d-none d-lg-block">Course Title</th>
 								<th scope="col">Batch</th>
-								<th scope="col">Section</th>
 								<th scope="col">Posted by</th>
-								<th scope="col">Action</th>
+								<th scope="col" class="d-none d-lg-block">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 
 							<?php foreach ($infos as $info) {?>
 
-								<tr onclick="window.location='answer_script.php';">
-									<th scope="row"><?php echo htmlspecialchars($info['Title']); ?></th>
+								<tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>';">
+									<td><?php echo htmlspecialchars($info['Title']); ?></td>
 									<td><?php echo htmlspecialchars($info['Course_Code']); ?></td>
-									<td><?php echo htmlspecialchars($info['Course_Name']); ?></td>
-									<td><?php echo htmlspecialchars($info['Batch']); ?></td>
-									<td><?php echo htmlspecialchars($info['Section']); ?></td>
+									<td class="d-none d-lg-block"><?php echo htmlspecialchars($info['Course_Name']); ?></td>
+									<td><?php echo htmlspecialchars($info['Batch']); ?>(<?php echo htmlspecialchars($info['Section']); ?>)</td>
 									<td><?php echo htmlspecialchars($info['Name']); ?></td>
-									<td><a href="answer_script.php">Take the exam</a></td>
+									<td class="d-none d-lg-block"><a href="answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>">Take the exam</a></td>
 								</tr>
 
 							<?php }?>

@@ -57,7 +57,7 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <?php
 
           require_once "assets/connect/pdo.php";
-          
+
           if (isset($_POST["search"])) {
             $id = $_POST["id_to_search"];
 
@@ -67,10 +67,14 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($row = $sql->fetch()) {
           ?>
-            <p class="mt-3 text-success"><?php echo $row->Student_ID . ' - ' . $row->FirstName . ' ' . $row->LastName. ' '; ?><a href="admin_student_details.php?id=<?php echo $row->Student_ID; ?>"> (More details)</a></p>   
+              <p class="mt-3 text-success"><?php echo $row->Student_ID . ' - ' . $row->FirstName . ' ' . $row->LastName . ' '; ?><a href="admin_student_details.php?id=<?php echo $row->Student_ID; ?>"> (More details)</a></p>
           <?php
             } else {
-              echo "<label class='alert alert-danger'>ID does not exist.</label>";
+              echo "<label class='alert alert-danger'>
+              ID does not exist. &emsp;
+              <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+              </button></label>";
             }
           }
 

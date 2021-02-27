@@ -289,18 +289,15 @@ require_once 'assets/connect/head.php';
 					<div class="card border-light">
 						<div class="card-header" id="headingOne">
 						<h2 class="mb-0">
-							<button class="btn btn-link btn-block text-left text-decoration-none text-danger" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-							<p class="lead"><b>Q. Why them, and I started to write his adventures.</b></p class="lead">
+							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<p class="faq_custom1"><b class='text-dark'>Q. Who is LU Exam Hive  for?</b></p class="lead">
 							</button>
 						</h2>
 					</div>
 				</div>
 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 					<div class="card-body">
-						<p class="text-justify">In the Nineties, my background as a volunteer in pediatric hospitals with
-							ABIO Association (a
-							charity
-							tender and clumsy mouse, Geronimo Stilton.</p>
+						<p class="text-justify">LU Exam Hive has been created with the purpose to take examination of Leading University students only during any sort of emergency.🚨 </p>
 					</div>
 				</div>
 			</div>
@@ -313,18 +310,22 @@ require_once 'assets/connect/head.php';
 					<div class="card border-light">
 						<div class="card-header" id="headingTwo">
 						<h2 class="mb-0">
-							<button class="btn btn-link btn-block text-left text-decoration-none text-danger" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-							<p class="lead"><b>Q. Why them, and I started to write his adventures.</b></p class="lead">
+							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+							<p class="faq_custom1"><b class='text-dark'>Q. How can a new teacher register?.</b></p class="lead">
 							</button>
 						</h2>
 					</div>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 					<div class="card-body">
-						<p class="text-justify">In the Nineties, my background as a volunteer in pediatric hospitals with
-							ABIO Association (a
-							charity
-							tender and clumsy mouse, Geronimo Stilton.</p>
+						<p class="text-justify">Only LU teachers can register on LU Exam Hive. If you are a LU teacher please reach us via contact form provided in the website. 💼<br>
+ Such request must be in the following format: <br><br>
+
+Subject: Lu New Teacher <br>
+Name: [Your Name ] <br>
+Email: [Your Email ] <br>
+Phone: [Your Phone ] <br>
+Address: [Your address ]</p>
 					</div>
 				</div>
 			</div>
@@ -337,18 +338,18 @@ require_once 'assets/connect/head.php';
 					<div class="card border-light">
 						<div class="card-header" id="headingThree">
 						<h2 class="mb-0">
-							<button class="btn btn-link btn-block text-left text-decoration-none text-danger" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-							<p class="lead"><b>Q. Why them, and I started to write his adventures.</b></p class="lead">
+							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+							<p class="faq_custom1"><b class='text-dark'>What should I do if I forgot my password? (Students)</b></p class="lead">
 							</button>
 						</h2>
 					</div>
 				</div>
 				<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 					<div class="card-body">
-						<p class="text-justify">In the Nineties, my background as a volunteer in pediatric hospitals with
-							ABIO Association (a
-							charity
-							tender and clumsy mouse, Geronimo Stilton.</p>
+						<p class="text-justify">Can’t remember your password? Don’t worry. If you have an existing account you can change your password any time. <br>
+Click the link below if you forgot your
+password .😑<br><br>
+Link: <a href="request_reset_password.php"> Forgot my password.</a></p>
 					</div>
 				</div>
 			</div>
@@ -360,18 +361,26 @@ require_once 'assets/connect/head.php';
 					<div class="card border-light">
 						<div class="card-header" id="headingFour">
 						<h2 class="mb-0">
-							<button class="btn btn-link btn-block text-left text-decoration-none text-danger" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
-							<p class="lead"><b>Q. Why them, and I started to write his adventures.</b></p class="lead">
+							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
+							<p class="faq_custom1"><b class='text-dark'>Q. What to do if I am unable to register with my Student ID and Email?</b></p class="lead">
 							</button>
 						</h2>
 					</div>
 				</div>
 				<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
 					<div class="card-body">
-						<p class="text-justify">In the Nineties, my background as a volunteer in pediatric hospitals with
-							ABIO Association (a
-							charity
-							tender and clumsy mouse, Geronimo Stilton.</p>
+						<p class="text-justify">If you are unable to register using your Student ID and Email please reach out to us via contact us form provided in the website.☹️<br>
+
+Request of such must contain the following format:<br><br>
+
+Subject: Student Registration Problem<br>
+Name: [Your Name ]<br>
+Email: [Your Email ]<br>
+Phone: [Your Phone ]<br>
+Address: [Your address ]<br>
+Department: [Your Department]<br>
+Section: [Your Section]<br>
+Batch: [Your Batch ]</p>
 					</div>
 				</div>
 			</div>
@@ -384,18 +393,26 @@ require_once 'assets/connect/head.php';
 					<div class="card border-light">
 						<div class="card-header" id="headingFive">
 						<h2 class="mb-0">
-							<button class="btn btn-link btn-block text-left text-decoration-none text-danger" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-							<p class="lead"><b>Q. Why them, and I started to write his adventures.</b></p class="lead">
+							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+							<p class="faq_custom1"><b class='text-dark'>Q. I want to delete my Account? (Student & Teacher)</b></p class="lead">
 							</button>
 						</h2>
 					</div>
 				</div>
 				<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
 					<div class="card-body">
-						<p class="text-justify">In the Nineties, my background as a volunteer in pediatric hospitals with
-							ABIO Association (a
-							charity
-							tender and clumsy mouse, Geronimo Stilton.</p>
+						<p class="text-justify">Please note that after your delete request is made we will get rid of all data related to your account within 7 business days.Let us know if you want to delete your account via contact from present in the website.👋🏻 <br>
+					Such request require the following format: <br><br>
+					Subject: Student / Teacher Account Deletetion<br>
+Name: [Your Name]<br>
+Email: [Your Email]<br>
+Phone: [Your Phone]<br>
+Address: [Your Address]<br>
+Department: [Your Department]<br>
+Section: [Your Section] (Only students)<br>
+Batch: [Your Batch] (Only students)<br>
+Reason of Account Delete: [Shortly state why you opt to delete Your Account]</p>
+				</p>
 					</div>
 				</div>
 			</div>

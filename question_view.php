@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once "assets/connect/pdo.php";
 
 if (!isset($_SESSION['Teacher_ID'])) {
@@ -8,12 +7,9 @@ if (!isset($_SESSION['Teacher_ID'])) {
 }
 
 if (isset($_GET['Question_Description_ID'])) {
+
     $question_des_id = $_GET['Question_Description_ID'];
-
-    $stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question2.Content, question2.Question_Description_ID FROM question2
-  INNER JOIN question_description ON question2.Question_Description_ID = question_description.Question_Description_ID
-  WHERE question2.Question_Description_ID = $question_des_id");
-
+    $stmt = $pdo->query("SELECT * FROM question_description WHERE Question_Description_ID = $question_des_id");
     $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
@@ -23,7 +19,7 @@ if (isset($_GET['Question_Description_ID'])) {
 
 <head>
 	<title>LU EXAM HIVE</title>
-	<?php
+<?php
 require_once 'assets/connect/head.php';
 ?>
 

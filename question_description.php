@@ -18,16 +18,9 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
     $Action = htmlentities($_POST['Action']);
     $Content = $_POST['Content'];
 
-    $sql = "INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title, Action)
-    VALUES ('$Teacher_ID', '$Course_Code','$Course_Name','$Batch','$Section','$Title','$Action')";
+    $sql = "INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title, Action,Content)
+    VALUES ('$Teacher_ID', '$Course_Code','$Course_Name','$Batch','$Section','$Title','$Action','$Content')";
     $pdo->exec($sql);
-
-    $Question_Description_ID = $pdo->lastInsertId();
-
-    $sql2 = "INSERT INTO question2 (Question_Description_ID, Content)
-    VALUES ('$Question_Description_ID', '$Content')";
-    $pdo->exec($sql2);
-
     header('Location: teacher_dashboard.php');
     return;
 }
@@ -108,15 +101,17 @@ require_once 'assets/summer_Note/summer_Note.php';
 
 					<label class="control-label col-sm-12 d-flex justify-content-center mt-5"><b>Question Paper</b></label>
 					</div>
-					<div class="container-fluid">
+					<div class="container">
+					<div class="col">
     <textarea class="form-control m-input" id="summernote" name="Content" required></textarea>
     <script>
       $('#summernote').summernote({
         placeholder: '#All question with proper spacing must go here. (You can stretch bottom to increase paper length.)',
         tabsize: 2,
-        height: 1000
+        height: 500
       });
     </script>
+	</div>
 </div>
 <div class="container mt-5">
 				<div class="form-group d-flex justify-content-center ">

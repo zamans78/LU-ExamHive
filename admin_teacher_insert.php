@@ -55,8 +55,8 @@ if (isset($_POST["insert"])) {
     $errors['password'] = 'Your Password Must Contain At Least 1 Number!';
   } else {
     $password_polish = trim($_POST['password']);
-    $salt = '8JDs,=-w^q;-57Jc,ZP:g[=8[r+=FC';
-    $password = md5($salt . $password_polish);
+    $salt = '6JDs,=+w^q;-57Qc,Zz:g[=8[r==FC';
+    $password = md5($salt . $password_polish); 
   }
 
 

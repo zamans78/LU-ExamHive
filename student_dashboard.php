@@ -3,14 +3,16 @@ require "assets/connect/pdo.php";
 
 //getting the data by query parameter
 if (isset($_GET['batch']) && isset($_GET['sec'])) {
-    $batch = $_GET['batch'];
-    $sec = $_GET['sec'];
+	$batch = $_GET['batch'];
+	$sec = $_GET['sec'];
 
-    $stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Batch = $batch AND Section = '$sec' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
-    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Batch = $batch AND Section = '$sec' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
+	$infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt1 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'meeting' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
-    $rows = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+
+	//for meeting link
+	$stmt1 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'meeting' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
+	$rows = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 }
 // echo '<pre>';
 // var_dump($rows);
@@ -23,8 +25,8 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 
 <head>
 	<?php
-require_once 'assets/connect/head.php';
-?>
+	require_once 'assets/connect/head.php';
+	?>
 </head>
 
 <body>
@@ -58,26 +60,24 @@ require_once 'assets/connect/head.php';
 							<tr>
 								<th scope="col">Title</th>
 								<th scope="col">Course Code</th>
-								<th scope="col" class="d-none d-lg-block">Course Title</th>
-								<th scope="col">Batch</th>
+								<th scope="col">Course Title</th>
+								<th scope="col">Batch (Sec)</th>
 								<th scope="col">Posted by</th>
-								<th scope="col" class="d-none d-lg-block">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 
-							<?php foreach ($infos as $info) {?>
+							<?php foreach ($infos as $info) { ?>
 
-								<tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>';">
+								<tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>&title=<?php echo $info['Title']; ?>&ct=<?php echo $info['Course_Name']; ?>&cc=<?php echo $info['Course_Code']; ?>&batch=<?php echo $info['Batch']; ?>&sec=<?php echo $info['Section']; ?>';">
 									<td><?php echo htmlspecialchars($info['Title']); ?></td>
 									<td><?php echo htmlspecialchars($info['Course_Code']); ?></td>
-									<td class="d-none d-lg-block"><?php echo htmlspecialchars($info['Course_Name']); ?></td>
+									<td><?php echo htmlspecialchars($info['Course_Name']); ?></td>
 									<td><?php echo htmlspecialchars($info['Batch']); ?>(<?php echo htmlspecialchars($info['Section']); ?>)</td>
 									<td><?php echo htmlspecialchars($info['Name']); ?></td>
-									<td class="d-none d-lg-block"><a href="answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>">Take the exam</a></td>
 								</tr>
 
-							<?php }?>
+							<?php } ?>
 
 						</tbody>
 					</table>
@@ -87,7 +87,7 @@ require_once 'assets/connect/head.php';
 			</div>
 
 			<div class="row">
-			<div class="col"></div>
+				<div class="col"></div>
 				<div class="col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-3 my-5">
 					<p>
 						<button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -99,9 +99,9 @@ require_once 'assets/connect/head.php';
 						<div class="card card-body">
 							<ul class="list-group">
 
-							<?php foreach ($rows as $row) {?>
-								<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?> by <?php echo $row['Name']; ?></a></li>
-							<?php }?>
+								<?php foreach ($rows as $row) { ?>
+									<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?> by <?php echo $row['Name']; ?></a></li>
+								<?php } ?>
 
 							</ul>
 						</div>
@@ -123,8 +123,8 @@ require_once 'assets/connect/head.php';
 
 	<!--footer Start -->
 	<?php
-require_once 'assets/connect/footer.php';
-?>
+	require_once 'assets/connect/footer.php';
+	?>
 	<!--footer End -->
 </body>
 

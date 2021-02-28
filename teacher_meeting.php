@@ -10,13 +10,6 @@ if (!isset($_SESSION['Teacher_ID'])) {
 // Check to see if we have some POST data, if we do process it
 if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title']) && isset($_POST['Save'])) {
 
-    if (
-        strlen($_POST['Course_Code']) < 1 || strlen($_POST['Course_Name']) < 1 || strlen($_POST['Title']) < 1 ||
-        strlen($_POST['Batch']) < 1 || strlen($_POST['Section']) < 1
-    ) {
-        $_SESSION['status'] = "All fields are required";
-    }
-
     $Course_Code = htmlentities($_POST['Course_Code']);
     $Course_Name = htmlentities($_POST['Course_Name']);
     $Batch = htmlentities($_POST['Batch']);
@@ -40,19 +33,6 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
         ':Meeting_Link' => $Meeting_Link,
         ':Action' => $Action,
     ]);
-
-    $Question_Description_ID = $pdo->lastInsertId();
-
-    $stmt = $pdo->prepare("
-            INSERT INTO question (Question_Description_ID, Question)
-            VALUES (:Question_Description_ID,:Question)
-        ");
-
-    $stmt->execute([
-        ':Question_Description_ID' => $Question_Description_ID,
-        ':Question' => $Question,
-    ]);
-
     header('Location: teacher_dashboard.php');
     return;
 }
@@ -96,43 +76,43 @@ require_once 'assets/connect/head.php';
 				<div class="form-group input-group input-group-lg">
 					<label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Code"><b>Course Code:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Course_Code" id="Course_Code">
+						<input required class="form-control" type="text" name="Course_Code" id="Course_Code">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Name"><b>Course Name:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Course_Name" id="Course_Name">
+						<input required class="form-control" type="text" name="Course_Name" id="Course_Name">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left" for="Batch"><b>Batch:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Batch" id="Batch">
+						<input required class="form-control" type="text" name="Batch" id="Batch">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Section"><b>Section:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Section" id="Section">
+						<input required class="form-control" type="text" name="Section" id="Section">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Title"><b>Title:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Title" id="Title">
+						<input required class="form-control" type="text" name="Title" id="Title">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Title"><b>Meeting Link:</b></label>
 					<div class="col input-group mb-3">
-						<input type="url" name="Meeting_Link" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+						<input required type="url" name="Meeting_Link" class="form-control" id="basic-url" aria-describedby="basic-addon3">
 					</div>
 
 				</div>
 				<div class="form-group">
 					<div class="px-3">
-				  <input type="hidden" name="Action" value="meeting">
+				  <input required type="hidden" name="Action" value="meeting">
 				  </div>
 				</div>
 				<div class="form-group d-flex justify-content-center">

@@ -311,7 +311,7 @@ require_once 'assets/connect/head.php';
 						<div class="card-header" id="headingTwo">
 						<h2 class="mb-0">
 							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-							<p class="faq_custom1"><b class='text-dark'>Q. How can a new teacher register?.</b></p class="lead">
+							<p class="faq_custom1"><b class='text-dark'>Q. How can a new teacher register?</b></p class="lead">
 							</button>
 						</h2>
 					</div>

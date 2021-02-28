@@ -1,71 +1,44 @@
 <?php
 session_start();
 require_once "assets/connect/pdo.php";
-include 'assets/inc/validation_helper.php';
 
 if (!isset($_SESSION['Teacher_ID'])) {
-    die("Not logged in");
+    header('Location: teacher_login.php');
 }
 
 // Check to see if we have some POST data, if we do process it
-if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title']) && isset($_POST['Action'])) {
+if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title']) && isset($_POST['Save']) && isset($_POST['Action'])) {
 
-    if (!validationHelper()) {
-        header("Location: question_description.php");
-        return;
-    }
-
+    $Teacher_ID = $_SESSION['Teacher_ID'];
     $Course_Code = htmlentities($_POST['Course_Code']);
     $Course_Name = htmlentities($_POST['Course_Name']);
     $Batch = htmlentities($_POST['Batch']);
     $Section = htmlentities($_POST['Section']);
     $Title = htmlentities($_POST['Title']);
     $Action = htmlentities($_POST['Action']);
+    $Content = $_POST['Content'];
 
-    $stmt = $pdo->prepare("
-        INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title, Action)
-        VALUES (:Teacher_ID, :Course_Code, :Course_Name, :Batch, :Section, :Title, :Action)
-    ");
-
-    $stmt->execute([
-        ':Teacher_ID' => $_SESSION['Teacher_ID'],
-        ':Course_Code' => $Course_Code,
-        ':Course_Name' => $Course_Name,
-        ':Batch' => $Batch,
-        ':Section' => $Section,
-        ':Title' => $Title,
-        ':Action' => $Action,
-    ]);
+    $sql = "INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title, Action)
+    VALUES ('$Teacher_ID', '$Course_Code','$Course_Name','$Batch','$Section','$Title','$Action')";
+    $pdo->exec($sql);
 
     $Question_Description_ID = $pdo->lastInsertId();
 
-    for ($i = 1; $i <= 50; $i++) {
-        if (!isset($_POST['Question' . $i])) {
-            continue;
-        }
-        $Question = htmlentities($_POST['Question' . $i]);
+    $sql2 = "INSERT INTO question2 (Question_Description_ID, Content)
+    VALUES ('$Question_Description_ID', '$Content')";
+    $pdo->exec($sql2);
 
-        $stmt = $pdo->prepare("
-            INSERT INTO question (Question_Description_ID, Question)
-            VALUES (:Question_Description_ID,:Question)
-        ");
-
-        $stmt->execute([
-            ':Question_Description_ID' => $Question_Description_ID,
-            ':Question' => $Question,
-        ]);
-    }
     header('Location: teacher_dashboard.php');
     return;
 }
-
 ?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
-	<?php
+<?php
 require_once 'assets/connect/head.php';
+require_once 'assets/summer_Note/summer_Note.php';
 ?>
 </head>
 
@@ -85,107 +58,76 @@ require_once 'assets/connect/head.php';
 		<div class="row">
 			<div class="col"></div>
 			<div class="col d-flex justify-content-center mt-3">
-				<p class="">Fill the fields below to create question !!!</p>
+				<p class="">Fill all the fields below to create a Question Paper !!</p>
 			</div>
 			<div class="col d-flex justify-content-center mt-3">
-
-
-
 			</div>
 		</div>
 		<div class="container col-xl-7 col-lg-7 col-md-7">
-			<form method="post" class="form-horizontal">
+			<form method="post" class="form-horizontal" action="question_description.php">
 				<div class="form-group input-group input-group-lg">
 					<label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Code"><b>Course Code:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Course_Code" id="Course_Code">
+						<input class="form-control" type="text" name="Course_Code" id="Course_Code" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left" for="Course_Name"><b>Course Name:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Course_Name" id="Course_Name">
+						<input class="form-control" type="text" name="Course_Name" id="Course_Name" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left" for="Batch"><b>Batch:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Batch" id="Batch">
+						<input class="form-control" type="text" name="Batch" id="Batch" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Section"><b>Section:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Section" id="Section">
+						<input class="form-control" type="text" name="Section" id="Section" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Title"><b>Title:</b></label>
 					<div class="col">
-						<input class="form-control" type="text" name="Title" id="Title">
+						<input class="form-control" type="text" name="Title" id="Title" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-12 d-flex justify-content-left " for="Action"><b>Action:</b></label>
 					<div class="px-3">
-				  <select name="Action" class="custom-select" id="inputGroupSelect01">
+				  <select name="Action" class="custom-select" id="inputGroupSelect01" >
 				  <option selected>--Choose--</option>
 				    <option value="draft">Draft</option>
 				    <option value="post">Post</option>
 				  </select>
 				  </div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-12 d-flex justify-content-left"><b>Add Question:</b></label>
-					<div class="col">
-						<button id="addPos" class="btn btn-success btn-md btn-block"><i class="fas fa-pencil-alt"></i></button>
-					</div>
-				</div>
-				<div id="position_fields" class="p-3" >
 
-				</div>
-				<div class="form-group d-flex justify-content-center">
+					<label class="control-label col-sm-12 d-flex justify-content-center mt-5"><b>Question Paper</b></label>
+					</div>
+					<div class="container-fluid">
+    <textarea class="form-control m-input" id="summernote" name="Content" required></textarea>
+    <script>
+      $('#summernote').summernote({
+        placeholder: '#All question with proper spacing must go here. (You can stretch bottom to increase paper length.)',
+        tabsize: 2,
+        height: 1000
+      });
+    </script>
+</div>
+<div class="container mt-5">
+				<div class="form-group d-flex justify-content-center ">
 					<div class="col-sm-4 col-sm-offset-2 p-1">
-						<input class="btn btn-dark btn-block mb-5" type="submit" value="Save">
+						<input class="btn btn-dark btn-block mb-5" type="submit" name="Save">
 
 					</div>
 				</div>
 			</form>
-		</div>
+			</div>
 	</div>
-
-
-<script type="text/javascript">
-let countPos = 0;
-$(document).ready(function(){
-$('#addPos').click(function(event){
-    event.preventDefault();
-
-    if (countPos >= 11) {
-    alert("Maximum of 10 position entries exceeded");
-    return;
-}
-countPos++;
-
-let html = '';
-html += '<div id="inputFormRow">';
-html += '<div class="input-group mb-3">';
-html += '  <textarea class="form-control m-input"  name="Question' + countPos + '" placeholder="Q..." id="floatingTextarea2" style="height: 70px" autocomplete="off"></textarea>';
-html += '<div class="input-group-append">';
-html += '<button id="removeRow" type="button" class="ml-2 btn btn-danger">Remove</button>';
-html += '</div>';
-html += '</div>';
-
-$('#position_fields').append(html);
-
-$(document).on('click', '#removeRow', function () {
-$(this).closest('#inputFormRow').remove();
-});
-
-});
-});
-
-</script>
 </body>
 <?php
 require_once 'assets/connect/footer.php';

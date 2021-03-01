@@ -3,14 +3,14 @@ session_start();
 require_once "assets/connect/pdo.php";
 
 if (!isset($_SESSION['Teacher_ID'])) {
-	die("Not logged in");
+    die("Not logged in");
 }
 
 if (isset($_GET['Question_Description_ID'])) {
 
-	$question_des_id = $_GET['Question_Description_ID'];
-	$stmt = $pdo->query("SELECT * FROM question_description WHERE Question_Description_ID = $question_des_id");
-	$infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $question_des_id = $_GET['Question_Description_ID'];
+    $stmt = $pdo->query("SELECT * FROM question_description WHERE Question_Description_ID = $question_des_id");
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -20,15 +20,15 @@ if (isset($_GET['Question_Description_ID'])) {
 <head>
 	<title>LU EXAM HIVE</title>
 	<?php
-	require_once 'assets/connect/head.php';
-	?>
+require_once 'assets/connect/head.php';
+?>
 
 </head>
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 		<div class="container justify-content-start">
 			<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-			<a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
+			<a type="button" href="teacher_dashboard.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
 		</div>
 	</nav>
 </header>
@@ -68,7 +68,7 @@ if (isset($_GET['Question_Description_ID'])) {
 				<h6>Department of CSE</h6>
 			</div>
 		</div>
-		<?php foreach ($infos as $info) { ?>
+		<?php foreach ($infos as $info) {?>
 			<div class="row">
 				<div class="col d-flex justify-content-center">
 					<h6><?php echo $info['Title']; ?></h6>
@@ -101,11 +101,11 @@ if (isset($_GET['Question_Description_ID'])) {
 					</p>
 				</div>
 			</div>
-		<?php } ?>
+		<?php }?>
 	</div>
 	<?php
-	require_once 'assets/connect/footer.php';
-	?>
+require_once 'assets/connect/footer.php';
+?>
 </body>
 
 </html>

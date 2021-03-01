@@ -41,8 +41,8 @@ require_once 'assets/connect/head.php';
   <div class="jumbotron" id="cover">
   <h1 class="display-2 text-white"><span class=" d-xs-none">Welcome to </span><br> LU EXAM HIVE</h1>
   <p class=" text-white">Be adviced this website has been created only for the purpose of LU Students.</p>
-  <a class="btn btn btn-light btn-lg mr-3 d-xl-none d-lg-none d-md" href="#" role="button">Teacher</a>
-  <a class="btn btn btn-light btn-lg  d-xl-none d-lg-none d-md d-sm" href="#" role="button">Student</a>
+  <a class="btn btn btn-light btn-lg mr-3 d-xl-none d-lg-none d-md" href="teacher_Login.php" role="button">Teacher</a>
+  <a class="btn btn btn-light btn-lg  d-xl-none d-lg-none d-md d-sm" href="student_login.php" role="button">Student</a>
 </div>
 
 	<div class="container mt-3 border border-dark border-top-0 border-bottom-0 border-left-0 border-right-0">
@@ -122,7 +122,7 @@ require_once 'assets/connect/head.php';
 						<img src="assets/images/feature1.jfif" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">Stay Safe</h5>
-							<p class="card-text">Stay Home, Stay Safe. During Covid-19 students are adviced to remain within the safety of their house premisis.</p>
+							<p class="card-text">Stay Home, Stay Safe. During Covid-19 students are adviced to remain within the safety of their house premisis. Give any of your remaining exams via Lu Exam Hive.</p>
 						</div>
 
 					</div>
@@ -297,7 +297,7 @@ require_once 'assets/connect/head.php';
 				</div>
 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 					<div class="card-body">
-						<p class="text-justify">LU Exam Hive has been created with the purpose to take examination of Leading University students only during any sort of emergency.🚨 </p>
+						<p class="text-justify">LU Exam Hive has been created with the purpose of taking examination of Leading University students only by LU Authorized Teachers <br> in times of need.👮🏻‍♂️ </p>
 					</div>
 				</div>
 			</div>
@@ -339,7 +339,7 @@ Address: [Your address ]</p>
 						<div class="card-header" id="headingThree">
 						<h2 class="mb-0">
 							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-							<p class="faq_custom1"><b class='text-dark'>What should I do if I forgot my password? (Students)</b></p class="lead">
+							<p class="faq_custom1"><b class='text-dark'>Q. What should I do if I forgot my password? (Student)</b></p class="lead">
 							</button>
 						</h2>
 					</div>
@@ -394,14 +394,14 @@ Batch: [Your Batch ]</p>
 						<div class="card-header" id="headingFive">
 						<h2 class="mb-0">
 							<button class="btn btn-link btn-block text-left text-decoration-none " type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-							<p class="faq_custom1"><b class='text-dark'>Q. I want to delete my Account? (Student & Teacher)</b></p class="lead">
+							<p class="faq_custom1"><b class='text-dark'>Q. What should i do if I want to delete my LU Exam Hive Account? (Student & Teacher)</b></p class="lead">
 							</button>
 						</h2>
 					</div>
 				</div>
 				<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
 					<div class="card-body">
-						<p class="text-justify">Please note that after your delete request is made we will get rid of all data related to your account within 7 business days.Let us know if you want to delete your account via contact from present in the website.👋🏻 <br>
+						<p class="text-justify">Please note that after your delete request is made we will get rid of all data related to your account within 7 business days. Let us know if you want to delete your account via contact from present in the website.👋🏻 <br>
 					Such request require the following format: <br><br>
 					Subject: Student / Teacher Account Deletetion<br>
 Name: [Your Name]<br>

@@ -67,30 +67,19 @@ require_once 'assets/connect/head.php';
 
 	<!--Student Login/Registration Start -->
 	<main>
-		<div class="container">
-			<div class="row  mt-5 mb-5">
+	<div class="container">
+  <div class="row">
 
-				<!--Column 1 -->
-				<div class="col-lg-6  col-sm-12 order-xl-2 order-lg-2 order-md-1 order-sm-1 order-xs-1">
-					<div class=" d-md-none d-lg-block d-sm-none">
-						<div class="col-sm-8 col-lg-10">
-							<img src="assets/images/student.jpg" class="card-img" alt="Student">
-						</div>
-						<div class="container my-4">
-							<h1 class="my-2 display-4">Student Login</h1>
-							<p>User passwords are encrypted.</p>
-							<p class="my-3">New user? <a href="student_Registration.php">Get started with LU Exam Hive</a></p>
-						</div>
-					</div>
-				</div>
+    <div class="col-lg-6 col-md-10 col-sm-12 col-xs-12 my-5 align-self-center order-xl-2 order-lg-2 order-md-1 order-sm-1 order-xs-1">
+	<img src="assets/images/student.jpg" class="card-img" alt="Student">
+	<h1 class="my-2 display-4">Student Login</h1>
+	<p class='ml-2'> User passwords are encrypted.</p>
+	<p class="my-3 ml-2">New user? <a href="student_Registration.php">Get started with LU Exam Hive</a></p>
+	</div>
 
-				<!--Column 2 -->
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-5 align-self-center order-xl-1 order-lg-1 order-md-2 order-sm-2 order-xs-2">
 
-				<div class="col-lg-6 col-md-12 col-sm-12 align-self-center order-xl-1 order-lg-1 order-md-2 order-sm-2 order-xs-2">
-					<form method="POST" action="student_login.php">
-						<div class="form-group w-75">
-
-							<?php
+	<?php
 if (isset($_SESSION['error'])) {
     echo ('<p class="alert alert-danger">' . htmlentities($_SESSION['error']) . "</p>\n");
     unset($_SESSION['error']);
@@ -99,8 +88,7 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['registered']);
 }
 ?>
-
-						</div>
+					<form method="POST" action="student_login.php">
 						<div class="form-group w-75 ">
 							<input type="email" name="Student_Email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email...">
 							<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
@@ -119,10 +107,15 @@ if (isset($_SESSION['error'])) {
 							<a href="request_reset_password.php">Forgot Your Password?</a>
 						</div>
 					</form>
+	</div>
 
-				</div>
-			</div>
-		</div>
+
+  </div>
+</div>
+
+</div>
+
+
 	</main>
 	<!--Student Login/Registration Start -->
 

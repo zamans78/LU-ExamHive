@@ -46,24 +46,22 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">Exam</th>
+                <th scope="col">Title</th>
                 <th scope="col">Course Code</th>
-                <th scope="col" class="d-none d-lg-block">Course Title</th>
-                <th scope="col">Batch</th>
+                <th scope="col">Course Title</th>
+                <th scope="col">Batch (Sec)</th>
                 <th scope="col">Posted by</th>
-                <th scope="col" class="d-none d-lg-block">Action</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($infos as $info) { ?>
 
-                <tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>';">
+                <tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>&title=<?php echo $info['Title']; ?>&ct=<?php echo $info['Course_Name']; ?>&cc=<?php echo $info['Course_Code']; ?>&batch=<?php echo $info['Batch']; ?>&sec=<?php echo $info['Section']; ?>';">
                   <td><?php echo htmlspecialchars($info['Title']); ?></td>
                   <td><?php echo htmlspecialchars($info['Course_Code']); ?></td>
-                  <td class="d-none d-lg-block"><?php echo htmlspecialchars($info['Course_Name']); ?></td>
+                  <td><?php echo htmlspecialchars($info['Course_Name']); ?></td>
                   <td><?php echo htmlspecialchars($info['Batch']); ?>(<?php echo htmlspecialchars($info['Section']); ?>)</td>
                   <td><?php echo htmlspecialchars($info['Name']); ?></td>
-                  <td class="d-none d-lg-block"><a href="answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>">Take the exam</a></td>
                 </tr>
 
               <?php } ?>

@@ -8,7 +8,7 @@ $batch = $_GET['batch'];
 $section = $_GET['sec'];
 
 // Variables declared as empty for persisting data on the form
-$name = $student_id = $batch = $section = $success = $failed = '';
+$name = $student_id = $batch = $section = $success = $failed = $reg_done = '';
 
 // errors array to put all the error message in the array
 $errors = array('name' => '', 'student_id' => '', 'batch' => '', 'section' => '');
@@ -66,6 +66,12 @@ if (isset($_POST["submit"])) {
     $student_id = $_POST['student_id'];
     $batch = $_POST['batch'];
     $section = $_POST['section'];
+
+    $reg_done = "<label class='alert alert-success'>Registration Done! Now you may write answers. Scroll down to see the questions. &emsp;
+                  <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                  </button>
+                 </label>";
   }
 }
 
@@ -138,6 +144,7 @@ if (isset($_POST["ansSubmit"])) {
   </div>
   <div class="container">
     <p class="pt-2 text-center">Fill in the form below and <b>submit it first</b> then start writing the answers.</p>
+    <?php echo $reg_done; ?>
     <?php echo $failed; ?>
     <?php echo $success; ?>
 

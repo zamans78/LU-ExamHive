@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
 
 html {
 	scroll-behavior: smooth;
@@ -11,6 +12,7 @@ h4,
 h5 {
 	font-family: Lato;
 }
+
 .faq_custom1 {
 	letter-spacing: 2px;
 	font-size: large;
@@ -190,3 +192,21 @@ body {
 }
 
 /*-- Admin Dashboard End --*/
+
+/*-- Exam Clock  Start --*/
+
+.clock {
+	text-align: center;
+	padding: 1%;
+	background-color: black;
+	position: relative;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	color: white;
+	font-size: 50px;
+	font-family: Abel;
+	letter-spacing: 7px;
+}
+
+/*-- Exam Clock  End --*/

@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once "assets/connect/pdo.php";
 
 $question_id = $_GET['id'];
 $title = $_GET['title'];
@@ -17,104 +19,103 @@ $errors = array('name' => '', 'student_id' => '', 'batch' => '', 'section' => ''
 
 if (isset($_POST["submit"])) {
 
-  //check name
-  if (empty($_POST['name'])) {
-    $errors['name'] = 'A name is required';
-  } else {
-    $name = $_POST['name'];
-    if (!preg_match('/^[a-zA-Z\s]+$/', $name)) {
-      $errors['name'] = 'Name must be letters and spaces only';
+    //check name
+    if (empty($_POST['name'])) {
+        $errors['name'] = 'A name is required';
+    } else {
+        $name = $_POST['name'];
+        if (!preg_match('/^[a-zA-Z\s]+$/', $name)) {
+            $errors['name'] = 'Name must be letters and spaces only';
+        }
     }
-  }
 
-  //student id check
-  if (empty($_POST['student_id'])) {
-    $errors['student_id'] = 'Student ID is required.';
-  } else {
-    $student_id = $_POST['student_id'];
-    if (!preg_match('/^[0-9]*$/', $student_id)) {
-      $errors['student_id'] = 'ID must be numbers only.';
+    //student id check
+    if (empty($_POST['student_id'])) {
+        $errors['student_id'] = 'Student ID is required.';
+    } else {
+        $student_id = $_POST['student_id'];
+        if (!preg_match('/^[0-9]*$/', $student_id)) {
+            $errors['student_id'] = 'ID must be numbers only.';
+        }
     }
-  }
 
-  //batch check
-  if (empty($_POST['batch'])) {
-    $errors['batch'] = 'Batch is required.';
-  } else {
-    $batch = $_POST['batch'];
-    if (!preg_match('/^[0-9]*$/', $batch)) {
-      $errors['batch'] = 'Batch must be numbers only.';
+    //batch check
+    if (empty($_POST['batch'])) {
+        $errors['batch'] = 'Batch is required.';
+    } else {
+        $batch = $_POST['batch'];
+        if (!preg_match('/^[0-9]*$/', $batch)) {
+            $errors['batch'] = 'Batch must be numbers only.';
+        }
     }
-  }
 
-  //section check
-  if (empty($_POST['section'])) {
-    $errors['section'] = 'Section is required.';
-  } else {
-    $section = $_POST['section'];
-    if (!preg_match('/^[a-zA-Z\s]+$/', $section)) {
-      $errors['section'] = 'Section must be a character.';
+    //section check
+    if (empty($_POST['section'])) {
+        $errors['section'] = 'Section is required.';
+    } else {
+        $section = $_POST['section'];
+        if (!preg_match('/^[a-zA-Z\s]+$/', $section)) {
+            $errors['section'] = 'Section must be a character.';
+        }
     }
-  }
 
+    if (array_filter($errors)) {
+        //echo 'errors in form';
+    } else {
+        //setting info in variables here
+        $name = $_POST['name'];
+        $student_id = $_POST['student_id'];
+        $batch = $_POST['batch'];
+        $section = $_POST['section'];
 
-  if (array_filter($errors)) {
-    //echo 'errors in form';
-  } else {
-    //setting info in variables here
-    $name = $_POST['name'];
-    $student_id = $_POST['student_id'];
-    $batch = $_POST['batch'];
-    $section = $_POST['section'];
-
-    $reg_done = "<label class='alert alert-success'>Registration Done! Now you may write answers. Scroll down to see the questions. &emsp;
+        $reg_done = "<label class='alert alert-success'>Registration Done! Now you may write answers. Scroll down to see the questions. &emsp;
                   <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                   </button>
                  </label>";
-  }
+    }
 }
-
-
 
 //fetching questions and other data
 if (isset($_GET['id'])) {
-  $question_id = $_GET['id'];
-  require_once "assets/connect/pdo.php";
-  $stmt = $pdo->query("SELECT * FROM question_description WHERE Question_Description_ID = $question_id");
+    $question_id = $_GET['id'];
+    require_once "assets/connect/pdo.php";
+    $stmt = $pdo->query("SELECT * FROM question_description WHERE Question_Description_ID = $question_id");
 
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 
 //inserting answer in database
 if (isset($_POST["ansSubmit"])) {
 
-  $ansName = $_POST['ansName'];
-  $ansId = $_POST['ansId'];
-  $ansBatch = $_POST['ansBatch'];
-  $ansSec = $_POST['ansSec'];
-  $ansQuestion_ID = $_POST['ansQuestion_ID'];
-  $answer = $_POST['answer'];
+    $ansName = $_POST['ansName'];
+    $ansId = $_POST['ansId'];
+    $ansBatch = $_POST['ansBatch'];
+    $ansSec = $_POST['ansSec'];
+    $ansQuestion_ID = $_POST['ansQuestion_ID'];
+    $answer = $_POST['answer'];
 
+    try {
+        require_once "assets/connect/pdo.php";
 
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO student_answer (Full_Name, Student_ID, Batch, Section, Question_Description_ID, Answer) VALUES('$ansName', '$ansId', '$ansBatch', '$ansSec', '$ansQuestion_ID', '$answer')";
+        // use exec() because no results are returned
+        $pdo->exec($sql);
+        $success = "<label class='alert alert-success'>Data Inserted Successfully!</label>";
 
-  try {
-    require_once "assets/connect/pdo.php";
+    } catch (PDOException $e) {
+        $err = $e->getMessage();
+        $failed = "<label class='alert alert-danger'>Data insertion failed. Please try again. $err </label>";
+    }
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "INSERT INTO student_answer (Full_Name, Student_ID, Batch, Section, Question_Description_ID, Answer) VALUES('$ansName', '$ansId', '$ansBatch', '$ansSec', '$ansQuestion_ID', '$answer')";
-    // use exec() because no results are returned
-    $pdo->exec($sql);
-    $success = "<label class='alert alert-success'>Data Inserted Successfully!</label>";
-  } catch (PDOException $e) {
-    $err = $e->getMessage();
-    $failed = "<label class='alert alert-danger'>Data insertion failed. Please try again. $err </label>";
-  }
+    $ownBatch = $_SESSION['Batch'];
+    $ownSection = $_SESSION['Section'];
+    $_SESSION['ExamDone'] = "Thank you for attending the Exam. Your answer script has been recieved.";
+    sleep(2);
+    header("Location: student_dashboard.php?batch=$ownBatch&sec=$ownSection");
+
 }
-// echo '<pre>';
-// var_dump($infos);
-// echo '</pre>';
 
 ?>
 
@@ -123,8 +124,9 @@ if (isset($_POST["ansSubmit"])) {
 
 <head>
   <?php
-  require_once 'assets/connect/head.php';
-  ?>
+require_once 'assets/connect/head.php';
+require_once 'assets/summer_Note/summer_Note.php';
+?>
 </head>
 
 <body>
@@ -132,7 +134,6 @@ if (isset($_POST["ansSubmit"])) {
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container justify-content-start">
         <a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-        <a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
       </div>
     </nav>
 
@@ -142,13 +143,16 @@ if (isset($_POST["ansSubmit"])) {
       <h2 class="display-4">Answer Script</h2>
     </div>
   </div>
+     <!-- Exam Clock Start -->
+     <div id="ExamClock" class="clock" onload="showTime()"></div>
+    <!-- Exam Clock End -->
   <div class="container">
     <p class="pt-2 text-center">Fill in the form below and <b>submit it first</b> then start writing the answers.</p>
     <?php echo $reg_done; ?>
     <?php echo $failed; ?>
     <?php echo $success; ?>
 
-    <!-- exam paper registration form -->
+    <!-- exam paper registration End -->
     <form method="POST" action="answer_script.php?id=<?php echo $question_id; ?>&title=<?php echo $title; ?>&ct=<?php echo $course_title; ?>&cc=<?php echo $course_code; ?>&batch=<?php echo $batch; ?>&sec=<?php echo $section; ?>">
 
       <div class="student-info shadow p-3 mb-5 bg-white rounded mt-3">
@@ -244,7 +248,7 @@ if (isset($_POST["ansSubmit"])) {
       <!-- question start -->
       <!-- https://stackoverflow.com/questions/15320069/how-to-prevent-user-pasting-text-in-a-textbox -->
       <form action="answer_script.php?id=<?php echo $question_id; ?>&title=<?php echo $title; ?>&ct=<?php echo $course_title; ?>&cc=<?php echo $course_code; ?>&batch=<?php echo $batch; ?>&sec=<?php echo $section; ?>" method="POST">
-        <?php foreach ($infos as $info) { ?>
+        <?php foreach ($infos as $info) {?>
           <!-- hidden form data -->
           <input type="hidden" name="ansName" value="<?php echo $name; ?>">
           <input type="hidden" name="ansId" value="<?php echo $student_id; ?>">
@@ -256,12 +260,21 @@ if (isset($_POST["ansSubmit"])) {
             <label class="control-label col-sm-12 d-flex justify-content-left" for="Title"><b>Q. <?php echo $info['Content']; ?></b></label>
             <div class="col">
 
-              <textarea name="answer" class="form-control" id="exampleFormControlTextarea1" rows="20" onkeypress='validate(event)' maxlength="700" value="${cpCon.receiveNo}" required onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false" autocomplete=off></textarea>
+
+            <textarea id="summernote" name="answer" class="form-control" onkeypress='validate(event)' value="${cpCon.receiveNo}" autocomplete=off  required></textarea>
+    <script>
+      $('#summernote').summernote({
+        placeholder: '#Your Answers will be written here :)',
+        tabsize: 2,
+        height: 500
+      });
+    </script>
+
 
             </div>
           </div>
 
-        <?php } ?>
+        <?php }?>
 
         <div class="row">
           <div class="col d-flex justify-content-center mb-5">
@@ -273,21 +286,38 @@ if (isset($_POST["ansSubmit"])) {
 
     </div>
 
-
-
   </div>
 
-
-
-
-
-
-
-
   <!--footer Start -->
-  <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+  <footer>
+	<div class="container">
+		<div class="row pt-5">
+			<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+				<h1 class="display-4 mr-2 mb-5">LU EXAM HIVE<a class="navbar-brand" href="index.php"><img id="logo2" src="assets/images/LuExamHiveLogo.png" height="60px"></a></h1>
+			</div>
+
+      <div class="col-lg-8 col-md-6 mb-4 mb-lg-0 mt-3">
+      <blockquote class="blockquote">
+  <p class="mb-0">If my future were determined just by my performance on a standardized test, I wouldn't be here. I guarantee you that.</p>
+  <footer class="blockquote-footer"><cite title="Source Title">Michelle Obama</cite></footer>
+</blockquote>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Copyrights -->
+	<div class="py-2" id="customFooter">
+		<div class="container text-center">
+			<p class="fw-bold mb-0 py-1 text-white">
+				© 2021 LU EXAM HIVE All rights reserved.
+			</p>
+		</div>
+	</div>
+</footer>
+<!--footer End(101) -->
+<!-- Custom JQuery file -->
+<script type="text/javascript" src="assets/js/custom.js"></script>
   <!--footer End -->
 </body>
 

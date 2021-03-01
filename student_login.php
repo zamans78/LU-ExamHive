@@ -30,6 +30,8 @@ if (isset($_POST['Student_Email']) && isset($_POST['Password']) && isset($_POST[
 
         if ($row !== false) {
             $_SESSION['Student_ID'] = $row['Student_ID'];
+            $_SESSION['Batch'] = $row['Batch'];
+            $_SESSION['Section'] = $row['Section'];
             $batch = $row['Batch'];
             $sec = $row['Section'];
             header("Location: student_dashboard.php?batch=$batch&sec=$sec");

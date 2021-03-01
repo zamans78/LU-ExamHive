@@ -117,8 +117,8 @@ require_once 'assets/connect/head.php';
 				</div>
 				<div class="form-group d-flex justify-content-center">
                     <div class="col-sm-4 col-sm-offset-2 p-1">
-						<button class="btn btn-dark btn-block"><a href="https://calendar.google.com/calendar/u/0/r/day" target="_blank" class="text-white text-decoration-none">Get Meet Link
-						<img src="assets/images/meet.svg" alt=""></a></button>
+						<a href="https://calendar.google.com/calendar/u/0/r/day" target="_blank" class="btn btn-dark btn-block text-white text-decoration-none">Get Meet Link
+						<img src="assets/images/meet.svg" alt=""></a>
 					</div>
 					<div class="form-group d-flex justify-content-center">
 						<div class="col mt-3">
@@ -126,8 +126,8 @@ require_once 'assets/connect/head.php';
 						</div>
 					</div>
 					<div class="col-sm-4 col-sm-offset-2 p-1">
-						<button class="btn btn-dark btn-block"> <a href="https://zoom.us/meeting/schedule" target="_blank" class="text-white text-decoration-none">Get Zoom Link
-						<img src="assets/images/zoom.svg" alt=""></a> </button>
+						<a href="https://zoom.us/meeting/schedule" target="_blank" class="btn btn-dark btn-block text-white text-decoration-none">Get Zoom Link
+						<img src="assets/images/zoom.svg" alt=""></a>
 					</div>
                 </div>
 				<div class="form-group d-flex justify-content-center">

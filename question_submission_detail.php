@@ -7,48 +7,35 @@ $success = '';
 
 //getting the data by query parameter
 if (isset($_GET['Question_Description_ID']) && isset($_GET['Student_Id'])) {
-    $question_id = $_GET['Question_Description_ID'];
-    $student_id = $_GET['Student_Id'];
-    $_SESSION['question_id'] = $_GET['Question_Description_ID'];
+  $question_id = $_GET['Question_Description_ID'];
+  $student_id = $_GET['Student_Id'];
+  $_SESSION['question_id'] = $_GET['Question_Description_ID'];
 
-    $stmt = $pdo->query("SELECT * FROM student_answer INNER JOIN question_description on question_description.Question_Description_ID = student_answer.Question_Description_ID WHERE question_description.Question_Description_ID = '$question_id' AND student_answer.Student_ID = '$student_id'");
-    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt = $pdo->query("SELECT * FROM student_answer INNER JOIN question_description on question_description.Question_Description_ID = student_answer.Question_Description_ID WHERE question_description.Question_Description_ID = '$question_id' AND student_answer.Student_ID = '$student_id'");
+  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 //putting score in database
 if (isset($_POST['submit'])) {
-    if (empty($_POST['score'])) {
-        $errors['score'] = "Please proive a score in number.";
-    } else {
-        $score = $_POST['score'];
-        if (!preg_match('/^[0-9]*$/', $score)) {
-            $errors['score'] = "Score must be numbers only.";
-        }
-    }
-
-    if (array_filter($errors)) {
-        //echo 'errors in form';
-    } else {
-
-        try {
-            require_once "assets/connect/pdo.php";
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE student_answer SET Score = '$score' WHERE Student_ID = '$student_id' AND Question_Description_ID = '$question_id'";
-            // use exec() because no results are returned
-            $pdo->exec($sql);
-            $success = "<label class='alert alert-success'>Score has been updated!&emsp;
+  $score = $_POST['score'];
+  try {
+    require_once "assets/connect/pdo.php";
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "UPDATE student_answer SET Score = '$score' WHERE Student_ID = '$student_id' AND Question_Description_ID = '$question_id'";
+    // use exec() because no results are returned
+    $pdo->exec($sql);
+    $success = "<label class='alert alert-success'>Score has been updated!&emsp;
       <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
         <span aria-hidden='true'>&times;</span>
       </button></label>";
-        } catch (PDOException $e) {
-            $err = $e->getMessage();
-            echo "Data insertion failed. Please try again. $err";
-        }
+  } catch (PDOException $e) {
+    $err = $e->getMessage();
+    echo "Data insertion failed. Please try again. $err";
+  }
 
-        $question_id = $_SESSION['question_id'];
-        sleep(1);
-        header("Location: question_submission.php?Question_Description_ID=$question_id");
-    }
+  $question_id = $_SESSION['question_id'];
+  sleep(1);
+  header("Location: question_submission.php?Question_Description_ID=$question_id");
 }
 
 ?>
@@ -56,9 +43,9 @@ if (isset($_POST['submit'])) {
 <head>
 
   <?php
-//Head Links
-require_once 'assets/connect/head.php';
-?>
+  //Head Links
+  require_once 'assets/connect/head.php';
+  ?>
 </head>
 
 <body>
@@ -66,7 +53,7 @@ require_once 'assets/connect/head.php';
   <header>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container justify-content-start">
-      <a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+        <a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
         <a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
       </div>
     </nav>
@@ -83,7 +70,7 @@ require_once 'assets/connect/head.php';
       <div class="row">
         <div class="col">
           <p class="text-center mt-3">Individual student submission details.</p>
-          <?php foreach ($infos as $info) {?>
+          <?php foreach ($infos as $info) { ?>
             <p class="text-center">
               <b><?php echo $info['Title']; ?> &emsp;</b>
               <b>Course Code: </b><span class="text-primary"><?php echo $info['Course_Code']; ?></span> &emsp;
@@ -126,15 +113,15 @@ require_once 'assets/connect/head.php';
               <label>Give a Score or Update Current Score: </label>
             </div>
             <div class="form-group mx-3 mb-2">
-              <input type="number" name="score" class="form-control form-control-sm" id="inputPassword2" value="<?php echo $info['Score']; ?>">
+              <input type="text" name="score" class="form-control form-control-sm" id="inputPassword2" value="<?php echo $info['Score']; ?>">
               <label class="text-danger"><?php echo $errors['score']; ?></label>
             </div>
-            <input type="submit" name="submit" value="Submit" class="btn btn-sm btn-dark mb-2">
+            <input type="submit" name="submit" value="Save" class="btn btn-sm btn-dark mb-2">
           </form>
 
 
 
-        <?php }?>
+        <?php } ?>
         </div>
         <div class="col"></div>
       </div>
@@ -143,8 +130,8 @@ require_once 'assets/connect/head.php';
 
   <!--footer Start -->
   <?php
-require_once 'assets/connect/footer.php';
-?>
+  require_once 'assets/connect/footer.php';
+  ?>
   <!--footer End -->
 
 </body>

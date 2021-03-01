@@ -43,7 +43,7 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 		<div class="container justify-content-start">
-			<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+		<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
 			<a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
 		</div>
 	</nav>

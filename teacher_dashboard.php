@@ -36,7 +36,7 @@ if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container">
-				<a class="navbar-brand" href="index.php"><img src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+			<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
 				<a type="button" href="teacher_logout.php" class="btn btn-sm btn-dark ml-auto">Logout <i class="fas fa-door-open"></i></a>
 			</div>
 		</nav>

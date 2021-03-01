@@ -142,12 +142,16 @@ require_once 'assets/summer_Note/summer_Note.php';
     <div class="bg-info text-white py-2">
       <h2 class="display-4">Answer Script</h2>
     </div>
-  </div>
-     <!-- Exam Clock Start -->
-     <div id="ExamClock" class="clock" onload="showTime()"></div>
+    <!-- Exam Clock Start -->
+    <div class="text-center bg-dark text-dark">   
+      <div class="bg-dark text-white py-2">
+        <h2 class="display-4"><div id="ExamClock" class="clock" onload="showTime()"></div></h2>
+      </div>
+    </div>
     <!-- Exam Clock End -->
+     
   <div class="container">
-    <p class="pt-2 text-center">Fill in the form below and <b>submit it first</b> then start writing the answers.</p>
+    <p class="pt-2 text-center">Fill in the form below and <b><span class="text-danger">submit it first</span></b> then start writing the answers.</p>
     <?php echo $reg_done; ?>
     <?php echo $failed; ?>
     <?php echo $success; ?>

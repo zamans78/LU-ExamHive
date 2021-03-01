@@ -44,8 +44,8 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col"></div>
         <div class="col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-5">
           <table class="table table-hover">
-            <thead class="thead-dark">
-              <tr>
+            <thead>
+              <tr class='bg-dark text-white'>
                 <th scope="col">Title</th>
                 <th scope="col">Course Code</th>
                 <th scope="col">Course Title</th>

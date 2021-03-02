@@ -94,7 +94,7 @@ if (isset($_POST["search"])) {
 
           <table class="table table-hover text-center">
             <thead class="table-secondary">
-              <tr class='bg-success'>
+              <tr class='bg-success text-white'>
                 <th scope="col" colspan="2">Sort Student List by Batch</th>
               </tr>
             </thead>

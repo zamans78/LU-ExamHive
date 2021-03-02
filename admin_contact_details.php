@@ -19,7 +19,7 @@ if (isset($_POST['delete'])) {
     $stmt = $pdo->query($sql);
 
     if ($stmt) {
-        header('Location: admin_contact_view.php');
+        header('Location: admin_contact_info.php');
     } else {
         $error = '<label class="alert alert-danger">Something went wrong.</label>';
     }

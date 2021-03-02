@@ -58,7 +58,7 @@ require_once 'assets/connect/head.php';
 
           <table class="table table-hover">
             <thead class="table-secondary">
-              <tr class='bg-primary'>
+              <tr class='bg-primary text-white'>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>

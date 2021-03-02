@@ -84,7 +84,7 @@ require_once 'assets/connect/head.php';
 
           <table class="table table-hover text-center">
             <thead class="table-secondary">
-              <tr class='bg-success'>
+              <tr class='bg-success text-white'>
                 <th scope="col">Student Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Section</th>

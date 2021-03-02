@@ -14,12 +14,12 @@ $no_data = '';
 if (isset($_POST['delete'])) {
     $id_to_delete = $_POST['id_to_delete'];
 
-    $sql = "DELETE FROM Student WHERE Student_ID = $id_to_delete";
+    $sql = "DELETE FROM Teacher WHERE Teacher_ID = $id_to_delete";
     $stmt = $pdo->prepare($sql);
     $stmt = $pdo->query($sql);
 
     if ($stmt) {
-        header('Location: admin_student_info.php');
+        header('Location: admin_teacher_info.php');
     } else {
         $error = '<label class="alert alert-danger">Something went wrong.</label>';
     }
@@ -79,7 +79,7 @@ require_once 'assets/connect/head.php';
 
             <!-- Delete Button -->
 
-            <form action="admin_student_details.php" method="POST" class="d-flex justify-content-end">
+            <form action="admin_teacher_details.php" method="POST" class="d-flex justify-content-end">
 
               <input type="hidden" name="id_to_delete" value="<?php echo $info['Teacher_ID'] ?>">
               <input type="submit" name="delete" value="Delete record" class="btn btn-danger mt-5">

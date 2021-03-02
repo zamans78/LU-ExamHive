@@ -73,7 +73,7 @@ require_once 'assets/connect/head.php';
         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-xs-6 my-5">
 
           <table class="table table-hover text-center">
-            <thead class="table-secondary">
+            <thead class="bg-success text-white">
               <tr>
                 <th scope="col">Student Id</th>
                 <th scope="col">Name</th>

@@ -266,9 +266,10 @@ require_once 'assets/summer_Note/summer_Note.php';
           <input type="hidden" name="ansSec" value="<?php echo $section; ?>">
           <input type="hidden" name="ansQuestion_ID" value="<?php echo $info['Question_Description_ID']; ?>">
 
-          <div class="form-group px-xs-0 px-sm-0 px-md-3 px-lg-5 px-xl-5 mx-xs-1 mx-sm-1 mx-md-3 mx-lg-5 mx-xl-5 mb-5">
-            <label class="control-label col-sm-12 d-flex justify-content-left" for="Title"><b>Q. <?php echo $info['Content']; ?></b></label>
+          <div class="row">
             <div class="col">
+            <p class="form-group px-xs-0 px-sm-0 px-md-3 px-lg-5 px-xl-5 mx-xs-1 mx-sm-1 mx-md-3 mx-lg-5 mx-xl-5 mb-5">
+              <label class="control-label col-sm-12 d-flex justify-content-center" for="Title"><b>Questions. <?php echo $info['Content']; ?></b></label>
 
 
             <textarea id="summernote" name="answer" class="form-control" onkeypress='validate(event)' value="${cpCon.receiveNo}" autocomplete=off  required></textarea>
@@ -281,7 +282,9 @@ require_once 'assets/summer_Note/summer_Note.php';
     </script>
 
 
-            </div>
+            
+            </p>
+          </div>
           </div>
 
         <?php }?>

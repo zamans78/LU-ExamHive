@@ -64,6 +64,12 @@ require_once 'assets/connect/head.php';
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col d-flex justify-content-center">
+			<a role="button" href="generate_result.php?Question_Description_ID=<?php echo$row->Question_Description_ID;?>" class="btn btn-dark btn-sm">Generate Result in PDF Format</a>
+		</div>
+	</div>
+
 	<div class="row mt-5">
 		<div class="col">
 

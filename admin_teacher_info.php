@@ -1,6 +1,11 @@
 <?php
+session_start();
 require_once "assets/connect/pdo.php";
 
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 $stmt = $pdo->query("SELECT * from teacher ORDER BY Teacher_ID ");
 $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -12,9 +17,9 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -53,7 +58,7 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
           <table class="table table-hover">
             <thead class="table-secondary">
-              <tr>
+              <tr class='bg-primary'>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
@@ -62,7 +67,7 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($infos as $info) { ?>
+              <?php foreach ($infos as $info) {?>
 
                 <tr onclick="window.location='admin_teacher_details.php?id=<?php echo $info['Teacher_ID'] ?>';">
                   <th scope="row"><?php echo htmlspecialchars($info['Teacher_ID']); ?></th>
@@ -72,7 +77,7 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <td><a href="admin_teacher_details.php?id=<?php echo $info['Teacher_ID'] ?>">More Info</a></td>
                 </tr>
 
-              <?php } ?>
+              <?php }?>
             </tbody>
           </table>
 
@@ -84,8 +89,8 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

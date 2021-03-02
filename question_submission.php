@@ -1,5 +1,13 @@
 <?php
+session_start();
 require_once "assets/connect/pdo.php";
+
+$_SESSION['Question_Description_ID'] = $_GET['Question_Description_ID'];
+
+if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
+    header("Location: teacher_Login.php");
+    return;
+}
 $q_id = $_GET['Question_Description_ID'];
 
 //fetching info about question
@@ -8,15 +16,10 @@ $sql->setFetchMode(PDO::FETCH_OBJ);
 $sql->execute();
 $row = $sql->fetch();
 
-
-
-
 //fetching submissions from student answer
 $stmt = $pdo->query("SELECT student_answer.Student_ID, student_answer.Full_Name,  student_answer.Batch ,student_answer.Section, student_answer.Submission_Datetime, student_answer.Score, question_description.Question_Description_ID, question_description.Teacher_ID FROM student_answer INNER JOIN question_description on question_description.Question_Description_ID = student_answer.Question_Description_ID WHERE question_description.Question_Description_ID = '$q_id' ORDER BY Student_ID ASC");
 
 $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 
 //submission count
 $stmt2 = $pdo->query("SELECT COUNT(Answer), Section, Batch FROM student_answer WHERE Question_Description_ID = $q_id");
@@ -26,8 +29,6 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($infos);
 // echo '</pre>';
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +37,8 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 <head>
 	<title>LU EXAM HIVE</title>
 	<?php
-	require_once 'assets/connect/head.php';
-	?>
+require_once 'assets/connect/head.php';
+?>
 
 </head>
 <header>
@@ -52,7 +53,7 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 	<div class="card text-center bg-light text-dark mb-5">
-		<div class="card-header bg-secondary text-white ">
+		<div class="card-header bg-dark text-white ">
 			<h2 class="display-4">Submissions</h2>
 		</div>
 	</div>
@@ -67,8 +68,8 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 		<div class="col">
 
 			<h4 class="d-flex justify-content-center">Total Number of Submissions: &nbsp;<span class="text-success"><b><?php foreach ($infos2 as $info2) {
-																																																										echo htmlspecialchars($info2['COUNT(Answer)']);
-																																																									} ?></b></span></h4>
+    echo htmlspecialchars($info2['COUNT(Answer)']);
+}?></b></span></h4>
 		</div>
 	</div>
 
@@ -88,7 +89,7 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 					</thead>
 					<tbody>
 
-						<?php foreach ($infos as $info) { ?>
+						<?php foreach ($infos as $info) {?>
 
 							<tr class="text-primary" onclick="window.location='question_submission_detail.php?Question_Description_ID=<?php echo htmlspecialchars($info['Question_Description_ID']); ?>&Student_Id=<?php echo htmlspecialchars($info['Student_ID']); ?>';">
 								<th scope="row"><?php echo htmlspecialchars($info['Student_ID']); ?></th>
@@ -96,19 +97,19 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 								<td><?php echo htmlspecialchars($info['Batch']); ?>(<?php echo htmlspecialchars($info['Section']); ?>)</td>
 								<td><?php echo htmlspecialchars($info['Submission_Datetime']); ?></td>
 
-								<td><span class="<?php if ($info['Score'] != NULL) {
-																		$status = 'text-success';
-																	} else {
-																		$status = 'text-danger';
-																	}
-																	echo $status ?>">
-										<?php if ($info['Score'] == NULL) {
-											echo "Not given";
-										}
-										echo htmlspecialchars($info['Score']); ?></span></td>
+								<td><span class="<?php if ($info['Score'] != null) {
+    $status = 'text-success';
+} else {
+    $status = 'text-danger';
+}
+    echo $status?>">
+										<?php if ($info['Score'] == null) {
+        echo "Not given";
+    }
+    echo htmlspecialchars($info['Score']);?></span></td>
 							</tr>
 
-						<?php } ?>
+						<?php }?>
 
 					</tbody>
 				</table>
@@ -119,8 +120,8 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 
 	<?php
-	require_once 'assets/connect/footer.php';
-	?>
+require_once 'assets/connect/footer.php';
+?>
 </body>
 
 </html>

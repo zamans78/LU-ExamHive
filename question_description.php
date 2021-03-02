@@ -2,10 +2,10 @@
 session_start();
 require_once "assets/connect/pdo.php";
 
-if (!isset($_SESSION['Teacher_ID'])) {
-    header('Location: teacher_login.php');
+if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
+    header("Location: teacher_Login.php");
+    return;
 }
-
 // Check to see if we have some POST data, if we do process it
 if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title']) && isset($_POST['Save']) && isset($_POST['Action'])) {
 
@@ -45,7 +45,7 @@ require_once 'assets/summer_Note/summer_Note.php';
 		</nav>
 	</header>
 	<div class="card text-center bg-light text-dark ">
-		<div class="card-header bg-secondary text-white ">
+		<div class="card-header bg-dark text-white ">
 			<h2 class="display-4">Create Question</h2>
 		</div>
 		<div class="row">

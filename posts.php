@@ -5,15 +5,14 @@ require_once "assets/connect/pdo.php";
 $stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
 $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <?php
-  require_once 'assets/connect/head.php';
-  ?>
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -54,7 +53,7 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($infos as $info) { ?>
+              <?php foreach ($infos as $info) {?>
 
                 <tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>&title=<?php echo $info['Title']; ?>&ct=<?php echo $info['Course_Name']; ?>&cc=<?php echo $info['Course_Code']; ?>&batch=<?php echo $info['Batch']; ?>&sec=<?php echo $info['Section']; ?>';">
                   <td><?php echo htmlspecialchars($info['Title']); ?></td>
@@ -64,7 +63,7 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                   <td><?php echo htmlspecialchars($info['Name']); ?></td>
                 </tr>
 
-              <?php } ?>
+              <?php }?>
 
             </tbody>
           </table>
@@ -80,8 +79,8 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 </body>
 

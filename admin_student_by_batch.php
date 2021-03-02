@@ -1,23 +1,27 @@
 <?php
-require "assets/connect/pdo.php";
+session_start();
+require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 $no_data = '';
 
 //getting the data by query parameter
 if (isset($_GET['batch'])) {
-  $batch = $_GET['batch'];
+    $batch = $_GET['batch'];
 
-  $stmt = $pdo->query("SELECT * from Student WHERE Batch = $batch  ORDER BY Student_ID");
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->query("SELECT * from Student WHERE Batch = $batch  ORDER BY Student_ID");
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  // counting
-  $stmt2 = $pdo->query("SELECT COUNT(Section), Section, Batch from Student WHERE Batch = $batch GROUP BY Section");
-  $sections = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    // counting
+    $stmt2 = $pdo->query("SELECT COUNT(Section), Section, Batch from Student WHERE Batch = $batch GROUP BY Section");
+    $sections = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 } else {
-  $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
+    $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
 }
-
-
 
 ?>
 
@@ -27,9 +31,9 @@ if (isset($_GET['batch'])) {
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -61,13 +65,13 @@ if (isset($_GET['batch'])) {
               </tr>
             </thead>
             <tbody>
-            <?php foreach ($sections as $sec){ ?>
-            
+            <?php foreach ($sections as $sec) {?>
+
                 <td><a href="admin_student_by_section.php?batch=<?php echo $sec['Batch']; ?>&section=<?php echo $sec['Section']; ?>">Sec: <?php echo htmlspecialchars($sec['Section']); ?></a></td>
-              
-              <?php } ?>
+
+              <?php }?>
             </tbody>
-            
+
           </table>
         </div>
         <div class="col"></div>
@@ -77,10 +81,10 @@ if (isset($_GET['batch'])) {
       <div class="row">
         <div class="col"></div>
         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-xs-6 my-5">
-        
+
           <table class="table table-hover text-center">
             <thead class="table-secondary">
-              <tr>
+              <tr class='bg-success'>
                 <th scope="col">Student Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Section</th>
@@ -91,41 +95,41 @@ if (isset($_GET['batch'])) {
               </tr>
             </thead>
             <tbody>
-            <?php foreach ($infos as $info){ ?>
+            <?php foreach ($infos as $info) {?>
 
               <tr onclick="window.location='admin_student_details.php?id=<?php echo $info['Student_ID'] ?>';">
                 <th scope="row"><?php echo htmlspecialchars($info['Student_ID']); ?></th>
-                <td><?php echo htmlspecialchars($info['FirstName'].' '.$info['LastName']); ?></td>
+                <td><?php echo htmlspecialchars($info['FirstName'] . ' ' . $info['LastName']); ?></td>
                 <td><?php echo htmlspecialchars($info['Section']); ?></td>
                 <td><?php echo htmlspecialchars($info['Batch']); ?></td>
                 <td><?php echo htmlspecialchars($info['Student_Email']); ?></td>
                 <td><span class="<?php if ($info['Student_Email_Status'] != 'verified') {
-                                      $status = 'text-danger';
-                                    } else {
-                                      $status = 'text-success';
-                                    }
-                                    echo $status ?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></td>
+    $status = 'text-danger';
+} else {
+    $status = 'text-success';
+}
+    echo $status?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></td>
                 <td><a href="admin_student_details.php?id=<?php echo $info['Student_ID'] ?>">More info</a></td>
               </tr>
 
-              <?php } ?>
+              <?php }?>
 
               <?php echo $no_data; ?>
             </tbody>
           </table>
-          
+
         </div>
-        
+
         <div class="col"></div>
       </div>
-      
+
     </div>
   </main>
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

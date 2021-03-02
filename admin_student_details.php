@@ -1,33 +1,37 @@
 <?php
-require "assets/connect/pdo.php";
+session_start();
+require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 
 $error = '';
 $no_data = '';
 
 //deleting record
 if (isset($_POST['delete'])) {
-  $id_to_delete = $_POST['id_to_delete'];
+    $id_to_delete = $_POST['id_to_delete'];
 
-  $sql = "DELETE FROM Student WHERE Student_ID = $id_to_delete";
-  $stmt = $pdo->prepare($sql);
-  $stmt = $pdo->query($sql);
+    $sql = "DELETE FROM Student WHERE Student_ID = $id_to_delete";
+    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->query($sql);
 
-  if ($stmt) {
-    header('Location: admin_student_info.php');
-  } else {
-    $error = '<label class="alert alert-danger">Something went wrong.</label>';
-  }
+    if ($stmt) {
+        header('Location: admin_student_info.php');
+    } else {
+        $error = '<label class="alert alert-danger">Something went wrong.</label>';
+    }
 }
-
-
 
 //getting the data by query parameter
 if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $stmt = $pdo->query("SELECT * from Student WHERE Student_ID = $id");
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $id = $_GET['id'];
+    $stmt = $pdo->query("SELECT * from Student WHERE Student_ID = $id");
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
-  $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
+    $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
 }
 
 ?>
@@ -38,9 +42,9 @@ if (isset($_GET['id'])) {
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -65,7 +69,7 @@ if (isset($_GET['id'])) {
       <div class="row alert alert-light shadow-lg p-3 mb-5 bg-white rounded mt-3">
         <div class="col"></div>
         <div class="col-xl-9 col-lg-9 col-md-10 col-sm-9 col-xs-6 my-5">
-          <?php foreach ($infos as $info) { ?>
+          <?php foreach ($infos as $info) {?>
 
             <p><b>Name: </b><span class="text-primary"><?php echo $info['FirstName'] . ' ' . $info['LastName']; ?></span></p>
             <p><b>Profile ID: </b><span class="text-primary"><?php echo $info['Profile_ID']; ?></span></p>
@@ -74,11 +78,11 @@ if (isset($_GET['id'])) {
             <p><b>Section: </b><span class="text-primary"><?php echo $info['Section']; ?></span></p>
             <p><b>Email: </b><span class="text-primary"><?php echo $info['Student_Email']; ?></span></p>
             <p><b>Email Status: </b><span class="<?php if ($info['Student_Email_Status'] != 'verified') {
-                                                    $status = 'text-danger';
-                                                  } else {
-                                                    $status = 'text-success';
-                                                  }
-                                                  echo $status ?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></p>
+    $status = 'text-danger';
+} else {
+    $status = 'text-success';
+}
+    echo $status?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></p>
             <p><b>OTP: </b><span class="text-primary"><?php echo $info['Student_Otp']; ?></span></p>
             <p><b>Activation Code: </b><span class="text-primary"><?php echo $info['Student_Activation_Code']; ?></span></p>
             <p><b>Registration Date & Time: </b><span class="text-primary"><?php echo $info['Registration_Datetime']; ?></span></p>
@@ -92,7 +96,7 @@ if (isset($_GET['id'])) {
 
             </form>
 
-          <?php } ?>
+          <?php }?>
 
           <?php echo $no_data; ?>
         </div>
@@ -103,8 +107,8 @@ if (isset($_GET['id'])) {
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

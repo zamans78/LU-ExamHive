@@ -33,7 +33,6 @@ if (isset($_POST['Admin_Email']) && isset($_POST['Password']) && isset($_POST['l
             return;
         } else {
             $_SESSION['error'] = "Incorrect password or Email";
-            error_log("Login fail " . $_POST['Admin_Email'] . " $check");
             header("Location: admin_login.php");
             return;
         }
@@ -59,6 +58,7 @@ require_once 'assets/connect/head.php';
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container justify-content-start">
       <a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+      <a type="button" href="index.php" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
       </div>
     </nav>
   </header>
@@ -70,7 +70,8 @@ require_once 'assets/connect/head.php';
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-5">
           <div class="card my-5 shadow-lg p-3 my-5 bg-white rounded">
             <div class="card-body">
-              <h5 class="card-title">Admin Login</h5>
+            <a class="d-flex justify-content-center"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="50px"></a>
+              <h5 class="card-title d-flex justify-content-center">Admin Login</h5>
               <?php
 if (isset($_SESSION['error'])) {
     echo ('<p style="color: red;">' . htmlentities($_SESSION['error']) . "</p>\n");
@@ -86,7 +87,10 @@ if (isset($_SESSION['error'])) {
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" name="Password" class="form-control" id="exampleInputPassword1">
                 </div>
+                <div class='d-flex justify-content-end'>
                 <input type="submit" class="btn btn-dark" name="login" value="Log in">
+                </div>
+
               </form>
             </div>
           </div>

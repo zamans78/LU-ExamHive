@@ -1,12 +1,17 @@
 <?php
+session_start();
 require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 $verified = "verified";
 $output = '';
 $id = '';
 
 $stmt = $pdo->query("SELECT COUNT(Batch), Batch from Student GROUP BY Batch");
 $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -16,9 +21,9 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -56,29 +61,29 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
           <!-- Search Button Functionality -->
           <?php
 
-          require_once "assets/connect/pdo.php";
+require_once "assets/connect/pdo.php";
 
-          if (isset($_POST["search"])) {
-            $id = $_POST["id_to_search"];
+if (isset($_POST["search"])) {
+    $id = $_POST["id_to_search"];
 
-            $sql = $pdo->prepare("SELECT * FROM `Student` WHERE Student_ID = '$id'");
-            $sql->setFetchMode(PDO::FETCH_OBJ);
-            $sql->execute();
+    $sql = $pdo->prepare("SELECT * FROM `Student` WHERE Student_ID = '$id'");
+    $sql->setFetchMode(PDO::FETCH_OBJ);
+    $sql->execute();
 
-            if ($row = $sql->fetch()) {
-          ?>
+    if ($row = $sql->fetch()) {
+        ?>
               <p class="mt-3 text-success"><?php echo $row->Student_ID . ' - ' . $row->FirstName . ' ' . $row->LastName . ' '; ?><a href="admin_student_details.php?id=<?php echo $row->Student_ID; ?>"> (More details)</a></p>
           <?php
-            } else {
-              echo "<label class='alert alert-danger'>
+} else {
+        echo "<label class='alert alert-danger'>
               ID does not exist. &emsp;
               <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                 <span aria-hidden='true'>&times;</span>
               </button></label>";
-            }
-          }
+    }
+}
 
-          ?>
+?>
         </div>
 
       </div>
@@ -89,19 +94,19 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
           <table class="table table-hover text-center">
             <thead class="table-secondary">
-              <tr>
+              <tr class='bg-success'>
                 <th scope="col" colspan="2">Sort Student List by Batch</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($infos as $info) { ?>
+              <?php foreach ($infos as $info) {?>
 
                 <tr onclick="window.location='admin_student_by_batch.php?batch=<?php echo $info['Batch'] ?>';">
                   <th scope="row">Batch: <span class="text-primary"><?php echo htmlspecialchars($info['Batch']); ?></span></th>
                   <td class="text-right">Total Number of Registerd Student: <b class="text-success"> <?php echo htmlspecialchars($info['COUNT(Batch)']); ?></b></td>
                 </tr>
 
-              <?php } ?>
+              <?php }?>
             </tbody>
           </table>
 
@@ -114,8 +119,8 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

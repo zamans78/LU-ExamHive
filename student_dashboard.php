@@ -1,7 +1,11 @@
 <?php
 session_start();
-require "assets/connect/pdo.php";
+require_once "assets/connect/pdo.php";
 
+if (!isset($_SESSION['Student_ID']) && !isset($_SESSION['Batch']) && !isset($_SESSION['Section'])) {
+    header("Location: student_login.php");
+    return;
+}
 //getting the data by query parameter
 if (isset($_GET['batch']) && isset($_GET['sec'])) {
     $batch = $_GET['batch'];
@@ -31,7 +35,7 @@ require_once 'assets/connect/head.php';
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container justify-content-start">
 			<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
-				<a type="button" href="student_Login.php" class="btn btn-sm btn-dark ml-auto">Logout <i class="fas fa-door-open"></i></a>
+				<a type="button" href="student_logout.php" class="btn btn-sm btn-dark ml-auto">Logout <i class="fas fa-door-open"></i></a>
 			</div>
 		</nav>
 	</header>

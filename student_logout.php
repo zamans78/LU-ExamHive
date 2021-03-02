@@ -4,4 +4,4 @@ session_destroy();
 unset($_SESSION['Student_ID']);
 unset($_SESSION['Batch']);
 unset($_SESSION['Section']);
-header("location:student_Login.php");
+header("location:student_login.php");

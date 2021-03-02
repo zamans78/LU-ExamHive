@@ -2,8 +2,11 @@
 session_start();
 require_once "assets/connect/pdo.php";
 
-if (!isset($_SESSION['Teacher_ID'])) {
-    die("Not logged in");
+$_SESSION['Question_Description_ID'] = $_GET['Question_Description_ID'];
+
+if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
+    header("Location: teacher_Login.php");
+    return;
 }
 
 if (isset($_GET['Question_Description_ID'])) {
@@ -11,6 +14,7 @@ if (isset($_GET['Question_Description_ID'])) {
     $question_des_id = $_GET['Question_Description_ID'];
     $stmt = $pdo->query("SELECT * FROM question_description WHERE Question_Description_ID = $question_des_id");
     $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 }
 ?>
 

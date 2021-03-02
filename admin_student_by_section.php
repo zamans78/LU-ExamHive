@@ -1,21 +1,28 @@
 <?php
-require "assets/connect/pdo.php";
+session_start();
+require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
+
 $no_data = '';
 $status = '';
 
 //getting the data by query parameter
 if (isset($_GET['batch']) && isset($_GET['section'])) {
-  $batch = $_GET['batch'];
-  $section = $_GET['section'];
+    $batch = $_GET['batch'];
+    $section = $_GET['section'];
 
-  $stmt = $pdo->query("SELECT * from Student WHERE Batch = $batch AND Section = '$section' ORDER BY Student_ID");
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->query("SELECT * from Student WHERE Batch = $batch AND Section = '$section' ORDER BY Student_ID");
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  //total student count
-  $stmt2 = $pdo->query("SELECT COUNT(Section) from Student WHERE Batch = $batch AND Section = '$section'");
-  $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    //total student count
+    $stmt2 = $pdo->query("SELECT COUNT(Section) from Student WHERE Batch = $batch AND Section = '$section'");
+    $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 } else {
-  $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
+    $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
 }
 
 ?>
@@ -26,9 +33,9 @@ if (isset($_GET['batch']) && isset($_GET['section'])) {
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -55,8 +62,8 @@ if (isset($_GET['batch']) && isset($_GET['section'])) {
           <h4 class="d-flex justify-content-center">Section:&nbsp;<span class="text-success"><?php echo $section ?></span></h4>
 
           <h4 class="d-flex justify-content-center">Total Number of Registerd Students: &nbsp;<span class="text-success"><?php foreach ($infos2 as $info2) {
-                                                                                                                            echo htmlspecialchars($info2['COUNT(Section)']);
-                                                                                                                          } ?></span></h4>
+    echo htmlspecialchars($info2['COUNT(Section)']);
+}?></span></h4>
         </div>
       </div>
 
@@ -78,7 +85,7 @@ if (isset($_GET['batch']) && isset($_GET['section'])) {
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($infos as $info) { ?>
+              <?php foreach ($infos as $info) {?>
 
                 <tr onclick="window.location='admin_student_details.php?id=<?php echo $info['Student_ID'] ?>';">
                   <th scope="row"><?php echo htmlspecialchars($info['Student_ID']); ?></th>
@@ -87,15 +94,15 @@ if (isset($_GET['batch']) && isset($_GET['section'])) {
                   <td><?php echo htmlspecialchars($info['Batch']); ?></td>
                   <td><?php echo htmlspecialchars($info['Student_Email']); ?></td>
                   <td><span class="<?php if ($info['Student_Email_Status'] != 'verified') {
-                                      $status = 'text-danger';
-                                    } else {
-                                      $status = 'text-success';
-                                    }
-                                    echo $status ?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></td>
+    $status = 'text-danger';
+} else {
+    $status = 'text-success';
+}
+    echo $status?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></td>
                   <td><a href="admin_student_details.php?id=<?php echo $info['Student_ID'] ?>">More info</a></td>
                 </tr>
 
-              <?php } ?>
+              <?php }?>
               <?php echo $no_data; ?>
             </tbody>
           </table>
@@ -110,8 +117,8 @@ if (isset($_GET['batch']) && isset($_GET['section'])) {
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

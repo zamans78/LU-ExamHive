@@ -2,8 +2,9 @@
 session_start();
 require_once "assets/connect/pdo.php";
 
-if (!isset($_SESSION['Teacher_ID'])) {
-    die('Not logged in');
+if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
+    header("Location: teacher_Login.php");
+    return;
 }
 
 if (

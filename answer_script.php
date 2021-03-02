@@ -2,6 +2,11 @@
 session_start();
 require_once "assets/connect/pdo.php";
 
+if (!isset($_SESSION['Student_ID']) && !isset($_SESSION['Batch']) && !isset($_SESSION['Section'])) {
+    header("Location: student_login.php");
+    return;
+}
+
 $question_id = $_GET['id'];
 $title = $_GET['title'];
 $course_title = $_GET['ct'];
@@ -139,7 +144,7 @@ require_once 'assets/summer_Note/summer_Note.php';
 
   </header>
   <div class="text-center bg-light text-dark mb-5">
-    <div class="bg-info text-white py-2">
+    <div class="bg-warning text-dark py-2">
       <h2 class="display-4">Answer Script</h2>
     </div>
     <!-- Exam Clock Start -->
@@ -152,7 +157,7 @@ require_once 'assets/summer_Note/summer_Note.php';
     <!-- Exam Clock End -->
 
   <div class="container">
-    <p class="pt-2 text-center">Fill in the form below and <b><span class="text-danger">submit it first</span></b> then start writing the answers.</p>
+    <p class="pt-2 text-center">Don't forget to <b><span class="text-danger">attach your details first</span></b> before handing over your answer script.</p>
     <?php echo $reg_done; ?>
     <?php echo $failed; ?>
     <?php echo $success; ?>
@@ -186,7 +191,7 @@ require_once 'assets/summer_Note/summer_Note.php';
         </div>
         <div class="row">
           <div class="col d-flex justify-content-center mt-4">
-            <input type="submit" class="form-group btn btn-sm btn-dark px-4" name="submit" value="Submit">
+            <input type="submit" class="form-group btn btn-sm btn-dark px-4" name="submit" value="Attach">
           </div>
         </div>
 

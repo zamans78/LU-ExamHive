@@ -1,7 +1,11 @@
 <?php
-
 session_start();
 require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
+    header("Location: teacher_Login.php");
+    return;
+}
 
 if (isset($_POST['Delete']) && isset($_POST['Question_Description_ID'])) {
     echo 23132;
@@ -35,8 +39,8 @@ if ($row === false) {
 
 <head>
     <?php
-    require_once 'assets/connect/head.php';
-    ?>
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -75,6 +79,6 @@ if ($row === false) {
       </div>
     </div>
     <?php
-    require_once 'assets/connect/footer.php';
-    ?>
+require_once 'assets/connect/footer.php';
+?>
 </body>

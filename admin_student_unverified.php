@@ -1,16 +1,22 @@
 <?php
-require "assets/connect/pdo.php";
+session_start();
+require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 $no_data = '';
 $status = '';
 
 //getting the data by query parameter
 if ($pdo) {
 
-  $stmt = $pdo->query("SELECT * from Student WHERE Student_Email_Status = 'not verified' ORDER BY Student_ID");
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->query("SELECT * from Student WHERE Student_Email_Status = 'not verified' ORDER BY Student_ID");
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } else {
-  $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
+    $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
 }
 
 ?>
@@ -21,9 +27,9 @@ if ($pdo) {
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -68,7 +74,7 @@ if ($pdo) {
             </thead>
             <tbody>
 
-              <?php foreach ($infos as $info) { ?>
+              <?php foreach ($infos as $info) {?>
 
                 <tr onclick="window.location='admin_student_details.php?id=<?php echo $info['Student_ID'] ?>';">
                   <th scope="row"><?php echo htmlspecialchars($info['Student_ID']); ?></th>
@@ -76,15 +82,15 @@ if ($pdo) {
                   <td><?php echo htmlspecialchars($info['Student_Email']); ?></td>
                   <td><?php echo htmlspecialchars($info['Batch']); ?></td>
                   <td><span class="<?php if ($info['Student_Email_Status'] != 'verified') {
-                                      $status = 'text-danger';
-                                    } else {
-                                      $status = 'text-success';
-                                    }
-                                    echo $status ?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></td>
+    $status = 'text-danger';
+} else {
+    $status = 'text-success';
+}
+    echo $status?>"><?php echo htmlspecialchars($info['Student_Email_Status']); ?></span></td>
                   <td><a href="admin_student_details.php?id=<?php echo $info['Student_ID'] ?>">More info</a></td>
                 </tr>
 
-              <?php } ?>
+              <?php }?>
               <?php echo $no_data; ?>
 
             </tbody>
@@ -97,8 +103,8 @@ if ($pdo) {
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

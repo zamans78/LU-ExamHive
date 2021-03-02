@@ -1,83 +1,88 @@
 <?php
+session_start();
+require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 
 //Variables declared as empty for persisting data on the form
-$name = $teacherId = $department = $email =  $success = $failed = '';
+$name = $teacherId = $department = $email = $success = $failed = '';
 
 //errors array to put all the error message in the array
 $errors = array('name' => '', 'teacherId' => '', 'department' => '', 'email' => '', 'password' => '');
 
 if (isset($_POST["insert"])) {
 
-  //check name
-  if (empty($_POST['name'])) {
-    $errors['name'] = 'A name is required';
-  } else {
-    $name = $_POST['name'];
-    if (!preg_match('/^[a-zA-Z\s]+$/', $name)) {
-      $errors['name'] = 'Name must be letters and spaces only';
+    //check name
+    if (empty($_POST['name'])) {
+        $errors['name'] = 'A name is required';
+    } else {
+        $name = $_POST['name'];
+        if (!preg_match('/^[a-zA-Z\s]+$/', $name)) {
+            $errors['name'] = 'Name must be letters and spaces only';
+        }
     }
-  }
 
-  //teacher id check
-  if (empty($_POST['teacherId'])) {
-    $errors['teacherId'] = 'Teacher ID is required.';
-  } else {
-    $teacherId = $_POST['teacherId'];
-    if (!preg_match('/^[0-9]*$/', $teacherId)) {
-      $errors['teacherId'] = 'ID must be numbers only.';
+    //teacher id check
+    if (empty($_POST['teacherId'])) {
+        $errors['teacherId'] = 'Teacher ID is required.';
+    } else {
+        $teacherId = $_POST['teacherId'];
+        if (!preg_match('/^[0-9]*$/', $teacherId)) {
+            $errors['teacherId'] = 'ID must be numbers only.';
+        }
     }
-  }
 
-  //check department
-  if (empty($_POST['department'])) {
-    $errors['department'] = 'Department name is required.';
-  } else {
-    $department = $_POST['department'];
-    if (!preg_match('/^[a-zA-Z\s]+$/', $department)) {
-      $errors['department'] = 'Department name must be letters and spaces only!';
+    //check department
+    if (empty($_POST['department'])) {
+        $errors['department'] = 'Department name is required.';
+    } else {
+        $department = $_POST['department'];
+        if (!preg_match('/^[a-zA-Z\s]+$/', $department)) {
+            $errors['department'] = 'Department name must be letters and spaces only!';
+        }
     }
-  }
 
-  //check email
-  if (empty($_POST['email'])) {
-    $errors['email'] = 'An email is required';
-  } else {
-    $email = $_POST['email'];
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $errors['email'] = "Email has to be a valid email address.";
+    //check email
+    if (empty($_POST['email'])) {
+        $errors['email'] = 'An email is required';
+    } else {
+        $email = $_POST['email'];
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = "Email has to be a valid email address.";
+        }
     }
-  }
 
-  //check password
-  if (mb_strlen($_POST['password']) < 6) {
-    $errors['password'] = 'Password Must Contain At Least 6 Characters!';
-  } elseif (!preg_match('#[0-9]+#', $_POST['password'])) {
-    $errors['password'] = 'Your Password Must Contain At Least 1 Number!';
-  } else {
-    $password_polish = trim($_POST['password']);
-    $salt = '6JDs,=+w^q;-57Qc,Zz:g[=8[r==FC';
-    $password = md5($salt . $password_polish); 
-  }
-
-
-  if (array_filter($errors)) {
-    //echo 'errors in form';
-  } else {
-
-    try {
-      require_once "assets/connect/pdo.php";
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "INSERT INTO teacher (Teacher_ID, Name, Department, Teacher_Email, Password) VALUES($teacherId, '$name', '$department', '$email', '$password')";
-      // use exec() because no results are returned
-      $pdo->exec($sql);
-      $success = "<label class='alert alert-success'>Data Inserted Successfully!</label>";
-    } catch(PDOException $e) {
-      $err = $e->getMessage();
-      $failed = "<label class='alert alert-danger'>Data insertion failed. Please try again. $err </label>";
+    //check password
+    if (mb_strlen($_POST['password']) < 6) {
+        $errors['password'] = 'Password Must Contain At Least 6 Characters!';
+    } elseif (!preg_match('#[0-9]+#', $_POST['password'])) {
+        $errors['password'] = 'Your Password Must Contain At Least 1 Number!';
+    } else {
+        $password_polish = trim($_POST['password']);
+        $salt = '6JDs,=+w^q;-57Qc,Zz:g[=8[r==FC';
+        $password = md5($salt . $password_polish);
     }
-  }
+
+    if (array_filter($errors)) {
+        //echo 'errors in form';
+    } else {
+
+        try {
+            require_once "assets/connect/pdo.php";
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO teacher (Teacher_ID, Name, Department, Teacher_Email, Password) VALUES($teacherId, '$name', '$department', '$email', '$password')";
+            // use exec() because no results are returned
+            $pdo->exec($sql);
+            $success = "<label class='alert alert-success'>Data Inserted Successfully!</label>";
+        } catch (PDOException $e) {
+            $err = $e->getMessage();
+            $failed = "<label class='alert alert-danger'>Data insertion failed. Please try again. $err </label>";
+        }
+    }
 }
-
 
 ?>
 
@@ -87,9 +92,9 @@ if (isset($_POST["insert"])) {
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -125,26 +130,26 @@ if (isset($_POST["insert"])) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Name</label>
-                <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($name);?>">
+                <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($name); ?>">
                 <label class="text-danger"><?php echo $errors['name']; ?></label>
               </div>
               <div class="form-group col-md-6">
                 <label>Teacher ID</label>
-                <input type="number" class="form-control" name="teacherId" value="<?php echo htmlspecialchars($teacherId);?>">
+                <input type="number" class="form-control" name="teacherId" value="<?php echo htmlspecialchars($teacherId); ?>">
                 <label class="text-danger"><?php echo $errors['teacherId']; ?></label>
               </div>
             </div>
 
             <div class="form-group">
               <label>Department</label>
-              <input type="text" class="form-control" name="department" value="<?php echo htmlspecialchars($department);?>">
+              <input type="text" class="form-control" name="department" value="<?php echo htmlspecialchars($department); ?>">
               <label class="text-danger"><?php echo $errors['department']; ?></label>
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" value="<?php echo htmlspecialchars($email);?>">
+                <input type="email" class="form-control" name="email" value="<?php echo htmlspecialchars($email); ?>">
                 <label class="text-danger"><?php echo $errors['email']; ?></label>
               </div>
               <div class="form-group col-md-6">
@@ -165,8 +170,8 @@ if (isset($_POST["insert"])) {
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

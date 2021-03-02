@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once "assets/connect/pdo.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 

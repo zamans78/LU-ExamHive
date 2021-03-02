@@ -1,33 +1,37 @@
 <?php
-require "assets/connect/pdo.php";
+session_start();
+require_once "assets/connect/pdo.php";
+
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 
 $error = '';
 $no_data = '';
 
 //deleting record
 if (isset($_POST['delete'])) {
-  $id_to_delete = $_POST['id_to_delete'];
+    $id_to_delete = $_POST['id_to_delete'];
 
-  $sql = "DELETE FROM contact_us WHERE ID=$id_to_delete";
-  $stmt = $pdo->prepare($sql);
-  $stmt = $pdo->query($sql);
+    $sql = "DELETE FROM contact_us WHERE ID=$id_to_delete";
+    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->query($sql);
 
-  if ($stmt) {
-    header('Location: admin_contact_view.php');
-  } else {
-    $error = '<label class="alert alert-danger">Something went wrong.</label>';
-  }
+    if ($stmt) {
+        header('Location: admin_contact_view.php');
+    } else {
+        $error = '<label class="alert alert-danger">Something went wrong.</label>';
+    }
 }
-
-
 
 //getting the data by query parameter
 if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $stmt = $pdo->query("SELECT * from contact_us WHERE ID = '$id'");
-  $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $id = $_GET['id'];
+    $stmt = $pdo->query("SELECT * from contact_us WHERE ID = '$id'");
+    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
-  $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
+    $no_data = '<h5 class="alert alert-danger">No data available.</h5>';
 }
 
 ?>
@@ -37,9 +41,9 @@ if (isset($_GET['id'])) {
 <head>
 
   <?php
-  //Head Links
-  require_once 'assets/connect/head.php';
-  ?>
+//Head Links
+require_once 'assets/connect/head.php';
+?>
 </head>
 
 <body>
@@ -64,13 +68,13 @@ if (isset($_GET['id'])) {
       <div class="row alert alert-light shadow-lg p-3 mb-5 bg-white rounded mt-3">
         <div class="col"></div>
         <div class="col-xl-9 col-lg-9 col-md-10 col-sm-9 col-xs-6 my-5">
-          <?php foreach ($infos as $info) { ?>
+          <?php foreach ($infos as $info) {?>
             <p><b>Name: </b><?php echo $info['Name']; ?> &emsp; <b> ID:</b> <?php echo $info['ID'] ?></p>
             <p><b>Email: </b><?php echo $info['Email']; ?></p>
             <p class="mb-4"><b>Received Date & Time: </b><?php echo $info['Received_Datetime']; ?></p>
             <p style="overflow-wrap: break-word;"><b>Message: </b><?php echo $info['Message']; ?></p>
-            
-            
+
+
             <!-- Delete Button -->
 
             <form action="admin_contact_details.php" method="POST" class="d-flex justify-content-end">
@@ -79,7 +83,7 @@ if (isset($_GET['id'])) {
               <input type="submit" name="delete" value="Delete record" class="btn btn-danger mt-5">
               <?php echo $error; ?>
             </form>
-          <?php } ?>
+          <?php }?>
 
           <?php echo $no_data; ?>
 
@@ -91,8 +95,8 @@ if (isset($_GET['id'])) {
 
   <!--footer Start -->
   <?php
-  require_once 'assets/connect/footer.php';
-  ?>
+require_once 'assets/connect/footer.php';
+?>
   <!--footer End -->
 
 </body>

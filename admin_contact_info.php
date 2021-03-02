@@ -1,6 +1,11 @@
 <?php
+session_start();
 require_once "assets/connect/pdo.php";
 
+if (!isset($_SESSION['Admin_ID'])) {
+    header("Location: admin_login.php");
+    return;
+}
 $stmt = $pdo->query("SELECT * from contact_us ORDER BY Received_Datetime");
 $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -42,7 +47,7 @@ require_once 'assets/connect/head.php';
 
           <table class="table table-hover">
             <thead class="table-secondary">
-              <tr>
+              <tr class='bg-dark text-white'>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>

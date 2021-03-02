@@ -70,11 +70,11 @@ require_once 'assets/connect/head.php';
 	<div class="container">
   <div class="row">
 
-    <div class="col-lg-6 col-md-10 col-sm-12 col-xs-12 my-5 align-self-center order-xl-2 order-lg-2 order-md-1 order-sm-1 order-xs-1">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 my-5 align-self-center order-xl-2 order-lg-2 order-md-1 order-sm-1 order-xs-1">
 	<img src="assets/images/student.jpg" class="card-img" alt="Student">
-	<h1 class="my-2 display-4">Student Login</h1>
-	<p class='ml-2'> User passwords are encrypted.</p>
-	<p class="my-3 ml-2">New user? <a href="student_Registration.php">Get started with LU Exam Hive</a></p>
+	<h1 class="my-2 display-4 d-flex justify-content-center">Student Login</h1>
+	<p class='ml-2 d-flex justify-content-center'> User passwords are encrypted.</p>
+	<p class="my-3 ml-2 d-flex justify-content-center">New user? <a href="student_Registration.php"> Get started with LU Exam Hive</a></p>
 	</div>
 
     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-5 align-self-center order-xl-1 order-lg-1 order-md-2 order-sm-2 order-xs-2">
@@ -89,21 +89,21 @@ if (isset($_SESSION['error'])) {
 }
 ?>
 					<form method="POST" action="student_login.php">
-						<div class="form-group w-75 ">
+						<div class="form-group ">
 							<input type="email" name="Student_Email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email...">
 							<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
 								else.</small>
 						</div>
-						<div class="form-group w-75">
+						<div class="form-group">
 
 							<input type="password" name="Password" class="form-control" id="exampleInputPassword1" placeholder="Password...">
 						</div>
-						<div class="w-75 d-flex justify-content-end">
+						<div class="d-flex justify-content-end">
 							<button type="submit" class="btn btn-dark"><a class="text-white text-decoration-none" href="student_Registration.php">Register <i class="fas fa-user-plus"></i></a></button>
 							<button type="submit" name="login" class="btn btn-dark ml-2">Login <i class="fas fa-sign-in-alt"></i></button>
 						</div>
 
-						<div class="w-75 d-flex justify-content-end mt-5">
+						<div class="d-flex justify-content-end mt-5">
 							<a href="request_reset_password.php">Forgot Your Password?</a>
 						</div>
 					</form>

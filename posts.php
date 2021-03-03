@@ -2,7 +2,7 @@
 
 require_once "assets/connect/pdo.php";
 
-$stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
+$stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'Posted' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
 $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -11,15 +11,15 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <head>
   <?php
-require_once 'assets/connect/head.php';
-?>
+  require_once 'assets/connect/head.php';
+  ?>
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container justify-content-start">
-      <a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+        <a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
         <a type="button" href="javascript:history.back(1)" class="btn btn-sm btn-outline-dark ml-3"><i class="fas fa-arrow-left"></i> Go Back</a>
       </div>
     </nav>
@@ -53,7 +53,7 @@ require_once 'assets/connect/head.php';
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($infos as $info) {?>
+              <?php foreach ($infos as $info) { ?>
 
                 <tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>&title=<?php echo $info['Title']; ?>&ct=<?php echo $info['Course_Name']; ?>&cc=<?php echo $info['Course_Code']; ?>&batch=<?php echo $info['Batch']; ?>&sec=<?php echo $info['Section']; ?>';">
                   <td><?php echo htmlspecialchars($info['Title']); ?></td>
@@ -63,7 +63,7 @@ require_once 'assets/connect/head.php';
                   <td><?php echo htmlspecialchars($info['Name']); ?></td>
                 </tr>
 
-              <?php }?>
+              <?php } ?>
 
             </tbody>
           </table>
@@ -79,8 +79,8 @@ require_once 'assets/connect/head.php';
 
   <!--footer Start -->
   <?php
-require_once 'assets/connect/footer.php';
-?>
+  require_once 'assets/connect/footer.php';
+  ?>
   <!--footer End -->
 </body>
 

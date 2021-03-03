@@ -3,20 +3,20 @@ session_start();
 require_once "assets/connect/pdo.php";
 
 if (!isset($_SESSION['Student_ID']) && !isset($_SESSION['Batch']) && !isset($_SESSION['Section'])) {
-    header("Location: student_login.php");
-    return;
+	header("Location: student_login.php");
+	return;
 }
 //getting the data by query parameter
 if (isset($_GET['batch']) && isset($_GET['sec'])) {
-    $batch = $_GET['batch'];
-    $sec = $_GET['sec'];
+	$batch = $_GET['batch'];
+	$sec = $_GET['sec'];
 
-    $stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'post' AND Batch = $batch AND Section = '$sec' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
-    $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$stmt = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'Posted' AND Batch = $batch AND Section = '$sec' AND Meeting_Link = '' ORDER BY Question_Description_ID DESC");
+	$infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //for meeting link
-    $stmt1 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'meeting' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
-    $rows = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+	//for meeting link
+	$stmt1 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'meeting' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
+	$rows = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
@@ -26,15 +26,15 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 
 <head>
 	<?php
-require_once 'assets/connect/head.php';
-?>
+	require_once 'assets/connect/head.php';
+	?>
 </head>
 
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container justify-content-start">
-			<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+				<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
 				<a type="button" href="student_logout.php" class="btn btn-sm btn-dark ml-auto">Logout <i class="fas fa-door-open"></i></a>
 			</div>
 		</nav>
@@ -55,12 +55,12 @@ require_once 'assets/connect/head.php';
 			</div>
 			<div class="row">
 				<div class="col d-flex justify-content-center">
-				<?php
-if (isset($_SESSION['ExamDone'])) {
-    echo ('<p style="color: green;">' . htmlentities($_SESSION['ExamDone']) . "</p>\n");
-    unset($_SESSION['ExamDone']);
-}
-?>
+					<?php
+					if (isset($_SESSION['ExamDone'])) {
+						echo ('<p style="color: green;">' . htmlentities($_SESSION['ExamDone']) . "</p>\n");
+						unset($_SESSION['ExamDone']);
+					}
+					?>
 				</div>
 			</div>
 
@@ -81,7 +81,7 @@ if (isset($_SESSION['ExamDone'])) {
 						</thead>
 						<tbody>
 
-							<?php foreach ($infos as $info) {?>
+							<?php foreach ($infos as $info) { ?>
 
 								<tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>&title=<?php echo $info['Title']; ?>&ct=<?php echo $info['Course_Name']; ?>&cc=<?php echo $info['Course_Code']; ?>&batch=<?php echo $info['Batch']; ?>&sec=<?php echo $info['Section']; ?>';">
 									<td><?php echo htmlspecialchars($info['Title']); ?></td>
@@ -91,7 +91,7 @@ if (isset($_SESSION['ExamDone'])) {
 									<td><?php echo htmlspecialchars($info['Name']); ?></td>
 								</tr>
 
-							<?php }?>
+							<?php } ?>
 
 						</tbody>
 					</table>
@@ -108,17 +108,17 @@ if (isset($_SESSION['ExamDone'])) {
 							Meeting Links &nbsp;<i class="fas fa-chevron-circle-down"></i>
 						</button>
 						<a class="btn btn-dark" href="posts.php" role="button">All Posted Questions <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mailbox2" viewBox="0 0 16 16">
-  <path d="M9 8.5h2.793l.853.854A.5.5 0 0 0 13 9.5h1a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5H9v1z"/>
-  <path d="M12 3H4a4 4 0 0 0-4 4v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a4 4 0 0 0-4-4zM8 7a3.99 3.99 0 0 0-1.354-3H12a3 3 0 0 1 3 3v6H8V7zm-3.415.157C4.42 7.087 4.218 7 4 7c-.218 0-.42.086-.585.157C3.164 7.264 3 7.334 3 7a1 1 0 0 1 2 0c0 .334-.164.264-.415.157z"/>
-</svg></a>
+								<path d="M9 8.5h2.793l.853.854A.5.5 0 0 0 13 9.5h1a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5H9v1z" />
+								<path d="M12 3H4a4 4 0 0 0-4 4v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a4 4 0 0 0-4-4zM8 7a3.99 3.99 0 0 0-1.354-3H12a3 3 0 0 1 3 3v6H8V7zm-3.415.157C4.42 7.087 4.218 7 4 7c-.218 0-.42.086-.585.157C3.164 7.264 3 7.334 3 7a1 1 0 0 1 2 0c0 .334-.164.264-.415.157z" />
+							</svg></a>
 					</p>
 					<div class="collapse" id="collapseExample">
 						<div class="card card-body bg-dark">
 							<ul class="list-group">
 
-								<?php foreach ($rows as $row) {?>
+								<?php foreach ($rows as $row) { ?>
 									<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?> by <?php echo $row['Name']; ?></a></li>
-								<?php }?>
+								<?php } ?>
 
 							</ul>
 						</div>
@@ -140,10 +140,9 @@ if (isset($_SESSION['ExamDone'])) {
 
 	<!--footer Start -->
 	<?php
-require_once 'assets/connect/footer.php';
-?>
+	require_once 'assets/connect/footer.php';
+	?>
 	<!--footer End -->
 </body>
 
 </html>
-

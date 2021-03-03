@@ -83,7 +83,7 @@ require_once 'assets/connect/head.php';
 		<div class="col"></div>
 		<div class="col col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-3">
 			<form action="question_submission.php?Question_Description_ID=<?php echo $_GET['Question_Description_ID']; ?>" method="POST">
-				<table class="table table-hover">
+				<table class="table table-hover table-responsive-sm">
 					<thead>
 						<tr>
 							<th scope="col">Student Id</th>

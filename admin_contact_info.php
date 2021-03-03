@@ -43,7 +43,7 @@ require_once 'assets/connect/head.php';
 
       <div class="row">
         <div class="col"></div>
-        <div class="col-xl-9 col-lg-9 col-md-10 col-sm-9 col-xs-6 my-5">
+        <div class="col-xl-9 col-lg-9 col-md-10 col-sm-9 col-xs-6 my-5 table-responsive-sm">
 
           <table class="table table-hover">
             <thead class="table-secondary">

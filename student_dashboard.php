@@ -68,7 +68,7 @@ if (isset($_SESSION['ExamDone'])) {
 
 			<div class="row">
 				<div class="col"></div>
-				<div class="col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-3">
+				<div class="col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-3 table-responsive-sm">
 					<table class="table table-hover">
 						<thead class="bg-success text-white">
 							<tr>

@@ -40,14 +40,14 @@ require_once 'assets/connect/head.php';
 <body>
 
 	<div class="card text-center bg-light text-dark mb-5">
-		<div class="card-header bg-secondary text-white ">
+		<div class="card-header bg-dark text-white ">
 			<h2 class="display-4">Question Information</h2>
 		</div>
 	</div>
 
 	<div class="row mb-3 ">
 		<div class="col d-flex justify-content-center">
-			<a class="btn btn-dark my-2 mx-3" type="button" href="question_submission.php?Question_Description_ID=<?php echo $_GET['Question_Description_ID']; ?>">Submissions and results&nbsp;<i class="fas fa-chevron-circle-right"></i>
+			<a class="btn btn-warning my-2 mx-3" type="button" href="question_submission.php?Question_Description_ID=<?php echo $_GET['Question_Description_ID']; ?>">Submissions and results&nbsp;<i class="fas fa-chevron-circle-right"></i>
 			</a>
 		</div>
 	</div>

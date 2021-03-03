@@ -96,7 +96,7 @@ require_once 'assets/connect/head.php';
           </p>
 
           <p class="text-center">
-            <button class="btn btn-sm btn-light" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">See The Question&nbsp;<i class="fas fa-chevron-circle-down"></i>
+            <button class="btn btn-sm btn-warning" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">See The Question&nbsp;<i class="fas fa-chevron-circle-down"></i>
             </button>
           </p>
 

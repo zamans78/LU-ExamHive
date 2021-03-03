@@ -66,7 +66,7 @@ require_once 'assets/connect/head.php';
 
 	<div class="row">
 		<div class="col d-flex justify-content-center">
-			<a role="button" target="_blank" href="generate_result.php?Question_Description_ID=<?php echo$row->Question_Description_ID;?>" class="btn btn-dark btn-sm">Generate Result in PDF Format</a>
+			<a role="button" target="_blank" href="generate_result.php?Question_Description_ID=<?php echo $row->Question_Description_ID; ?>" class="btn btn-warning btn-sm">Generate Result in PDF Format &nbsp;<i class="fas fa-file-download"></i></a>
 		</div>
 	</div>
 

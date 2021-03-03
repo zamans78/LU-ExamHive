@@ -4,10 +4,9 @@ require_once "assets/connect/pdo.php";
 
 class myPDF extends FPDF
 {
-  function header()
+  function headerN()
   {
-    $this->Image('assets/images/LuExamHiveLogo.png', 260, 6, 20, 20);
-    $this->Image('assets/images/LUS.png', 20, 6, 20, 20);
+    $this->Image('assets/images/LuExamHiveLogo.png', 20, 6, 15, 15);
     $this->SetFont('Arial', '', 16);
     $this->Cell(276, 5, 'LU Exam Hive', 0, 0, 'C');
     $this->Ln();
@@ -69,6 +68,7 @@ class myPDF extends FPDF
 $pdf = new myPDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('L', 'A4', 0);
+$pdf->headerN();
 $pdf->questionInfo($pdo);
 $pdf->headerTable();
 $pdf->viewTable($pdo);

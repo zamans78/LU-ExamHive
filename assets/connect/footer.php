@@ -10,7 +10,7 @@
 				<ul class="list-unstyled mb-0">
 					<li class="mb-2"><a href="index.php#Features" class="text-muted">Features</a></li>
 					<li class="mb-2">
-						<a href="#" class="text-muted">User Manual</a>
+						<a href="download.php?file=User_Manual.pdf" class="text-muted">User Manual</a>
 					</li>
 				</ul>
 			</div>

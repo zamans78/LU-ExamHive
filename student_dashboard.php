@@ -28,6 +28,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 	<?php
 	require_once 'assets/connect/head.php';
 	?>
+<link rel="stylesheet" href="assets/css/table.css">
 </head>
 
 <body>
@@ -104,10 +105,10 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 				<div class="col"></div>
 				<div class="col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-3 my-5">
 					<p>
-						<button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						<button class="btn btn-dark mb-1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 							Meeting Links &nbsp;<i class="fas fa-chevron-circle-down"></i>
 						</button>
-						<a class="btn btn-dark" href="posts.php" role="button">All Posted Questions <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mailbox2" viewBox="0 0 16 16">
+						<a class="btn btn-dark mb-1" href="posts.php" role="button">All Posted Questions <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mailbox2" viewBox="0 0 16 16">
 								<path d="M9 8.5h2.793l.853.854A.5.5 0 0 0 13 9.5h1a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5H9v1z" />
 								<path d="M12 3H4a4 4 0 0 0-4 4v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a4 4 0 0 0-4-4zM8 7a3.99 3.99 0 0 0-1.354-3H12a3 3 0 0 1 3 3v6H8V7zm-3.415.157C4.42 7.087 4.218 7 4 7c-.218 0-.42.086-.585.157C3.164 7.264 3 7.334 3 7a1 1 0 0 1 2 0c0 .334-.164.264-.415.157z" />
 							</svg></a>
@@ -117,7 +118,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 							<ul class="list-group">
 
 								<?php foreach ($rows as $row) { ?>
-									<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?> by <?php echo $row['Name']; ?></a></li>
+									<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?>&nbsp;<i class="fas fa-chalkboard-teacher"></i>&nbsp;<?php echo $row['Name']; ?></a></li>
 								<?php } ?>
 
 							</ul>

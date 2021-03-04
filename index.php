@@ -11,6 +11,7 @@ require_once 'assets/connect/head.php';
 ?>
 <!-- videojs-->
 <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/table.css">
 </head>
 
 <body>
@@ -43,7 +44,7 @@ require_once 'assets/connect/head.php';
 
 <!--Home start -->
   <div class="jumbotron" id="cover">
-  <h1 class="display-2 text-white"><span class=" d-xs-none">Welcome to </span><br> LU EXAM HIVE</h1>
+  <h1 class="display-2 h-title text-white"><span class=" d-xs-none">Welcome to </span><br> LU EXAM HIVE</h1>
   <p class=" text-white">Be adviced this website has been created only for the purpose of LU Students.</p>
   <a class="btn btn btn-light btn-lg mr-3 d-xl-none d-lg-none d-md" href="teacher_Login.php" role="button">Teacher</a>
   <a class="btn btn btn-light btn-lg  d-xl-none d-lg-none d-md d-sm" href="student_login.php" role="button">Student</a>

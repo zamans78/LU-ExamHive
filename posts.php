@@ -13,6 +13,7 @@ $infos = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <?php
   require_once 'assets/connect/head.php';
   ?>
+  <link rel="stylesheet" href="assets/css/table.css">
 </head>
 
 <body>

@@ -26,6 +26,7 @@ if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
 	<?php
 	require_once 'assets/connect/head.php';
 	?>
+	<link rel="stylesheet" href="assets/css/table.css">
 </head>
 
 <body>

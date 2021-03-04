@@ -1,0 +1,20 @@
+/*-- Media Queries --*/
+
+
+/* For tables */
+
+@media screen and (max-width: 576px) {
+    table {
+        font-size: 12px;
+    }
+    .h-title {
+        font-size: 60px;
+    }
+    .video-js {
+        max-width: 100%;
+        height: 240px;
+    }
+    .t-btn {
+        font-size: 12px;
+    }
+}

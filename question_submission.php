@@ -39,7 +39,7 @@ $infos2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 	<?php
 require_once 'assets/connect/head.php';
 ?>
-
+<link rel="stylesheet" href="assets/css/table.css">
 </head>
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light sticky-top">

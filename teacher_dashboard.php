@@ -120,6 +120,8 @@ if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
 							$act = 'text-warning';
 						} else if ($row['Action'] == 'Done') {
 							$act = 'text-success';
+						} else if ($row['Action'] == 'Draft') {
+							$act = 'text-dark';
 						}
 						echo $act;
 						echo ("'>");

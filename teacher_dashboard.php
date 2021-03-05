@@ -79,7 +79,7 @@ if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
 									if ($link < 1) {
 										echo "<p class='text-danger'>No link found.</p>";
 									} else { ?>
-										<li class="list-group-item"><a href="<?php echo $link; ?>" target="_blank"><?php echo $info['Title']; ?> &nbsp;<i class="fas fa-chalkboard-teacher"></i> &nbsp;<?php echo $info['Name']; ?></a><a href="question_delete.php?Question_Description_ID=<?php echo $info['Question_Description_ID']; ?>" class="btn btn-sm btn-danger float-right">Delete</a></li>
+										<li class="list-group-item"><a href="<?php echo $link; ?>" target="_blank"><?php echo $info['Title']; ?> | Batch: <?php echo $info['Batch']; ?> (<?php echo $info['Section']; ?>) |&nbsp;<i class="fas fa-chalkboard-teacher"></i>&nbsp;<?php echo $info['Name']; ?></a></a><a href="question_delete.php?Question_Description_ID=<?php echo $info['Question_Description_ID']; ?>" class="btn btn-sm btn-danger float-right">Delete</a></li>
 									<?php } ?>
 								<?php } ?>
 							</ul>

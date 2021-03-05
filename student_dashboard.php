@@ -118,7 +118,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 							<ul class="list-group">
 
 								<?php foreach ($rows as $row) { ?>
-									<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?>&nbsp;<i class="fas fa-chalkboard-teacher"></i>&nbsp;<?php echo $row['Name']; ?></a></li>
+									<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?> | Batch: <?php echo $row['Batch']; ?> (<?php echo $row['Section']; ?>) |&nbsp;<i class="fas fa-chalkboard-teacher"></i>&nbsp;<?php echo $row['Name']; ?></a></li>
 								<?php } ?>
 
 							</ul>

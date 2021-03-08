@@ -95,8 +95,13 @@ if (isset($_SESSION['error'])) {
 								else.</small>
 						</div>
 						<div class="form-group">
-
-							<input type="password" name="Password" class="form-control" id="exampleInputPassword1" placeholder="Password...">
+							<div class="input-group">
+								<input type="password" name="Password" class="form-control" id="exampleInputPassword1" placeholder="Password... ">
+								<div class="input-group-append">
+									<span class="input-group-text bg-transparent border-left-0" onclick = "togglePassword()"><i id="hide1" class="fa fa-eye" style="display:none" ></i>
+									<i id="hide2" class="fa fa-eye-slash"></i></span>
+								</div>								
+							</div>
 						</div>
 						<div class="d-flex justify-content-end">
 							<button type="submit" class="btn btn-dark"><a class="text-white text-decoration-none" href="student_Registration.php">Register <i class="fas fa-user-plus"></i></a></button>

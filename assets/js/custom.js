@@ -26,3 +26,26 @@ function showTime() {
 }
 
 showTime();
+
+
+
+/*-- Password Toggle --*/
+
+function togglePassword() {
+
+
+	var state1 = document.getElementById("exampleInputPassword1");
+	var state2 = document.getElementById("hide1");
+	var state3 = document.getElementById("hide2");
+
+	if (state1.type === "password") {
+		state1.type = "text";
+		state2.style.display = "block";
+		state3.style.display = "none";
+	}
+	else {
+		state1.type = "password";
+		state2.style.display = "none";
+		state3.style.display = "block";
+	}
+}

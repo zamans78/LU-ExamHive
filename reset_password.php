@@ -84,9 +84,17 @@ if (isset($_POST["password"])) {
             <div class="col"></div>
             <div class="col-xl-7 col-lg-7 col-md-9 col-sm-10 col-xs-6">
 
-              <div class="row ">
+            <div class="row ">
                 <div class="col">
-                  <input type="password" name="password" placeholder="New Password" class="form-control" required>
+                  <div class="form-group">
+                  <div class="input-group">
+                  <input type="password" name="password" placeholder="New Password" class="form-control" required id="exampleInputPassword1">
+                  <div class="input-group-append">
+                    <span class="input-group-text bg-transparent border-left-0" onclick = "togglePassword()"><i id="hide1" class="fa fa-eye" style="display:none" ></i>
+                    <i id="hide2" class="fa fa-eye-slash"></i></span>
+                  </div>
+                  </div>
+                  </div>
                 </div>
               </div>
 

@@ -92,6 +92,13 @@ We often do forget our passwords thus not to worry, Lu Exam Hive has u covered.
 Figure : Forgot Password of Lu Exam Hive
 
 
+Forgot Password Email (Student)
+
+The message that is sent to student email address via phpMailer.
+
+![image](https://user-images.githubusercontent.com/64192420/110328805-0121f200-8046-11eb-8277-3986a01b2abb.png)
+
+
 
 Dashboard (Teacher)
 

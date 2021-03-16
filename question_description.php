@@ -45,9 +45,9 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 			</div>
 		</nav>
 	</header>
-	<div class="card text-center bg-light text-dark ">
+	<div class="card bg-light text-dark ">
 		<div class="card-header bg-dark text-white ">
-			<h2 class="display-4">Create Question</h2>
+			<h2 class="text-center display-4">Create Question</h2>
 		</div>
 		<div class="row">
 			<div class="col"></div>

@@ -66,7 +66,7 @@ if (isset($_POST["submit"])) {
         if (!preg_match('/^[a-zA-Z\s]+$/', $section)) {
             $errors['section'] = 'Section must be a character.';
         } else if ($_POST['section'] != $_SESSION['Section']) {
-            $errors['section'] = 'You should put your section only';
+            $errors['section'] = 'You should put your section only (case-sensitive)';
         }
     }
 

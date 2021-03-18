@@ -79,7 +79,7 @@ if (isset($_POST["submit"])) {
     $batch = $_POST['batch'];
     $section = $_POST['section'];
 
-    $reg_done = "<label class='alert alert-success'>Registration Done! Now you may write answers. Scroll down to see the questions. &emsp;
+    $reg_done = "<label class='alert alert-success'>Registration Done! Now you may answers the questions. Scroll down to see the questions. &emsp;
                   <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                     <span aria-hidden='true'>&times;</span>
                   </button>

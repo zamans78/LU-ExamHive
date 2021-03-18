@@ -66,8 +66,8 @@ if ($row === false) {
             </div>
         </nav>
     </header>
-    <div class="card text-center bg-light text-dark ">
-        <div class="card-header bg-secondary text-white ">
+    <div class="card bg-light text-dark ">
+        <div class="card-header text-center bg-secondary text-white ">
             <h2 class="display-4">Edit Question</h2>
         </div>
         <div class="row">

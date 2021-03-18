@@ -24,7 +24,7 @@ if (isset($_POST['Student_Email']) && isset($_POST['Password']) && isset($_POST[
         $Password = md5($salt . $_POST['Password']);
         $Student_Email_Status = 'verified';
 
-        $stmt = $pdo->prepare('SELECT Student_ID, Batch, Section FROM student WHERE Student_Email = :em AND Password = :pw AND Student_Email_Status = :ses');
+        $stmt = $pdo->prepare('SELECT Student_ID, Batch, Section, FirstName, LastName FROM student WHERE Student_Email = :em AND Password = :pw AND Student_Email_Status = :ses');
         $stmt->execute(array(':em' => $_POST['Student_Email'], ':ses' => $Student_Email_Status, ':pw' => $Password));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -32,6 +32,8 @@ if (isset($_POST['Student_Email']) && isset($_POST['Password']) && isset($_POST[
             $_SESSION['Student_ID'] = $row['Student_ID'];
             $_SESSION['Batch'] = $row['Batch'];
             $_SESSION['Section'] = $row['Section'];
+						$_SESSION['FirstName'] = $row['FirstName'];
+						$_SESSION['LastName'] = $row['LastName'];
             $batch = $row['Batch'];
             $sec = $row['Section'];
             header("Location: student_dashboard.php?batch=$batch&sec=$sec");

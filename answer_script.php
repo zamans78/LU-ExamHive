@@ -253,7 +253,7 @@ if (isset($_POST["ansSubmit"])) {
               <p class="form-group px-xs-0 px-sm-0 px-md-3 px-lg-5 px-xl-5 mx-xs-1 mx-sm-1 mx-md-3 mx-lg-5 mx-xl-5 mb-5">
                 <label class="control-label col-sm-12 d-flex justify-content-center" for="Title"><?php echo $info['Content']; ?></label>
 
-                <textarea id="summernote" name="answer" class="form-control" onkeypress='validate(event)' value="${cpCon.receiveNo}" autocomplete=off <?php echo $answer; ?> required></textarea>
+                <textarea id="summernote" name="answer" class="form-control" onkeypress='validate(event)' value="${cpCon.receiveNo}" autocomplete="off" required <?php echo $answer; ?>></textarea>
                 <label class="text-danger"><?php echo $errors['answer']; ?></label>
                 <script>
                   $('#summernote').summernote({

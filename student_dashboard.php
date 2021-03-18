@@ -7,7 +7,11 @@ if (!isset($_SESSION['Student_ID']) && !isset($_SESSION['Batch']) && !isset($_SE
 	return;
 }
 
+$std_fname = $_SESSION['FirstName'];
+$std_lname = $_SESSION['LastName'];
 $std_id = $_SESSION['Student_ID'];
+$std_sec = $_SESSION['Section'];
+$std_batch = $_SESSION['Batch'];
 
 //getting the data by query parameter
 if (isset($_GET['batch']) && isset($_GET['sec'])) {
@@ -43,6 +47,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container justify-content-start">
 				<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+
 				<a type="button" href="student_logout.php" class="btn btn-sm btn-dark ml-auto">Logout <i class="fas fa-door-open"></i></a>
 			</div>
 		</nav>
@@ -54,6 +59,23 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 			<div class="row">
 				<div class="col d-flex justify-content-start mt-4">
 					<h2 class="display-4">Dashboard</h2>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col"></div>
+				<div class="col-4">
+					<div class="btn-group d-flex justify-content-end">
+						<button type="button" style="background-color:transparent" class="btn text-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+							Welcome, <?php echo $std_fname; ?>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropdown-menu-sm-left pr-3">
+							<ul style="list-style: none;">
+								<li class="text-secondary"><b>Name: </b><?php echo $std_fname; ?> <?php echo $std_lname; ?></li>
+								<li class="text-secondary"><b>ID: </b><?php echo $std_id; ?></li>
+								<li class="text-secondary"><b>Batch: </b><?php echo $std_batch; ?> <b>Section: </b><?php echo $std_sec; ?></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">

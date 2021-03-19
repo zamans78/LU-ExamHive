@@ -45,17 +45,16 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 			</div>
 		</nav>
 	</header>
-	<div class="card text-center bg-light text-dark ">
+	<div class="card bg-light text-dark ">
 		<div class="card-header bg-dark text-white ">
-			<h2 class="display-4">Create Question</h2>
+			<h2 class="display-4 text-center">Create Question</h2>
 		</div>
 		<div class="row">
 			<div class="col"></div>
 			<div class="col d-flex justify-content-center mt-3">
 				<p class="">Fill all the fields below to create a Question Paper !!</p>
 			</div>
-			<div class="col d-flex justify-content-center mt-3">
-			</div>
+			<div class="col"></div>
 		</div>
 		<div class="container col-xl-7 col-lg-7 col-md-7">
 			<form method="post" class="form-horizontal" action="question_description.php">

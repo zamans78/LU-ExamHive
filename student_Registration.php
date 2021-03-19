@@ -120,8 +120,8 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
       $mail->isSMTP(); // Set mailer to use SMTP
       $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
       $mail->SMTPAuth = true; // Enable SMTP authentication
-      $mail->Username = 'luexamhive@gmail.com'; // SMTP username
-      $mail->Password = 'examhive44'; // SMTP password
+      $mail->Username = ''; // SMTP username
+      $mail->Password = ''; // SMTP password
       $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
       $mail->Port = 587; // TCP port to connect to
 
@@ -224,8 +224,16 @@ if (isset($_POST["Register"]) && isset($_POST["Student_ID"]) && isset($_POST["Fi
               <div class="row mt-3">
                 <div class="col">
                   <label for="">Password</label>
-                  <input type="password" name="Password" class="form-control">
+                  <div class="form-group">
+                  <div class="input-group">
+                  <input type="password" name="Password" class="form-control" id="exampleInputPassword1">
+                  <div class="input-group-append">
+                    <span class="input-group-text bg-transparent border-left-0" onclick = "togglePassword()"><i id="hide1" class="fa fa-eye" style="display:none" ></i>
+                    <i id="hide2" class="fa fa-eye-slash"></i></span>
+                  </div>
+                  </div>
                   <?php echo $error_Password; ?>
+                  </div>
                 </div>
               </div>
               <div class="row mt-3">

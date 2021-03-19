@@ -154,10 +154,16 @@ require_once 'assets/connect/head.php';
               </div>
               <div class="form-group col-md-6">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password">
+                  <div class="input-group">
+                    <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                    <div class="input-group-append">
+                      <span class="input-group-text bg-transparent border-left-0" onclick = "togglePassword()"><i id="hide1" class="fa fa-eye" style="display:none" ></i>
+                      <i id="hide2" class="fa fa-eye-slash"></i></span>
+                    </div>
+                  </div>
                 <label class="text-danger"><?php echo $errors['password']; ?></label>
+                </div>
               </div>
-            </div>
 
             <input type="submit" class="btn btn-dark float-right mb-5" value="Insert Into Database" name="insert">
           </form>

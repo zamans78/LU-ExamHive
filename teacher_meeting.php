@@ -1,40 +1,39 @@
 <?php
 session_start();
 require_once "assets/connect/pdo.php";
-include 'assets/inc/validation_helper.php';
 
 if (!isset($_SESSION['Name']) && !isset($_SESSION['Teacher_ID'])) {
-    header("Location: teacher_Login.php");
-    return;
+	header("Location: teacher_Login.php");
+	return;
 }
 // Check to see if we have some POST data, if we do process it
 if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST['Batch']) && isset($_POST['Section']) && isset($_POST['Title']) && isset($_POST['Save'])) {
 
-    $Course_Code = htmlentities($_POST['Course_Code']);
-    $Course_Name = htmlentities($_POST['Course_Name']);
-    $Batch = htmlentities($_POST['Batch']);
-    $Section = htmlentities($_POST['Section']);
-    $Title = htmlentities($_POST['Title']);
-    $Meeting_Link = htmlentities($_POST['Meeting_Link']);
-    $Action = htmlentities($_POST['Action']);
+	$Course_Code = htmlentities($_POST['Course_Code']);
+	$Course_Name = htmlentities($_POST['Course_Name']);
+	$Batch = htmlentities($_POST['Batch']);
+	$Section = htmlentities($_POST['Section']);
+	$Title = htmlentities($_POST['Title']);
+	$Meeting_Link = htmlentities($_POST['Meeting_Link']);
+	$Action = htmlentities($_POST['Action']);
 
-    $stmt = $pdo->prepare("
+	$stmt = $pdo->prepare("
 	INSERT INTO question_description (Teacher_ID, Course_Code, Course_Name, Batch, Section, Title, Meeting_Link, Action)
 	VALUES (:Teacher_ID, :Course_Code, :Course_Name, :Batch, :Section, :Title, :Meeting_Link, :Action)
 ");
 
-    $stmt->execute([
-        ':Teacher_ID' => $_SESSION['Teacher_ID'],
-        ':Course_Code' => $Course_Code,
-        ':Course_Name' => $Course_Name,
-        ':Batch' => $Batch,
-        ':Section' => $Section,
-        ':Title' => $Title,
-        ':Meeting_Link' => $Meeting_Link,
-        ':Action' => $Action,
-    ]);
-    header('Location: teacher_dashboard.php');
-    return;
+	$stmt->execute([
+		':Teacher_ID' => $_SESSION['Teacher_ID'],
+		':Course_Code' => $Course_Code,
+		':Course_Name' => $Course_Name,
+		':Batch' => $Batch,
+		':Section' => $Section,
+		':Title' => $Title,
+		':Meeting_Link' => $Meeting_Link,
+		':Action' => $Action,
+	]);
+	header('Location: teacher_dashboard.php');
+	return;
 }
 
 ?>
@@ -43,8 +42,8 @@ if (isset($_POST['Course_Code']) && isset($_POST['Course_Name']) && isset($_POST
 
 <head>
 	<?php
-require_once 'assets/connect/head.php';
-?>
+	require_once 'assets/connect/head.php';
+	?>
 </head>
 
 <body>
@@ -112,13 +111,13 @@ require_once 'assets/connect/head.php';
 				</div>
 				<div class="form-group">
 					<div class="px-3">
-				  <input required type="hidden" name="Action" value="meeting">
-				  </div>
+						<input required type="hidden" name="Action" value="meeting">
+					</div>
 				</div>
 				<div class="form-group d-flex justify-content-center">
-                    <div class="col-sm-4 col-sm-offset-2 p-1">
-						<a href="https://calendar.google.com/calendar/u/0/r/day" target="_blank" class="btn btn-dark btn-block text-white text-decoration-none">Get Meet Link
-						<img src="assets/images/meet.svg" alt=""></a>
+					<div class="col-sm-4 col-sm-offset-2 p-1">
+						<a href="https://meet.google.com/" target="_blank" class="btn btn-dark btn-block text-white text-decoration-none">Get Meet Link
+							<img src="assets/images/meet.svg" alt=""></a>
 					</div>
 					<div class="form-group d-flex justify-content-center">
 						<div class="col mt-3">
@@ -127,9 +126,9 @@ require_once 'assets/connect/head.php';
 					</div>
 					<div class="col-sm-4 col-sm-offset-2 p-1">
 						<a href="https://zoom.us/meeting/schedule" target="_blank" class="btn btn-dark btn-block text-white text-decoration-none">Get Zoom Link
-						<img src="assets/images/zoom.svg" alt=""></a>
+							<img src="assets/images/zoom.svg" alt=""></a>
 					</div>
-                </div>
+				</div>
 				<div class="form-group d-flex justify-content-center">
 					<div class="col-sm-4 col-sm-offset-2 p-1">
 						<input class="btn btn-dark btn-block mb-5" type="submit" value="Save" name="Save">

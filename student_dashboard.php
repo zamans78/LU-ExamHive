@@ -6,6 +6,13 @@ if (!isset($_SESSION['Student_ID']) && !isset($_SESSION['Batch']) && !isset($_SE
 	header("Location: student_login.php");
 	return;
 }
+
+$std_fname = $_SESSION['FirstName'];
+$std_lname = $_SESSION['LastName'];
+$std_id = $_SESSION['Student_ID'];
+$std_sec = $_SESSION['Section'];
+$std_batch = $_SESSION['Batch'];
+
 //getting the data by query parameter
 if (isset($_GET['batch']) && isset($_GET['sec'])) {
 	$batch = $_GET['batch'];
@@ -17,6 +24,10 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 	//for meeting link
 	$stmt1 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'meeting' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
 	$rows = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+
+	//for multilple choice/other question
+	$stmt2 = $pdo->query("SELECT question_description.Question_Description_ID, question_description.Teacher_ID, question_description.Course_Code,  question_description.Batch ,question_description.Section, question_description.Course_Name, question_description.Title, question_description.Action, question_description.Meeting_Link, teacher.Name from teacher INNER JOIN question_description on teacher.Teacher_ID = question_description.Teacher_ID WHERE Action = 'quiz' AND Batch = $batch AND Section = '$sec' ORDER BY Question_Description_ID DESC");
+	$rows2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
@@ -28,7 +39,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 	<?php
 	require_once 'assets/connect/head.php';
 	?>
-<link rel="stylesheet" href="assets/css/table.css">
+	<link rel="stylesheet" href="assets/css/table.css">
 </head>
 
 <body>
@@ -36,6 +47,7 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 		<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 			<div class="container justify-content-start">
 				<a class="navbar-brand" href="index.php"><img id="logo" src="assets/images/LuExamHiveLogo.png" height="30px"> LU EXAM HIVE</a>
+
 				<a type="button" href="student_logout.php" class="btn btn-sm btn-dark ml-auto">Logout <i class="fas fa-door-open"></i></a>
 			</div>
 		</nav>
@@ -47,6 +59,23 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 			<div class="row">
 				<div class="col d-flex justify-content-start mt-4">
 					<h2 class="display-4">Dashboard</h2>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col"></div>
+				<div class="col-4">
+					<div class="btn-group d-flex justify-content-end">
+						<button type="button" style="background-color:transparent" class="btn text-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+							Welcome, <?php echo $std_fname; ?>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left dropdown-menu-sm-left pr-3">
+							<ul style="list-style: none;">
+								<li class="text-secondary"><b>Name: </b><?php echo $std_fname; ?> <?php echo $std_lname; ?></li>
+								<li class="text-secondary"><b>ID: </b><?php echo $std_id; ?></li>
+								<li class="text-secondary"><b>Batch: </b><?php echo $std_batch; ?> <b>Section: </b><?php echo $std_sec; ?></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -84,7 +113,13 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 
 							<?php foreach ($infos as $info) { ?>
 
-								<tr onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>&title=<?php echo $info['Title']; ?>&ct=<?php echo $info['Course_Name']; ?>&cc=<?php echo $info['Course_Code']; ?>&batch=<?php echo $info['Batch']; ?>&sec=<?php echo $info['Section']; ?>';">
+								<tr class="<?php
+														$Q_id = $info['Question_Description_ID'];
+														$check = $pdo->query("SELECT COUNT(Student_ID) FROM student_answer WHERE Student_ID = $std_id AND Question_Description_ID = $Q_id");
+														if ($check->fetchColumn() > 0) {
+															echo "d-none";
+														}
+														?>" onclick="window.location='answer_script.php?id=<?php echo $info['Question_Description_ID']; ?>&title=<?php echo $info['Title']; ?>&ct=<?php echo $info['Course_Name']; ?>&cc=<?php echo $info['Course_Code']; ?>&batch=<?php echo $info['Batch']; ?>&sec=<?php echo $info['Section']; ?>';">
 									<td><?php echo htmlspecialchars($info['Title']); ?></td>
 									<td><?php echo htmlspecialchars($info['Course_Code']); ?></td>
 									<td><?php echo htmlspecialchars($info['Course_Name']); ?></td>
@@ -105,13 +140,17 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 				<div class="col"></div>
 				<div class="col-xl-11 col-lg-11 col-md-10 col-sm-9 col-xs-6 my-3 my-5">
 					<p>
-						<button class="btn btn-dark mb-1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-							Meeting Links &nbsp;<i class="fas fa-chevron-circle-down"></i>
-						</button>
+
 						<a class="btn btn-dark mb-1" href="posts.php" role="button">All Posted Questions <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mailbox2" viewBox="0 0 16 16">
 								<path d="M9 8.5h2.793l.853.854A.5.5 0 0 0 13 9.5h1a.5.5 0 0 0 .5-.5V8a.5.5 0 0 0-.5-.5H9v1z" />
 								<path d="M12 3H4a4 4 0 0 0-4 4v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a4 4 0 0 0-4-4zM8 7a3.99 3.99 0 0 0-1.354-3H12a3 3 0 0 1 3 3v6H8V7zm-3.415.157C4.42 7.087 4.218 7 4 7c-.218 0-.42.086-.585.157C3.164 7.264 3 7.334 3 7a1 1 0 0 1 2 0c0 .334-.164.264-.415.157z" />
 							</svg></a>
+						<button class="btn btn-dark mb-1" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+							Quiz Questions &nbsp;<i class="fas fa-chevron-circle-down"></i>
+						</button>
+						<button class="btn btn-dark mb-1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+							Meeting Links &nbsp;<i class="fas fa-chevron-circle-down"></i>
+						</button>
 					</p>
 					<div class="collapse" id="collapseExample">
 						<div class="card card-body bg-dark">
@@ -119,6 +158,28 @@ if (isset($_GET['batch']) && isset($_GET['sec'])) {
 
 								<?php foreach ($rows as $row) { ?>
 									<li class="list-group-item"><a href="<?php echo $row['Meeting_Link']; ?>" target="_blank"><?php echo $row['Title']; ?> | Batch: <?php echo $row['Batch']; ?> (<?php echo $row['Section']; ?>) |&nbsp;<i class="fas fa-chalkboard-teacher"></i>&nbsp;<?php echo $row['Name']; ?></a></li>
+								<?php } ?>
+
+							</ul>
+						</div>
+					</div>
+
+					<div class="collapse" id="collapseExample2">
+						<div class="card card-body bg-dark">
+							<ul class="list-group">
+
+								<?php foreach ($rows2 as $row) { ?>
+									<li class="list-group-item
+									<?php
+									$Q_id = $row['Question_Description_ID'];
+									$check = $pdo->query("SELECT COUNT(Student_ID) FROM quiz_answer WHERE Student_ID = $std_id AND Question_Description_ID = $Q_id");
+									if ($check->fetchColumn() > 0) {
+										echo "d-none";
+									}
+									?>
+									"><a href="quiz_answer_script.php?id=<?php echo $row['Question_Description_ID']; ?>&title=<?php echo $row['Title']; ?>&ct=<?php echo $row['Course_Name']; ?>&cc=<?php echo $row['Course_Code']; ?>&batch=<?php echo $row['Batch']; ?>&sec=<?php echo $row['Section']; ?>">
+
+											<?php echo $row['Title']; ?> | Course Code: <?php echo $row['Course_Code']; ?> | Batch: <?php echo $row['Batch']; ?> (<?php echo $row['Section']; ?>) |&nbsp;<i class="fas fa-chalkboard-teacher"></i>&nbsp;<?php echo $row['Name']; ?></a></li>
 								<?php } ?>
 
 							</ul>
